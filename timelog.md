@@ -17,12 +17,12 @@
 
 ### 3 Oct 2020
 
-* *2 hours* * Researched into technologies into technologies and found Phaser
+* *2 hours*  Researched into technologies into technologies and found Phaser
 
 ### 4 Oct 2020
 
-* *3 hours* * Familarised with myself with Phaser and how to webbased build games
+* *3 hours*  Familarised with myself with Phaser and how to build web-based games
 
 ### 6 Oct 2020
 
-* *2 hours* * Read provided reading by my supervisor as preperation for my first meeting tomorrow
+* *2 hours* Read provided reading by my supervisor as preperation for my first meeting tomorrow
