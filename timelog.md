@@ -26,3 +26,7 @@
 ### 6 Oct 2020
 
 * *2 hours* Read provided reading by my supervisor as preperation for my first meeting tomorrow
+
+### 7 Oct 2020
+
+* *0.5 hours* Read provided reading by my supervisor as preperation for my first meeting tomorrow
