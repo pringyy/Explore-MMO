@@ -13,3 +13,20 @@
 * *0.5 hour* Created GitLab repository and uploaded template
 * *2 hour* Created mind map on potential project ideas and researched to help inspire ideas
 * *1 hour* Research into different potential technologies 
+
+
+### 3 Oct 2020
+
+* *2 hours*  Researched into technologies into technologies and found Phaser
+
+### 4 Oct 2020
+
+* *3 hours*  Familarised with myself with Phaser and how to build web-based games
+
+### 6 Oct 2020
+
+* *2 hours* Read provided reading by my supervisor as preperation for my first meeting tomorrow
+
+### 7 Oct 2020
+
+* *0.5 hours* Read provided reading by my supervisor as preperation for my first meeting tomorrow
