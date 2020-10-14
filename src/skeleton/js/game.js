@@ -29,7 +29,8 @@ Game.create = function(){
     for(var i = 0; i < map.layers.length; i++) {
         layer = map.createLayer(i);
     }
-    layer.inputEnabled = true; // Allows for clicking on the map
+    layer.inputEnabled = true; /*Allows for clicking on the map*/
+    layer.events.onInputUp.add(Game.getCoordinates, this); 
 };
 
 /*Adds new player to the game*/
@@ -41,4 +42,19 @@ Game.addNewPlayer = function(id,x,y){
 Game.removePlayer = function(id){
     Game.playerMap[id].destroy();
     delete Game.playerMap[id];
+};
+
+/*Gets coordinate of where users click on the screen*/
+Game.getCoordinates = function(layer,pointer){
+    Client.sendClick(pointer.worldX,pointer.worldY);
+};
+
+/*Moves player on the screen*/
+Game.movePlayer = function(id,x,y){
+    var player = Game.playerMap[id];
+    var distance = Phaser.Math.distance(player.x,player.y,x,y);
+    var duration = distance*10;
+    var tween = game.add.tween(player);
+    tween.to({x:x,y:y}, duration);
+    tween.start();
 };
