@@ -8,6 +8,11 @@ Client.askNewPlayer = function(){
     Client.socket.emit('newplayer');
 };
 
+/*Sends the coordinates of where the user clicks to the server*/
+Client.sendClick = function(x,y){
+  Client.socket.emit('click',{x:x,y:y});
+};
+
 Client.socket.on('newplayer',function(data){
     Game.addNewPlayer(data.id,data.x,data.y);
 });
@@ -28,8 +33,5 @@ Client.socket.on('allplayers',function(data){
 });
 
 
-/*Sends the coordinates of where the user clicks to the server*/
-Client.sendClick = function(x,y){
-  Client.socket.emit('click',{x:x,y:y});
-};
+
 

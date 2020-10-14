@@ -13,7 +13,7 @@ Game.init = function(){
 
 /*Loads the assets to be displayed to the user*/
 Game.preload = function() {
-    game.load.tilemap('map', 'assets/map/example_map.json', null, Phaser.Tilemap.TILED_JSON);
+    game.load.tilemap('map', 'assets/map/map.json', null, Phaser.Tilemap.TILED_JSON);
     game.load.spritesheet('tileset', 'assets/map/tilesheet.png',32,32);
     game.load.image('sprite','assets/sprites/sprite.png'); 
 };
@@ -21,6 +21,7 @@ Game.preload = function() {
 
 /*Function creates and displays the map*/
 Game.create = function(){
+    Game.playerMap = {};
     var map = game.add.tilemap('map');
     map.addTilesetImage('tilesheet', 'tileset'); 
     var layer;
