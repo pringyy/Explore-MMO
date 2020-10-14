@@ -23,7 +23,7 @@ application.get('/',function(req,res){
 
 
 /*Sets what port the server listens to, which in this case is 8001*/
-server.listen(8001,function(){ 
+server.listen(8081,function(){ 
     console.log('Listening on '+server.address().port);
 });
 server.lastPlayderID = 0; // Keep track of the last id assigned to a new player

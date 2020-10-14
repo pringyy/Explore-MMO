@@ -1,9 +1,7 @@
 
+/*I used this tutorial to learn how to do this with Phasher: https://www.dynetisgames.com/2017/03/06/how-to-make-a-multiplayer-online-game-with-phaser-socket-io-and-node-js*/
 
 /*Sets up game canvas*/
-var game = new Phaser.Game(16*32, 600, Phaser.AUTO, document.getElementById('game'));
-game.state.add('Game',Game);
-game.state.start('Game');
 var Game = {};
 
 
@@ -15,7 +13,7 @@ Game.init = function(){
 
 /*Loads the assets to be displayed to the user*/
 Game.preload = function() {
-    game.load.tilemap('map', 'assets/map/map.json', null, Phaser.Tilemap.TILED_JSON);
+    game.load.tilemap('map', 'assets/map/example_map.json', null, Phaser.Tilemap.TILED_JSON);
     game.load.spritesheet('tileset', 'assets/map/tilesheet.png',32,32);
     game.load.image('sprite','assets/sprites/sprite.png'); 
 };
@@ -30,7 +28,8 @@ Game.create = function(){
         layer = map.createLayer(i);
     }
     layer.inputEnabled = true; /*Allows for clicking on the map*/
-    layer.events.onInputUp.add(Game.getCoordinates, this); 
+    layer.events.onInputUp.add(Game.getCoordinates, this);
+    Client.askNewPlayer();
 };
 
 /*Adds new player to the game*/
