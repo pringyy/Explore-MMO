@@ -26,3 +26,27 @@ application.get('/',function(req,res){
 server.listen(8001,function(){ 
     console.log('Listening on '+server.address().port);
 });
+server.lastPlayderID = 0; // Keep track of the last id assigned to a new player
+
+io.on('connection',function(socket){
+    socket.on('newplayer',function(){
+        socket.player = {
+            id: server.lastPlayderID++,
+            x: 100,
+            y: 100
+        };
+        socket.emit('allplayers',getAllPlayers());
+        socket.broadcast.emit('newplayer',socket.player);
+    });
+});
+
+function getAllPlayers(){
+    var players = [];
+    Object.keys(io.sockets.connected).forEach(function(socketID){
+        var player = io.sockets.connected[socketID].player;
+        if(player) players.push(player);
+    });
+    return players;
+}
+
+

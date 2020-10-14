@@ -31,3 +31,14 @@ Game.create = function(){
     }
     layer.inputEnabled = true; // Allows for clicking on the map
 };
+
+/*Adds new player to the game*/
+Game.addNewPlayer = function(id,x,y){
+    Game.playerMap[id] = game.add.sprite(x,y,'sprite');
+};
+
+/*Removes player from the game*/
+Game.removePlayer = function(id){
+    Game.playerMap[id].destroy();
+    delete Game.playerMap[id];
+};
