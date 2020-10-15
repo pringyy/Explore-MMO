@@ -57,13 +57,13 @@ Week-by-week plan for the whole project. Update this as you go along.
 - Continue on game code
 - Setup CI/CD
 
-* **Week 10**
+**Week 10**
 - Continue on game code
 
-* **Week 11 [PROJECT WEEK]**
+**Week 11 [PROJECT WEEK]**
 - Continue on game code
 
-* **Week 12 [PROJECT WEEK]** Status report submitted.
+**Week 12 [PROJECT WEEK]** Status report submitted.
 - Continue on game code
 -Write status report
 
@@ -72,40 +72,40 @@ Week-by-week plan for the whole project. Update this as you go along.
 
 ## Spring Semester
 
-* **Week 13**
+**Week 13**
 - Continue on game code
 
-* **Week 14**
+**Week 14**
 - Continue on game code
 
-* **Week 15**
+**Week 15**
 - Finish game code
 
-* **Week 16**
+**Week 16**
 - Carry out evaluation on product 
 - Start working on dissertation write-up
 
-* **Week 17**
+**Week 17**
 - Continue working on dissertation write-up
 
-* **Week 19**
+**Week 19**
 - Continue working on dissertation write-up
 
-* **Week 20**
+**Week 20**
 - Continue working on dissertation write-up
 
-* **Week 21**
+**Week 21**
 - Continue working on dissertation write-up
 
-* **Week 22**
-- Continue working on dissertation write-up
-- Plan and record presentaiton
-
-* **Week 23 [TERM ENDS]**
+**Week 22**
 - Continue working on dissertation write-up
 - Plan and record presentaiton
 
-* **Week 24** Dissertation submission deadline and presentations.
+**Week 23 [TERM ENDS]**
+- Continue working on dissertation write-up
+- Plan and record presentaiton
+
+**Week 24** Dissertation submission deadline and presentations.
 - Finish working on dissertation write-up
 - Submit work
 
