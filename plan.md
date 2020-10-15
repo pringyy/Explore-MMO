@@ -1,9 +1,9 @@
 # Plan
 
-* PROJECT TITLE
-* YOUR NAME
-* STUDENT ID
-* SUPERVISOR NAME
+* "A multiplayer game to develop communication skill"
+* Robert Pringle
+* 2304777P
+* Matthew Barr
 
 Week-by-week plan for the whole project. Update this as you go along.
 
@@ -14,6 +14,8 @@ Week-by-week plan for the whole project. Update this as you go along.
 * **Week 3**
 * **Week 4**
 * **Week 5**
+
+
 * **Week 6**
 * **Week 7**
 * **Week 8**
