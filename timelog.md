@@ -32,3 +32,7 @@
 * *0.5 hours* Read provided reading by my supervisor as preperation for my first meeting today
 * *1 hours* First meeting with supervisor
 * *0.5 hours* Creating Issues on Git Hub to break down what Matt told me to currently work on 
+
+### 11 Oct 2020
+
+* *2 hours* Read up on pre-exsiting technologies similar to my idea and sumamrised some of them, will commit document when finished
