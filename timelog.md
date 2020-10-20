@@ -51,3 +51,9 @@
 
 ### 19 Oct 2020
 * *1 hours* Researched into how to structure literature review
+
+
+### 20 Oct 2020
+
+* *0.5 hours* Started and fished the wireframe design for the login page
+* *3 hours* Researched into more studies, so I can gain a further knowledge in the field and update my requirements accordingly
