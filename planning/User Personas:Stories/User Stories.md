@@ -17,4 +17,4 @@ Thhese user stories are in the format "As a [persona], I [want to], [so that]."
 
 - **Story #6:** As a University student, I want to be able to change the look of my in-game character, so other players can more easily identify me from others.
 
-**Story #7:** As a University student, I want to be able to create an account for the game, so I can save my progress.
+-**Story #7:** As a University student, I want to be able to create an account for the game, so I can save my progress.
