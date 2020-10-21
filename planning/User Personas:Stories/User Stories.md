@@ -3,9 +3,9 @@
 
 These stories are all based on University students as they are my target audience for this online game.
 
-Thhese user stories are in the format "As a [persona], I [want to], [so that]."
+These user stories are in the format "As a [persona], I [want to], [so that]."
 
-- **Story #1:** As a University student, I want to be able to play a multiplayer video game , so I can develop my communication skills.
+- **Story #1:** As a University student, I want to be able to play a multiplayer video game, so I can develop my communication skills.
 
 - **Story #2:** As a University student, I want to be able to communicate with different people, so I can develop my communication skills.
 
