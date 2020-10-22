@@ -8,6 +8,8 @@
 
 - **Requirement #1:** Create a multiplayer browser game
 - **Requirement #2:** Allow users to communicate via a chat function
-- **Requirement #3:** Have an underlying story-line to the game
-- **Requirement #4:** Allow users to change their character
-- **Requirement #5:** Have a registration and logon page
+- **Requirement #3:** Users have to be working towards a goal
+- **Requirement #4:** Users must be rewarded when they achieve a goal
+- **Requirement #5:** Game has to have different language options
+- **Requirement #6:** Allow users to change the look of their character
+- **Requirement #7:** Have a registration and logon page
