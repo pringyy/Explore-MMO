@@ -1,0 +1,27 @@
+{
+  "name": "exploreio",
+  "version": "1.0.0",
+  "description": "A multiplayer browser game",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pringyy/Individual-Project.git"
+  },
+  "author": "Robert Pringle",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/pringyy/Individual-Project/issues"
+  },
+  "homepage": "https://github.com/pringyy/Individual-Project#readme",
+  "dependencies": {
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "mongoose": "^5.10.11"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.6"
+  }
+}
