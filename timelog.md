@@ -51,9 +51,26 @@
 
 ### 19 Oct 2020
 * *1 hours* Researched into how to structure literature review
+* *1 hours* Created a survey to gether gurther requirements for the porjject by getting my end-users opinions
 
 
 ### 20 Oct 2020
 
 * *0.5 hours* Started and fished the wireframe design for the login page
 * *3 hours* Researched into more studies, so I can gain a further knowledge in the field and update my requirements accordingly
+
+### 22 Oct 2020
+* *1.5 hours* Created User Personas and Stories representing my end-users
+* *1 hours* Finished my wireframes for the Registration and Forgot Password page
+
+### 23 Oct 2020
+
+* *2 hours* Analysed my survey results
+* *0.5 hours* Had meeting with my advisor
+
+### 28 Oct 2020
+* *3 hours* Reading Node JS guides and familiarising myself with MongoDB
+
+### 29 Oct 2020
+
+* *8 hours* Becoming familar with Node S and fully implementing back-end fucntionality for login and regisration for the website
