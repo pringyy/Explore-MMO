@@ -73,4 +73,4 @@
 
 ### 29 Oct 2020
 
-* *8 hours* Becoming familar with Node S and fully implementing back-end fucntionality for login and regisration for the website
+* *8 hours* Becoming familar with Node JS and fully implementing back-end fucntionality for login and regisration for the website
