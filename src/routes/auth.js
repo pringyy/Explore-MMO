@@ -1,6 +1,7 @@
 const router = require('express').Router();
-const User = require('../model/user');
+const User = require('../model/User');
 const bcrypt = require('bcryptjs');
+const webtoken = require('jsonwebtoken');
 const {registerValidation, loginValidation} = require('../validation');
 
 //Register
@@ -47,15 +48,16 @@ router.post('/login', async (req,res) => {
 	if (error) return res.status(400).send(`Validation error: ${error.details.map(x => x.message).join(', ')}`);
 
 	//Checks if username exists
-	const usernameExist = await User.findOne ({username: req.body.username});
-	if(!usernameExist) return res.status(400).send('Incorrect username or password');
+	const user = await User.findOne ({username: req.body.username});
+	if(!user) return res.status(400).send('Incorrect username or password');
 
-	//Checks if password is correct to the corresponding username
-	const validPassword = await bcrypt.compare(req.body.password, usernameExist.password);
+	//Checks if password entered matches the usernames actual password
+	const validPassword = await bcrypt.compare(req.body.password, user.password);
 	if(!validPassword) return res.status(400).send('Invalid username or password')
 
-	res.send('Success');
-
+	//Create and assign a JSON web token
+	const token = webtoken.sign({_id: user._id}, process.env.TOKEN_SECRET);
+	res.header('auth-token', token).send(token);
 });
 
 module.exports = router;
