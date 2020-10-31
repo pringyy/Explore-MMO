@@ -9,7 +9,7 @@ const postRoute = require('./routes/posts');
 dotenv.config();
 
 //Connecting to MongoDB database being hosted on https://cloud.mongodb.com/
-mongoose.connect(
+mongoose.createConnection(
     process.env.DB_CONNECT,
     {useNewUrlParser:true, useUnifiedTopology:true},
     () => console.log('successfully connected to database')
