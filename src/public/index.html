@@ -10,7 +10,7 @@
         <h1 class="title">Explore IO</h1>
         <div id = "homepage">
             <h1>A collaborative exploration game</h1>
-            <div id = "test"></div>
+            <div id = "login"></div>
         </div>
 
         <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
@@ -19,7 +19,7 @@
 
         <!--Create React component-->
         <script type = "text/babel">
-            var login = React.createClass({
+            var Login = React.createClass({
                 render: function(){
                     return(
                         <div id = "login-container">
@@ -40,10 +40,16 @@
                     
                     fetch("/api/users/login", {
                         method:"POST",
-                        body: 
-}                   });
+                        body: {          
+                            "username": username,
+                            "password": password
+                        }
+                    });
                 }
             });
+            ReactDOM.render(<Login/>, document.getElementById('login'));
+
+         
         </script>
 
     </body>

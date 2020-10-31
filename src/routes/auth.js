@@ -43,6 +43,7 @@ router.post('/register', async (req,res) => {
 //Login
 router.post('/login', async (req,res) => {
 	const {error} = loginValidation(req.body);
+	console.log('called');
 
 	//Sends error message if data is not valid
 	if (error) return res.status(400).send(`Validation error: ${error.details.map(x => x.message).join(', ')}`);
