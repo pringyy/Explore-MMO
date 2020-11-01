@@ -74,3 +74,9 @@
 ### 29 Oct 2020
 
 * *8 hours* Becoming familar with Node JS and fully implementing back-end fucntionality for login and regisration for the website
+
+### 31 Oct 2020
+
+* *3 hours* Setting up Pipeline to build and run unit tests on Node JS
+* *2 hours* Started implementing front-end for the application
+
