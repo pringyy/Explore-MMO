@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Explore IO</title>
+        <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+        <link href= "/styles.css" rel="stylesheet" type="text/css"/>
+    </head> 
+    <body>
+        <h1 class="title">Explore IO</h1>
+        <div id = "homepage">
+            <h1>A collaborative exploration game</h1>
+            <div id = "login"></div>
+        </div>
+
+        <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+        <script src="https://unpkg.com/react@15/dist/react.js"></script>
+        <script src="https://unpkg.com/react-dom@15/dist/react-dom.min.js"></script>
+        <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+        <!--Create React component-->
+        <script type = "text/babel">
+            var Login = React.createClass({
+                render: function(){
+                    return(
+                        <div id = "login-container">
+                            <form id = "search" onSubmit={this.handleSubmit}>
+                                <label>Enter</label>
+                                <input type="text" ref="username" placeholder = "Username" required/>
+                                <input type="text" ref="password" placeholder = "Password" required/>
+                                <input type= "submit" value = "Submit"/>
+                            </form>
+                        </div>
+                    );
+                },
+
+                handleSubmit: function(e){
+                    e.preventDefault();
+                    var username = this.refs.username.value;
+                    var password = this.refs.password.value;
+
+              
+                    axios({
+                        method: 'post',
+                        url: '/api/user/login',
+                        data: {
+                        username: username,
+                        password: password
+                        }
+                    })  
+                }
+            });
+            ReactDOM.render(<Login/>, document.getElementById('login'));
+
+         
+        </script>
+
+    </body>
+</html>     

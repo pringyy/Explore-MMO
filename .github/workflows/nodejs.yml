@@ -21,7 +21,7 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
     - run: |
-        cd src
+        cd src/backend
         pwd
         npm install
         npm test
