@@ -15,5 +15,12 @@
   "bugs": {
     "url": "https://github.com/pringyy/Individual-Project/issues"
   },
-  "homepage": "https://github.com/pringyy/Individual-Project#readme"
+  "homepage": "https://github.com/pringyy/Individual-Project#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "mongodb": "^3.6.2",
+    "serve": "^11.3.2",
+    "socket.io": "^2.3.0"
+  }
 }
