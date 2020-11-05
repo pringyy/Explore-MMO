@@ -9,13 +9,13 @@
         <script>
 
             const phaserConfig = {
-                type: phaser.AUTO,
+                type: Phaser.AUTO,
                 parent: "game",
                 width: 1280,
                 height: 720,
                 background: "#E7F6EF",
                 dom:{
-                    cresteContainer: true
+                    createContainer: true
                 },
                 scene:{
                     init: initScene,
@@ -25,10 +25,10 @@
             }
 
             const game = new Phaser.Game(phaserConfig);
+
             function initScene(){
                 this.socket = io("http://localhost:3001", {autoConnect:false});
                 this.chatMessages = [];
-
             }
 
             function preloadScene(){
@@ -42,7 +42,7 @@
                     background: "#21313CDD",
                     color: "#26924F",
                     padding: 10,
-                    fontStle: "bold"
+                    fontStyle: "bold"
                 });
 
                 this.enterKey = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.ENTER);
@@ -61,7 +61,7 @@
                 });
 
                 this.socket.on("joined", async (gameID) => {
-                    let result = await fetch(`http://localhost:3000/chats?room=${gameId}`)
+                    let result = await fetch(`http://localhost:3001/chats?room=${gameId}`)
                         .then(response => response.json());
                     this.chatMessages = result.messages;
                     this.chatMessages.push("Welcome to " + gameID);

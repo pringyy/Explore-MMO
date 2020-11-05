@@ -7,7 +7,6 @@ const { MongoClient } = require("mongodb");
 
 const client = new MongoClient('mongodb+srv://testuser:test123@cluster0.5ba7x.mongodb.net/gamedev?retryWrites=true&w=majority');
 
-app.use(express.static('public'));
 express.use(cors());
 
 var collection;
@@ -21,6 +20,7 @@ io.on("connection", (socket) => {
             }
             socket.join(gameId);
             socket.emit("joined", gameId);
+            socket.activeRoom = gameId;
         }catch(e){
             console.error(e);
         }
