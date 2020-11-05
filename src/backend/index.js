@@ -16,9 +16,7 @@ mongoose.connect(
     () => console.log('successfully connected to database')
 );
 
-
 //Middleware
-app.use(express.static('public'));
 app.use(express.json());
 
 //Create Route Middlewares
