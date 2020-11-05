@@ -60,15 +60,8 @@
                     this.socket.emit("join", "mongodb");
                 });
 
-                this.socket.on("joined", async (gameID) => {
-                    let result = await fetch(`http://localhost:3000/chats?room=${gameId}`)
-                        .then(response => response.json());
-                    this.chatMessages = result.messages;
-                    this.chatMessages.push("Welcome to " + gameID);
-                    if (this.chatMessages.length > 20) {
-                        this.chatMessages.shift();
-                    }
-                    this.chat.setText(this.chatMessages);
+                this.socket.on("joined", async () => {
+                    this.chat.setText("Connected into game chat!");
                 });
 
                 this.socket.on("message", (message) => {

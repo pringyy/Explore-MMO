@@ -14,12 +14,8 @@ var collection;
 io.on("connection", (socket) => {
     socket.on("join", async(gameId) => {
         try {
-            let result = await collection.findOne({"_id": gameId});
-            if (!result) {
-                await collection.insertOne({"_id": gameId, messages: []});
-            }
             socket.join(gameId);
-            socket.emit("joined", gameId);
+            socket.emit("joined");
             socket.activeRoom = gameId;
         }catch(e){
             console.error(e);
@@ -37,15 +33,6 @@ io.on("connection", (socket) => {
     });
 });
 
-express.get("/chats", async (request, reponse) => {
-    try{ 
-        let result = await collection.findOne({"_id": request.query.room});
-        response.send(result);
-
-    }catch(e){
-        response.status(500).send({message: e.message});
-    }
-});
 
 http.listen(3001, async () => {
     try{
