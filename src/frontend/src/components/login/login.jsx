@@ -6,59 +6,64 @@ export class Login extends React.Component {
 // eslint-disable-next-line
   constructor(props) {
     super(props);
+    this.state = {username: ''}
+    this.state = {password: ''}
   }
 
 
-  handleChange = event => {
-    this.setState({ name: event.target.value });
+  handleUsername= event => {
+    this.setState({ username: event.target.value });
+    
   }
+
+  handlePassword= event => {
+    this.setState({ password: event.target.value });
+    
+  }
+
+ 
 
   handleSubmit = event => {
     event.preventDefault();
-
-   /** const user = {
-      name: this.state.name
-    };**/
-
     axios.post(`http://localhost:3000/api/user/login`, 
     { 
-        username: "hello1234",
-        password: "hello1234"
+        username: this.state.username,
+        password: this.state.password
     
-    }, {headers: {"Access-Control-Allow-Origin":'*'}})
+    })
       .then(res => {
         console.log(res);
         console.log(res.data);
       })
   }
 
-
-
   render() {
     return (
+      
       <div className="base-container" ref={this.props.containerRef}>
-        <div className="header">Login</div>
-        <div className="content">
-          <div className="image">
-          </div>
-          <div className="form">
-            <div className="form-group">
-              <label htmlFor="username">Username</label>
-              <input type="text" name="username" placeholder="username" />
+        <form onSubmit ={this.handleSubmit}>
+          <div className="header">Login</div>
+          <div className="content">
+            <div className="image">
             </div>
-            <div className="form-group">
-              <label htmlFor="password">Password</label>
-              <input type="password" name="password" placeholder="password" />
+            <div className="form">
+              <div className="form-group">
+                <label htmlFor="username">Username</label>
+                <input type="text" name="username" placeholder="username"  onChange={this.handleUsername} />
+              </div>
+              <div className="form-group">
+                <label htmlFor="password">Password</label>
+                <input type="password" name="password" placeholder="password" onChange={this.handlePassword} />
+              </div>
             </div>
-            
           </div>
-        </div>
-            <form onSubmit ={this.handleSubmit}>
-          <button type="submit"  className="btn">
-            Submit
-          </button>
-          </form>
+              
+            <button type="submit"  className="btn">
+              Submit
+            </button>
+        </form>   
       </div>
+      
     );
   }
 }
