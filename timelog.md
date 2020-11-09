@@ -88,7 +88,7 @@
 ### 5 Nov 2020
 
 * *4 hours* Finished implementing in game chat 
-* * 2 hours* Researched into Axios for React front-end API calls
+* *2 hours* Researched into Axios for React front-end API calls
 
 ### 6 Nov 2020
 
@@ -96,5 +96,5 @@
 
 ### 7 Nov 2020
 
-* *4 hours * Fixed React front end bug and successfully got it to communicate with my backend
+* *4 hours* Fixed React front end bug and successfully got it to communicate with my backend
 
