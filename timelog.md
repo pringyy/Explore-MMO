@@ -80,3 +80,21 @@
 * *3 hours* Setting up Pipeline to build and run unit tests on Node JS
 * *2 hours* Started implementing front-end for the application
 
+### 4 Nov 2020
+
+* *3 hours* Setting up and researching how to use React
+* *0.5 hours* Started working on in game chat
+
+### 5 Nov 2020
+
+* *4 hours* Finished implementing in game chat 
+* * 2 hours* Researched into Axios for React front-end API calls
+
+### 6 Nov 2020
+
+* *5 hours* Cotinued with React front-end
+
+### 7 Nov 2020
+
+* *4 hours * Fixed React front end bug and successfully got it to communicate with my backend
+
