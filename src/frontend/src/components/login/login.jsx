@@ -1,15 +1,14 @@
 import React from "react";
 import axios from "axios";
 
-
 export class Login extends React.Component {
 // eslint-disable-next-line
   constructor(props) {
     super(props);
     this.state = {username: ''}
     this.state = {password: ''}
+    this.state = {password: ''}
   }
-
 
   handleUsername= event => {
     this.setState({ username: event.target.value });
@@ -18,10 +17,8 @@ export class Login extends React.Component {
 
   handlePassword= event => {
     this.setState({ password: event.target.value });
-    
-  }
-
  
+  }
 
   handleSubmit = event => {
     event.preventDefault();
@@ -53,7 +50,7 @@ export class Login extends React.Component {
               </div>
               <div className="form-group">
                 <label htmlFor="password">Password</label>
-                <input type="password" name="password" placeholder="password" onChange={this.handlePassword} />
+                <input type="password" name="password" aria-hidden = "true" placeholder="password" onChange={this.handlePassword} />
               </div>
             </div>
           </div>

@@ -1,13 +1,18 @@
 import React from "react";
 import axios from "axios";
 
+
+
 export class Register extends React.Component {
 // eslint-disable-next-line
+
   constructor(props) {
     super(props);
     this.state = {username: ''}
     this.state = {email: ''}
     this.state = {password: ''}
+    this.state = {confirmPassword: ''}
+   
   }
 
   handleUsername = event => {
@@ -22,23 +27,36 @@ export class Register extends React.Component {
     this.setState({ password: event.target.value });
   }
 
-
-  handleSubmit = event => {
-    event.preventDefault();
-    
-    axios.post(`http://localhost:3000/api/user/register`, 
-    { 
-        username: this.state.username,
-        email: this.state.email,
-        password: this.state.password
-    
-    })
-      .then(res => {
-        console.log(res);
-        console.log(res.data);
-      })
+  handleConfirmPassword = event => {
+    this.setState({ confirmPassword: event.target.value });
   }
+ 
 
+
+  
+  handleSubmit = event => {
+  
+    event.preventDefault();
+
+    if(this.state.confirmPassword === this.state.password) {
+      
+      axios.post(`http://localhost:3000/api/user/register`, 
+      { 
+          username: this.state.username,
+          email: this.state.email,
+          password: this.state.password 
+      })
+        .then(res => {
+          console.log(res);
+          console.log(res.data);
+        })
+    } else {
+      window.alert("Passwords do not match");
+    }
+    
+    
+      
+  }
 
   render() {
     return (
@@ -59,13 +77,18 @@ export class Register extends React.Component {
             </div>
             <div className="form-group">
               <label htmlFor="password">Password</label>
-              <input type="text" name="password" placeholder="password" onChange={this.handlePassword}/>
+              <input type="password" name="password" aria-hidden = "true" placeholder="password" onChange={this.handlePassword} />
+            </div>
+            <div className="form-group">
+              <label htmlFor="password">Confirm Password</label>
+              <input type="password" name="confirmPassword" aria-hidden = "true" placeholder="password" onChange={this.handleConfirmPassword} />
             </div>
           </div>
         </div>
           <button type="submit" className="btn">
             Register
           </button>
+        
           </form>
       </div>
     );
