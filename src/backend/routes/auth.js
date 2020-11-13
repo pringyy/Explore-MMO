@@ -7,7 +7,7 @@ const {registerValidation, loginValidation} = require('../validation');
 //Register
 router.post('/register', async (req,res) => {
 	const {error} = registerValidation(req.body);
-
+	console.log('reg called');
 	//Sends error message if data is not valid
 	if (error) return res.status(400).send(`Validation error: ${error.details.map(x => x.message).join(', ')}`);
 		
@@ -50,12 +50,15 @@ router.post('/login', async (req,res) => {
 
 	//Checks if username exists
 	const user = await User.findOne ({username: req.body.username});
-	if(!user) return res.status(400).send('Incorrect username or password');
-
+	if(!user) {
+		console.log("error");
+		return res.status(400).send('Incorrect username or password');
+	}
 	//Checks if password entered matches the usernames actual password
 	const validPassword = await bcrypt.compare(req.body.password, user.password);
 	if(!validPassword) return res.status(400).send('Invalid username or password')
 
+	console.log('success');
 	//Create and assign a JSON web token
 	const token = webtoken.sign({_id: user._id}, process.env.TOKEN_SECRET);
 	res.header('auth-token', token).send(token);
