@@ -5,7 +5,14 @@
 * 2304777P
 * Matthew Barr
 
-## Week 1
+# Timelog
+
+* "A multiplayer game to develop communication skill"
+* Robert Pringle
+* 2304777P
+* Matthew Barr
+
+## Week 2
 
 ### 1 Oct 2020
 
@@ -18,6 +25,9 @@
 ### 3 Oct 2020
 
 * *2 hours*  Researched into technologies into technologies and found Phaser
+
+
+## Week 3
 
 ### 4 Oct 2020
 
@@ -38,6 +48,9 @@
 * *2 hours* Read up on pre-exsiting technologies similar to my idea and sumamrised some of them, will commit document when finished
 * *1 hour* Typed up my intial development timeline, which may be subect to change depending on how development goes
 
+
+## Week 4
+
 ### 14 Oct 2020
 * *5 hours* Created the skeleton game, which shows clients connecting to a server sut to make sure I can get back end to work before impelemtning anything maot
 
@@ -53,11 +66,13 @@
 * *1 hours* Researched into how to structure literature review
 * *1 hours* Created a survey to gether gurther requirements for the porjject by getting my end-users opinions
 
-
 ### 20 Oct 2020
 
 * *0.5 hours* Started and fished the wireframe design for the login page
 * *3 hours* Researched into more studies, so I can gain a further knowledge in the field and update my requirements accordingly
+
+
+## Week 5
 
 ### 22 Oct 2020
 * *1.5 hours* Created User Personas and Stories representing my end-users
@@ -67,6 +82,9 @@
 
 * *2 hours* Analysed my survey results
 * *0.5 hours* Had meeting with my advisor
+
+
+## Week 6
 
 ### 28 Oct 2020
 * *3 hours* Reading Node JS guides and familiarising myself with MongoDB
@@ -79,6 +97,9 @@
 
 * *3 hours* Setting up Pipeline to build and run unit tests on Node JS
 * *2 hours* Started implementing front-end for the application
+
+
+## Week 7
 
 ### 4 Nov 2020
 
@@ -97,4 +118,20 @@
 ### 7 Nov 2020
 
 * *4 hours* Fixed React front end bug and successfully got it to communicate with my backend
+
+
+## Week 8
+
+
+### 9 Nov 2020
+
+* *5 hours* Researching on how to integrate React with Phaser
+* *2 hours* Implementing React into Phaser
+
+### 10 Nov 2020
+* *2 hours* Implementing React into Phaser
+* *3 hours* Research into game devleopment software practices
+
+### 11 Nov 2020
+* *2 hours* researching into other frontends at Phaser does not seem to integrate well with Reacts
 
