@@ -125,6 +125,7 @@
 
 ### 9 Nov 2020
 
+* *0.5 hours* Meeting with Matt
 * *5 hours* Researching on how to integrate React with Phaser
 * *2 hours* Implementing React into Phaser
 
@@ -135,3 +136,20 @@
 ### 11 Nov 2020
 * *2 hours* researching into other frontends at Phaser does not seem to integrate well with Reacts
 
+### 13 Nov 2020
+
+* *3 hours* Decided to scrap seperate frontend from backend and researched on how to do both on the same server with Node
+
+
+### 16 Nov 2020
+
+* *0.5 hours* Meeting with Matt informing him I am scrapping React and going to use Node JS
+
+### 19 Nov 2020
+
+* *6 hours* Setting up new html front end to make api calls so users can login and register
+* *2 hours* Implemented a score functionality into the model, so I could maybe implement a socre board at a later date
+
+### 20 Nov 2020
+
+* *9 hours* Nearly finisged converting the skeleton game to Phaser 3 and integrating Phaser to work with Node JS still more work to be done and iron out bugs
