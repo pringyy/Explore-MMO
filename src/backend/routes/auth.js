@@ -3,9 +3,9 @@ const User = require('../model/user');
 const bcrypt = require('bcryptjs');
 const webtoken = require('jsonwebtoken');
 const {registerValidation, loginValidation} = require('../validation');
-
+const asyncMiddleware = require('../middleware/asyncMiddleware');
 //Register
-router.post('/register', async (req,res) => {
+router.post('/register', asyncMiddleware (async(req,res)=> {
 	const {error} = registerValidation(req.body);
 	console.log('reg called');
 	//Sends error message if data is not valid
@@ -38,10 +38,10 @@ router.post('/register', async (req,res) => {
 		res.status(400).send(err);
 	}
 
-});
+}));
 
 //Login
-router.post('/login', async (req,res) => {
+router.post('/login', asyncMiddleware(async (req,res) => {
 	const {error} = loginValidation(req.body);
 	console.log('called');
 
@@ -62,6 +62,6 @@ router.post('/login', async (req,res) => {
 	//Create and assign a JSON web token
 	const token = webtoken.sign({_id: user._id}, process.env.TOKEN_SECRET);
 	res.header('auth-token', token).send(token);
-});
+}));
 
 module.exports = router;

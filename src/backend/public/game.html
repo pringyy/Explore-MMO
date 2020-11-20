@@ -1,81 +1,15 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.js"></script>
-        <script src="//cdn.jsdelivr.net/npm/phaser@3.24.1/dist/phaser.min.js"></script>
-    </head>
-    <body>
-        <div id = "game"></div>
-        <script>
-
-            const phaserConfig = {
-                type: Phaser.AUTO,
-                parent: "game",
-                width: 1280,
-                height: 720,
-                backgroundColor: "#E7F6EF",
-                dom:{
-                    createContainer: true
-                },
-                scene:{
-                    init: initScene,
-                    preload: preloadScene,
-                    create: createScene
-                }
-            }
-
-            const game = new Phaser.Game(phaserConfig);
-
-            function initScene(){
-                this.socket = io("http://localhost:3000", {autoConnect:false});
-                this.chatMessages = [];
-            }
-
-            function preloadScene(){
-                this.load.html("form", "form.html");
-            }
-
-            function createScene(){
-                this.textInput = this.add.dom(1135, 690).createFromCache("form").setOrigin(0.5);
-                this.chat = this.add.text(1000, 10, "",{
-                    lineSpacing: 15,
-                    backgroundColor: "#21313CDD",
-                    color: "#26924F",
-                    padding: 10,
-                    fontStyle: "bold"
-                });
-                this.chat.setFixedSize(300,800);
-
-                this.enterKey = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.ENTER);
-                this.enterKey.on("down", event => {
-                    let chatbox = this.textInput.getChildByName("chat");
-                    if (chatbox.value != "") {
-                        this.socket.emit("message", chatbox.value);
-                        chatbox.value = "";
-                    }
-
-                });
-
-                this.socket.connect();
-                this.socket.on("connect", async () => {
-                    this.socket.emit("join", "mongodb");
-                });
-
-                this.socket.on("joined", async()=> {
-                    this.chat.setText("Connected to chat!");
-                });
-
-                this.socket.on("message", (message) => {
-                    this.chatMessages.push(message);
-                    if (this.chatMessages.length > 20) {
-                        this.chatMessages.shift();
-                    }
-                    this.chat.setText(this.chatMessages);
-                });
-
-            }
-        </script>
-        
-    </body>
-
+<!doctype html>
+<html lang="en">
+ 
+<head>
+  <meta charset="utf-8">
+  <title>Explore IO</title>
+  <script src="//cdn.jsdelivr.net/npm/phaser@3.16.2/dist/phaser.min.js"></script>
+  <script src="/socket.io/socket.io.js"></script>
+</head>
+ 
+<body>
+  <script src="js/game.js"></script>
+</body>
+ 
 </html>

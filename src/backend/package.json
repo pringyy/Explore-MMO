@@ -1,38 +1,25 @@
 {
-  "name": "exploreio",
+  "name": "explore",
   "version": "1.0.0",
-  "description": "A multiplayer browser game",
+  "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon index.js",
-    "test": "mocha --recursive --exit"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/pringyy/Individual-Project.git"
-  },
-  "author": "Robert Pringle",
+  "keywords": [],
+  "author": "",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/pringyy/Individual-Project/issues"
-  },
-  "homepage": "https://github.com/pringyy/Individual-Project#readme",
   "dependencies": {
     "@hapi/joi": "^17.1.1",
     "bcrypt": "^5.0.0",
     "bcryptjs": "^2.4.3",
-    "chai": "^4.2.0",
-    "chai-http": "^4.3.0",
+    "body-parser": "^1.19.0",
     "cors": "^2.8.5",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "jsonwebtoken": "^8.5.1",
-    "mocha": "^8.2.0",
-    "mockgoose": "^8.0.4",
-    "mongoose": "^5.10.11"
-  },
-  "devDependencies": {
-    "nodemon": "^2.0.6",
-    "supertest": "^6.0.0"
+    "mongoose": "^5.10.15",
+    "phaser": "^3.24.1",
+    "socket.io": "^3.0.3"
   }
 }
