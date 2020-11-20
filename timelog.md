@@ -152,4 +152,4 @@
 
 ### 20 Nov 2020
 
-* *9 hours* Nearly finisged converting the skeleton game to Phaser 3 and integrating Phaser to work with Node JS still more work to be done and iron out bugs
+* *9 hours* Nearly finished converting the skeleton game to Phaser 3 and integrating Phaser to work with Node JS still more work to be done and iron out bugs
