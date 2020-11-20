@@ -36,6 +36,7 @@ io.on('connection', function (socket) {
   };
   //Sends where all the other players currently are to the new user
   socket.emit('currentPlayers', connectedPlayers);
+  socket.broadcast.emit('newPlayer', connectedPlayers[socket.id]);
 
   //Sends the new players location to al lthe currently logged in players
   socket.broadcast.emit('newConnection', connectedPlayers[socket.id]);
