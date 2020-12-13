@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+ 
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>Register</title>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/css/materialize.min.css">
+  <link rel="stylesheet" type="text/css" href ="assets/css/main.css"></style>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+</head>
+
+  <body>
+      <main>
+        <div class = "center">
+          <h1 class="indigo-text center">Explore IO</h1>
+          <h5 class="indigo-text">Register</h5>
+          <div class="container">
+            <div class="z-depth-1 grey lighten-4 row loginContainer">
+              <form class="col s12">
+                <div class='row'>
+                  <div class='col s12'>
+                  </div>
+                </div>
+  
+                <div class='row'>
+                  <div class='input-field col s12'>
+                    <input class='validate' type='text' name='username' id='username' />
+                    <label for='username'>Enter your username</label>
+                  </div>
+                </div>
+  
+                
+                <div class='row'>
+                  <div class='input-field col s12'>
+                    <input class='validate' type='text' name='email' id='email' />
+                    <label for='email'>Enter your email</label>
+                  </div>
+                </div>
+  
+                <div class='row'>
+                  <div class='input-field col s12'>
+                    <input class='validate' type='text' name='password' id='password' />
+                    <label for='password'>Enter your password</label>
+                  </div>
+                </div>
+  
+              <div class='row'>
+                <a class="btn btn-lg btn-primary btn-block" onClick="register()">Sign up</a>
+              </div>
+            
+              </form>
+            </div>
+          </div>
+          <a href="/">Already have an account? Login here</a>
+        </div> 
+    </main>
+  <script>
+    function register() {
+      console.log("called");
+      console.log(document.getElementById("username").value);
+      var data = {
+        username: document.getElementById("username").value,
+        email: document.getElementById("email").value,
+        password: document.getElementById("password").value
+      };
+      $.ajax({
+        type: 'POST',
+        url: '/register',
+        data,
+        success: function (data) {
+          window.alert('user created successfully');
+          window.location.replace('/');
+        },
+        error: function (xhr) {
+          window.alert(JSON.stringify(xhr));
+          window.location.replace('/register');
+        }
+      });
+    }
+  </script>
+</body>
+ 
+</html>
