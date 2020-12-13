@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>Login</title>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/css/materialize.min.css">
+  <link rel="stylesheet" type="text/css" href ="assets/css/main.css"></style>
+</head>
+
+<body>
+  <main>
+      <div class = "center">
+        <h1 class="indigo-text">Explore IO</h1>
+        <h5 class="indigo-text">Login</h5>
+      
+        <div class="container">
+          <div class="z-depth-1 grey lighten-4 row loginContainer">
+            <form class="col s12" method="post">
+              <div class = "row"></div>
+              <div class='row'>
+                <div class='col s12'>
+                </div>
+              </div>
+              <div class='row'>
+                <div class='input-field col s12'>
+                  <input class='validate' type='text' name='username' id='username' />
+                  <label for='username'>Enter your username</label>
+                </div>
+              </div>
+              <div class='row'>
+                <div class='input-field col s12'>
+                  <input class='validate' type='password' name='password' id='password' />
+                  <label for='password'>Enter your password</label>
+                </div>
+                  <a class='indigo-text' href='#!'><b>Forgot Password?</b></a>
+              </div>
+                <div class='row'>
+                  <a class="btn btn-lg btn-primary btn-block" onClick="login()">Login</a>
+                </div>
+            </form>
+          </div>
+        </div>
+        <a href="/register">Create account</a>
+      </div>
+  </main>
+
+  <script>
+    function login() {
+      var data = {
+        username: document.getElementById("username").value,
+        password: document.getElementById("password").value
+      };
+      $.ajax({
+        type: 'POST',
+        url: '/login',
+        data,
+        success: function (data) {
+          window.alert('Success');
+          window.location.replace('/play');
+        },
+        error: function (xhr) {
+          window.alert(JSON.stringify(xhr));
+          window.location.replace('/');
+        }
+      });
+    }
+  </script>
+
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.1/jquery.min.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.min.js"></script>
+</body>
+
+</html>
