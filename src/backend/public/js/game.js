@@ -135,8 +135,7 @@ class initialiseAssets extends Phaser.Scene {
     }
   
     addOtherPlayers(playerInfo) {
-      const otherPlayer = this.add.sprite(playerInfo.x, playerInfo.y, 'player', 9);
-      otherPlayer.setTint(Math.random() * 0xffffff);
+      const otherPlayer = this.add.sprite(playerInfo.x, playerInfo.y, 'player', 6);
       otherPlayer.playerId = playerInfo.playerId;
       this.otherPlayers.add(otherPlayer);
     }
@@ -234,7 +233,7 @@ class initialiseAssets extends Phaser.Scene {
         gravity: {
           y: 0
         },
-        debug: true 
+        debug: false
       }
     },
     scene: [
