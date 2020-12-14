@@ -3,16 +3,25 @@ class initialiseAssets extends Phaser.Scene {
       super({
         key: 'initialiseAssets',
         active: true
+        
       });
     }
   
     preload() {
-      this.load.image('tiles', 'assets/map/tilesheet.png');
-      this.load.tilemapTiledJSON('map', 'assets/map/map.json');
-      this.load.spritesheet('player', 'assets/sprites.png', {
-        frameWidth: 16,
-        frameHeight: 16
+      this.load.image('tiles', 'assets/world/tileset.png');
+      this.load.image('watertiles', 'assets/world/water.png');
+      this.load.tilemapTiledJSON('map', 'assets/world/world.json');
+      this.load.spritesheet('player', 'assets/sprites/yoda.png', {
+        frameWidth: 32,
+        frameHeight: 48
       });
+
+      this.load.spritesheet('darthvader', 'assets/sprites/darthvader.png', {
+        frameWidth: 32,
+        frameHeight: 48
+      });
+
+      
   
     }
   
@@ -33,7 +42,32 @@ class initialiseAssets extends Phaser.Scene {
       this.otherPlayers = this.physics.add.group();
   
       //Intialises map to user
-      this.createMap();
+      this.map = this.make.tilemap({
+        key: 'map'
+      });
+  
+      var tiles = this.map.addTilesetImage('tileset', 'tiles');
+      var watertiles = this.map.addTilesetImage('water', 'watertiles');
+
+      
+      var ground = this.map.createStaticLayer('ground', tiles, 0, 0);
+      var water = this.map.createStaticLayer('water', watertiles, 0, 0);
+      var trees = this.map.createStaticLayer('trees', tiles, 0, 0);
+      var wall = this.map.createStaticLayer('wall', tiles, 0, 0);
+      var fence = this.map.createStaticLayer('fence', tiles, 0, 0);
+      var ladders = this.map.createStaticLayer('ladders', tiles, 0, 0);
+      
+      
+      water.setCollisionByExclusion([-1]);
+      trees.setCollisionByExclusion([-1]); 
+      wall.setCollisionByExclusion([-1]);
+      
+      
+    
+      //Handles boundaries of the map
+      this.physics.world.bounds.width = this.map.widthInPixels;
+      this.physics.world.bounds.height = this.map.heightInPixels;
+ 
   
       //Handles player animations when moving
       this.handleAnimations();
@@ -46,7 +80,16 @@ class initialiseAssets extends Phaser.Scene {
       this.socket.on('currentPlayers', function (players) {
         Object.keys(players).forEach(function (id) {
           if (players[id].playerId === this.socket.id) {
-            this.createPlayer(players[id]);
+            
+            this.player = this.add.sprite(0, 0, 'player', 0);
+            this.container = this.add.container(players[id].x, players[id].y);
+            this.container.setSize(16, 16);
+            this.physics.world.enable(this.container);
+            this.container.add(this.player);
+            this.updateCamera();
+            this.container.body.setCollideWorldBounds(true);
+            this.physics.add.collider(this.container,[trees,wall,water]);
+  
           } else {
             this.addOtherPlayers(players[id]);
           }
@@ -77,67 +120,43 @@ class initialiseAssets extends Phaser.Scene {
   
     createMap() {
 
-      this.map = this.make.tilemap({
-        key: 'map'
-      });
-  
-      var tiles = this.map.addTilesetImage('spritesheet', 'tiles', 16, 16, 1, 2);
+      
 
-      this.map.createStaticLayer('Grass', tiles, 0, 0);
-      this.map.createStaticLayer('Obstacles', tiles, 0, 0);
-  
-      //Handles boundaries of the map
-      this.physics.world.bounds.width = this.map.widthInPixels;
-      this.physics.world.bounds.height = this.map.heightInPixels;
     }
   
     handleAnimations() {
       
       this.anims.create({
         key: 'left',
-        frames: this.anims.generateFrameNumbers('player', {
-          frames: [1]
-        }),
+        frameRate: 8,
+        frames: this.anims.generateFrameNumbers('player', {start: 4, end:7})
       });
   
       this.anims.create({
         key: 'right',
-        frames: this.anims.generateFrameNumbers('player', {
-          frames: [1]
-        }),
+        frameRate: 8,
+        frames: this.anims.generateFrameNumbers('player', {start: 8, end:11})
       });
   
       this.anims.create({
         key: 'up',
-        frames: this.anims.generateFrameNumbers('player', {
-          frames: [2]
-        }),
+        frameRate: 8,
+        frames: this.anims.generateFrameNumbers('player', {start: 12, end:15})
       });
   
       this.anims.create({
         key: 'down',
-        frames: this.anims.generateFrameNumbers('player', {
-          frames: [0]
-        }),
+        frameRate: 8,
+        frames: this.anims.generateFrameNumbers('player', {start: 0, end:3})
       });
     }
-  
-    createPlayer(playerInfo) {
-    
-      this.player = this.add.sprite(0, 0, 'player', 6);
-      this.container = this.add.container(playerInfo.x, playerInfo.y);
-      this.container.setSize(16, 16);
-      this.physics.world.enable(this.container);
-      this.container.add(this.player);
-      this.updateCamera();
-      this.container.body.setCollideWorldBounds(true);
-      this.physics.add.collider(this.container, this.spawns);
-    }
+
   
     addOtherPlayers(playerInfo) {
-      const otherPlayer = this.add.sprite(playerInfo.x, playerInfo.y, 'player', 6);
+      const otherPlayer = this.add.sprite(playerInfo.x, playerInfo.y, 'darthvader', 0);
       otherPlayer.playerId = playerInfo.playerId;
       this.otherPlayers.add(otherPlayer);
+      
     }
   
     updateCamera() {
@@ -167,31 +186,32 @@ class initialiseAssets extends Phaser.Scene {
   
   
     update() {
+      
       if (this.container) {
         this.container.body.setVelocity(0);
   
         
         //Handles verticle player movement
         if (this.cursors.up.isDown) {
-          this.container.body.setVelocityY(-50);
+          this.container.body.setVelocityY(-200);
         } else if (this.cursors.down.isDown) {
-          this.container.body.setVelocityY(50);
+          this.container.body.setVelocityY(200);
         }
 
         //Handles horizontal player movement
         if (this.cursors.left.isDown) {
-            this.container.body.setVelocityX(-50);
+            this.container.body.setVelocityX(-200);
           } else if (this.cursors.right.isDown) {
-            this.container.body.setVelocityX(50);
+            this.container.body.setVelocityX(200);
           }
   
         // Update the animation last and give left/right animations precedence over up/down animations
         if (this.cursors.left.isDown) {
             this.player.anims.play('left', true);
-            this.player.flipX = true;
+            
           } else if (this.cursors.right.isDown) {
             this.player.anims.play('right', true);
-            this.player.flipX = false;
+         
           } else if (this.cursors.up.isDown) {
             this.player.anims.play('up', true);
           } else if (this.cursors.down.isDown) {
@@ -210,6 +230,8 @@ class initialiseAssets extends Phaser.Scene {
         this.socket.emit('playerMovement', { x, y, flip});
       }
 
+      
+
       this.container.oldPosition = {
         x: this.container.x,
         y: this.container.y,
@@ -222,11 +244,13 @@ class initialiseAssets extends Phaser.Scene {
   
   var config = {
     type: Phaser.AUTO,
+    borderPadding: 10,
     parent: 'content',
-    width: 320,
-    height: 240,
-    zoom: 4,
+    width:800,
+    height: 400,
+    zoom: 2,
     pixelArt: true,
+    
     physics: {
       default: 'arcade',
       arcade: {
