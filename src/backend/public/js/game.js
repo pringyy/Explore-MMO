@@ -56,11 +56,14 @@ class initialiseAssets extends Phaser.Scene {
       var wall = this.map.createStaticLayer('wall', tiles, 0, 0);
       var fence = this.map.createStaticLayer('fence', tiles, 0, 0);
       var ladders = this.map.createStaticLayer('ladders', tiles, 0, 0);
+      var building = this.map.createStaticLayer('building', tiles, 0, 0);
+      var buildingaddon = this.map.createStaticLayer('buildingaddon', tiles, 0, 0);
       
       
       water.setCollisionByExclusion([-1]);
       trees.setCollisionByExclusion([-1]); 
       wall.setCollisionByExclusion([-1]);
+      building.setCollisionByExclusion([-1]);
       
       
     
@@ -88,7 +91,7 @@ class initialiseAssets extends Phaser.Scene {
             this.container.add(this.player);
             this.updateCamera();
             this.container.body.setCollideWorldBounds(true);
-            this.physics.add.collider(this.container,[trees,wall,water]);
+            this.physics.add.collider(this.container,[trees,wall,water,building]);
   
           } else {
             this.addOtherPlayers(players[id]);
