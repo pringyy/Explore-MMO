@@ -1,3 +1,42 @@
+const inputMessage = document.getElementById('inputMessage');
+const messages = document.getElementById('messages');
+ 
+window.addEventListener('keydown', event => {
+  if (event.which === 13) {
+    sendMessage();
+  }
+  if (event.which === 32) {
+    if (document.activeElement === inputMessage) {
+      inputMessage.value = inputMessage.value + ' ';
+    }
+  }
+});
+ 
+function sendMessage() {
+  let message = inputMessage.value;
+  if (message) {
+    inputMessage.value = '';
+    $.ajax({
+      type: 'POST',
+      url: '/submit-chatline',
+      data: {
+        message
+      },
+      success: function(data) {},
+      error: function(xhr) {
+        console.log(xhr);
+      }
+    })
+  }
+}
+ 
+function addMessageElement(el) {
+  messages.append(el);
+  messages.lastChild.scrollIntoView();
+}
+
+
+
 class initialiseAssets extends Phaser.Scene {
     constructor() {
       super({
@@ -119,13 +158,27 @@ class initialiseAssets extends Phaser.Scene {
                 }
             }.bind(this));
         }.bind(this));
+        this.socket.on('new message', (data) => {
+          const usernameSpan = document.createElement('span');
+          const usernameText = document.createTextNode(data.username);
+          usernameSpan.className = 'username';
+          usernameSpan.appendChild(usernameText);
+         
+          const messageBodySpan = document.createElement('span');
+          const messageBodyText = document.createTextNode(data.message);
+          messageBodySpan.className = 'messageBody';
+          messageBodySpan.appendChild(messageBodyText);
+         
+          const messageLi = document.createElement('li');
+          messageLi.setAttribute('username', data.username);
+          messageLi.append(usernameSpan);
+          messageLi.append(messageBodySpan);
+         
+          addMessageElement(messageLi);
+        });
     }
   
-    createMap() {
-
-      
-
-    }
+  
   
     handleAnimations() {
       

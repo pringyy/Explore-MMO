@@ -7,6 +7,7 @@ const mongoose = require('mongoose');
 const cors = require('cors');
 const verify = require('./routes/verifyToken');
 const routes = require('./routes/auth');
+const asyncMiddleware = require('./middleware/asyncMiddleware');
 
 //Establish connection to MongoDB database
 const uri = process.env.DB_CONNECT;
@@ -66,6 +67,17 @@ app.use(cors());
 
 
 app.use(express.static(__dirname + '/public'));
+
+app.post('/submit-chatline', asyncMiddleware(async (req, res, next) => {
+  const { message } = req.body;
+  const  name  = req.body.username;
+  // await ChatModel.create({ email, message });
+  io.emit('new message', {
+    username: name,
+    message,
+  });
+  res.status(200).json({ status: 'ok' });
+}));
  
 app.get('/', function (req, res) {
   res.sendFile(__dirname + '/public/index.html');

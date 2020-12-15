@@ -9,6 +9,10 @@
   <!-- Compiled and minified CSS -->
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+  <link rel="stylesheet" href="assets/css/game.css">
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  
+
   
 </head>
  
@@ -23,7 +27,18 @@
       </ul>
     </div>
   </nav>
-  <script src="js/game.js"></script>
+  <body>
+    <div class="flex-container">
+      <div id="content"></div>
+      <div id="chatContainer">
+        <div class="chatArea">
+          <ul id="messages" class="messages"></ul>
+        </div>
+        <input id="inputMessage" class="inputMessage" placeholder="Type here..." type="text">
+      </div>
+    </div>
+    <script src="js/game.js"></script>
+  </body>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
  
 </body>
