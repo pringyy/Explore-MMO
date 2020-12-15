@@ -2,6 +2,7 @@ require('dotenv').config();
 
 const express = require('express');
 const bodyParser = require('body-parser');
+const cookieParser = require('cookie-parser');
 const mongoose = require('mongoose');
 const cors = require('cors');
 const verify = require('./routes/verifyToken');
@@ -60,6 +61,7 @@ io.on('connection', function (socket) {
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
+app.use(cookieParser());
 app.use(cors()); 
 
 
@@ -73,7 +75,7 @@ app.get('/register', function (req, res) {
   res.sendFile(__dirname + '/public/register.html');
 });
 
-app.get('/play', function (req, res) {
+app.get('/play', verify, function (req, res) {
   res.sendFile(__dirname + '/public/game.html');
 });
 

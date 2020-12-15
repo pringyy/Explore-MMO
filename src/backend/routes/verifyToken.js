@@ -2,7 +2,8 @@ const webtoken = require('jsonwebtoken');
 
 module.exports = function (req, res, next){
 
-    const token = req.header('auth-token');
+    const token = req.cookies.access_token;
+    console.log(token);
     if(!token) return res.status(401).send('Access Denied');
 
     try{
@@ -12,4 +13,7 @@ module.exports = function (req, res, next){
     }catch(err){
         res.status(400).send('Invalid Token');
     }
+   
 }
+
+

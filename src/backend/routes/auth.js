@@ -61,7 +61,10 @@ router.post('/login', asyncMiddleware(async (req,res) => {
 	console.log('success');
 	//Create and assign a JSON web token
 	const token = webtoken.sign({_id: user._id}, process.env.TOKEN_SECRET);
-	res.header('auth-token', token).send(token);
+	res.cookie('access_token', token, {
+		maxAge: 3600,
+		httpOnly: true
+	}).send(token);
 }));
 
 module.exports = router;
