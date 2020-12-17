@@ -302,9 +302,9 @@ class initialiseAssets extends Phaser.Scene {
     type: Phaser.AUTO,
     borderPadding: 10,
     parent: 'content',
-    width:800,
+    width:600,
     height: 400,
-    zoom: 2,
+    zoom: 1.5,
     pixelArt: true,
     
     physics: {

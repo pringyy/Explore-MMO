@@ -1,10 +1,6 @@
-ul {
-    list-style: none;
-    word-wrap: break-word;
-  }
-  
+
   #chatContainer {
-    width: calc(100% - 960px);
+    width: 20%;
   }
   
   .flex-container {
@@ -16,34 +12,7 @@ ul {
   .flex-container > div {
     background-color: #f1f1f1;
   }
-  
-  /* Fix user-agent */
-  
-  * {
-    box-sizing: border-box;
-  }
-  
-  html {
-    font-weight: 300;
-    -webkit-font-smoothing: antialiased;
-  }
-  
-  html, input {
-    font-family:
-      "HelveticaNeue-Light",
-      "Helvetica Neue Light",
-      "Helvetica Neue",
-      Helvetica,
-      Arial,
-      "Lucida Grande",
-      sans-serif;
-  }
-  
-  html, body {
-    height: 100%;
-    margin: 0;
-    padding: 0;
-  }
+ 
   
   /* Chat page */
   
@@ -60,19 +29,13 @@ ul {
   .inputMessage {
     font-size: 100%;
   }
-  
-  .log {
-    color: gray;
-    font-size: 70%;
-    margin: 5px;
-    text-align: center;
-  }
+
   
   /* Messages */
   
   .chatArea {
-    max-height: 660px;
-    height: 660px;
+    max-height: 550px;
+    height: 550px;
     overflow-y: scroll;
   }
   
@@ -83,9 +46,6 @@ ul {
     padding: 10px 20px 10px 20px;
   }
   
-  .message.typing .messageBody {
-    color: gray;
-  }
   
   .username {
     font-weight: 700;
@@ -97,7 +57,7 @@ ul {
   /* Input */
   
   .inputMessage {
-    border: 1px solid #000;
+    border: 5px solid #000;
     bottom: 0;
     height: 60px;
     left: 0;
