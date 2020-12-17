@@ -1,0 +1,41 @@
+::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: gray;
+  opacity: 1; /* Firefox */
+}
+
+.flex-container {
+  display: flex;
+  flex-wrap: wrap;
+  align-content: stretch;
+}
+
+.flex-container > div {
+  background-color: #f1f1f1;
+}
+.messages {
+  font-size: 90%;
+}
+
+.chatArea {
+  max-height: 550px;
+  height: 550px;
+  overflow-y: scroll;
+}
+
+.username {
+  font-weight: 700;
+  overflow: hidden;
+  padding-right: 15px;
+  text-align: left;
+}
+
+
+
+ul {
+  list-style: none;
+  word-wrap: break-word;
+}
+#chatContainer {
+  width: 20%;
+}
+
