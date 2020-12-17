@@ -1,39 +1,4 @@
-const inputMessage = document.getElementById('inputMessage');
-const messages = document.getElementById('messages');
- 
-window.addEventListener('keydown', event => {
-  if (event.which === 13) {
-    sendMessage();
-  }
-  if (event.which === 32) {
-    if (document.activeElement === inputMessage) {
-      inputMessage.value = inputMessage.value + ' ';
-    }
-  }
-});
- 
-function sendMessage() {
-  let message = inputMessage.value;
-  if (message) {
-    inputMessage.value = '';
-    $.ajax({
-      type: 'POST',
-      url: '/submit-chatline',
-      data: {
-        message
-      },
-      success: function(data) {},
-      error: function(xhr) {
-        console.log(xhr);
-      }
-    })
-  }
-}
- 
-function addMessageElement(el) {
-  messages.append(el);
-  messages.lastChild.scrollIntoView();
-}
+
 
 
 
@@ -158,7 +123,7 @@ class initialiseAssets extends Phaser.Scene {
                 }
             }.bind(this));
         }.bind(this));
-        this.socket.on('new message', (data) => {
+        this.socket.on('new user message', (data) => {
           const usernameSpan = document.createElement('span');
           const usernameText = document.createTextNode(data.username);
           usernameSpan.className = 'username';
@@ -169,12 +134,14 @@ class initialiseAssets extends Phaser.Scene {
           messageBodySpan.className = 'messageBody';
           messageBodySpan.appendChild(messageBodyText);
          
-          const messageLi = document.createElement('li');
-          messageLi.setAttribute('username', data.username);
-          messageLi.append(usernameSpan);
-          messageLi.append(messageBodySpan);
+          const messageList = document.createElement('li');
+          messageList.setAttribute('username', (data.username));
+          
+          messageList.append(usernameSpan);
          
-          addMessageElement(messageLi);
+          messageList.append(messageBodySpan);
+         
+          addMessageElement(messageList);
         });
     }
   
@@ -322,4 +289,43 @@ class initialiseAssets extends Phaser.Scene {
     ]
   };
   var game = new Phaser.Game(config);
+
+
+//All code below handles the ingame chat
+const input = document.getElementById('input');
+const messages = document.getElementById('messages');
+ 
+window.addEventListener('keydown', event => {
+  if (event.which === 13) {
+    sendMessage();
+  }
+  if (event.which === 32) {
+    if (document.activeElement === input) {
+      input.value = input.value + ' ';
+    }
+  }
+});
+ 
+function sendMessage() {
+  let message = input.value;
+  if (message) {
+    input.value = '';
+    $.ajax({
+      type: 'POST',
+      url: '/submitChat',
+      data: {
+        message
+      },
+      success: function(data) {},
+      error: function(xhr) {
+        console.log(xhr);
+      }
+    })
+  }
+}
+ 
+function addMessageElement(el) {
+  messages.append(el);
+  messages.lastChild.scrollIntoView();
+}
   

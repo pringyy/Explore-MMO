@@ -68,11 +68,11 @@ app.use(cors());
 
 app.use(express.static(__dirname + '/public'));
 
-app.post('/submit-chatline', asyncMiddleware(async (req, res, next) => {
+app.post('/submitChat', asyncMiddleware(async (req, res, next) => {
   const { message } = req.body;
   const  name  = req.body.username;
   // await ChatModel.create({ email, message });
-  io.emit('new message', {
+  io.emit('new user message', {
     username: name,
     message,
   });
