@@ -84,7 +84,6 @@ class initialiseAssets extends Phaser.Scene {
       this.socket.on('currentPlayers', function (players) {
         Object.keys(players).forEach(function (id) {
           if (players[id].playerId === this.socket.id) {
-            
             this.player = this.add.sprite(0, 0, 'player', 0);
             this.container = this.add.container(players[id].x, players[id].y);
             this.container.setSize(16, 16);

@@ -87,7 +87,7 @@ app.get('/register', function (req, res) {
   res.sendFile(__dirname + '/public/register.html');
 });
 
-app.get('/play', verify, function (req, res) {
+app.get('/play', function (req, res) {
   res.sendFile(__dirname + '/public/game.html');
 });
 
