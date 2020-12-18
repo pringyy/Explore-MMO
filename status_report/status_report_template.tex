@@ -3,66 +3,84 @@
 \usepackage{times}
     \usepackage{fullpage}
     
-    \title{ {{cookiecutter.project_title}}
-    \author{ {{cookiecutter.student_name}} - {{cookiecutter.student_id}} }
+    \title{A multiplayer game to develop communication skill}
+    \author{Robert Pringle 2304777p}
 
     \begin{document}
     \maketitle
-    
-    
-     
 
-\section{Status report}
+\section{Proposal}\label{proposal}
 
-\subsection{Proposal}\label{proposal}
+\subsection{Motivation}\label{motivation}
 
-\subsubsection{Motivation}\label{motivation}
+Video games have been found to help students with the development of useful skills which include adaptability, resourcefulness and communication. These skills are collectively are coined as "graduate skills" which students would find beneficial in the workplace. The multiplayer component in video games is seen to be the most important in developing these skills, as it allows players to work together. Universities do not specifically incorporate anything into their curriculum to help students develop these essential skills and creating a game could be a platform they could use to do this. Ultimately, this could help students performance in the workplace and increase their employability.
 
-\emph{{[}Clearly motivate the purpose of your project; why someone would
-care about what you are doing{]}}
+\subsection{Aims}\label{aims}
+This project's aim is to develop a multiplayer online game which players can use to develop communication skills. To do this they need to be working towards a goal which has an incentive, so they are motivated to complete the task. This incentive will be rewarding players with skins that they can use to customise their character. Additionally, as communication is a main focus, a game chat will be implemented, so players can speak to one an other and help each other complete tasks. Login and registration functionality will also be needed in order to save players' progress in a database.
 
-\subsubsection{Aims}\label{aims}
 
-\emph{{[}Clearly state what the project is intended to do. This should
-be something which is measurable; it should be possible to tell if you
-succeeded{]}}
+\section{Progress}\label{progress}
 
-\subsection{Progress}\label{progress}
-
-\emph{{[}Briefly state your progress so far, as a bulleted list{]}}
-
-\subsection{Problems and risks}\label{problems-and-risks}
-
-\subsubsection{Problems}\label{problems}
-
-\emph{{[}What problems have you had so far, that have held up the
-project?{]}}
-
-\subsubsection{Risks}\label{risks}
-
-\emph{{[}What problems do you foresee in the future and how will you
-mitigate them?{]}}
-
-\subsection{Plan}\label{plan}
-
-\emph{{[}Time plan, in roughly weekly to monthly blocks, up until
-submission week{]}}
-
-    
-\subsection{Ethics and data}\label{ethics}
-\emph{Specify what ethical approval you need to do your evaluation and how you are approaching it. This is mandatory. 
-Specify what data you expect to collect in your evaluation. Explain how this data will help you evaluate your project.
-}
-
-Options for ethics:
-\item This project does not involve human subjects or data. No approval required.
-\item I have verified that the ethics checklist will apply to any evaluation I need to do. I will sign and complete the checklist.
-\item I have sought ethical guidance from the School's ethics convener and I will:
 \begin{itemize}
-    \item Proceed under specific instructions from the Ethics convener (e.g. modified checklist).
-    \item Apply for College Ethics Board approval.
-    \item Other procedure (give details)
-\end{itemize}    
+    \tightlist
+\item Created login and registration functionality using Node JS.
+\item Created network backend which lets multiple clients connect to the game at once.
+\item Created game backend which handles player movement and physics of the game.
+\item Added animated sprites which players can control and see other players controlling their sprites.
+\item Designed and implemented a detailed world for users to play (needs further development time).
+\item Implemented the chat, so. players can communicate via text.
+\item Researched papers on video games and communication, and completing most of my literature review.
 
+\end{itemize}
+
+\section{Problems and risks}\label{problems-and-risks}
+
+\subsection{Problems}\label{problems}
+
+The following issues were encountered in the project so far.
+\begin{itemize}
+    \tightlist
+\item Prior to this project I have never used Java Script, Node, Express or Phaser and therefore there was a large learning curve.
+\item Implemented chat does not display users name which still needs to be fixed.
+
+\item Jason Web Tokens were hard to implement and still have minor bugs surrounding them as they do not always work as intended.
+\item 
+Took time to find high quality copyright free 2D game art to implement into the game.
+\end{itemize}
+
+\subsection{Risks}\label{risks}
+
+\begin{itemize}
+\tightlist
+\item   Unclear on how I can implement quests into the game. \textbf{Mitigation}: will research into existing Phaser games and documentation to try and figure out how to do this.
+\item Unclear how to evaluate success of the project. \textbf{Mitigation}: will do research into a good quantitative way of measuring the game usability and/or experience by users.
+\end{itemize}
+    
+\section{Plan}\label{plan}
+
+\subsection{Semester 2}
+
+\begin{itemize}
+    \tightlist
+    \item
+      Week 1-2: develop the quests. \textbf{Deliverable:}
+      players will have tasks to complete and will have the incentive of unlocking a new skin to play with
+    \item
+      Week 3-5: final implementation \textbf{Deliverable:} fixing a series of small bugs and improvements where I see necessary to the web application backend and frontend.
+    \item
+      Week 6: Research on how to best evaluate performance of final system.
+      \textbf{Deliverable:} detailed evaluation plan, with participant
+      numbers, information sheet and analysis plan.
+     \item 
+     Week 7: evaluation experiments run. \textbf{Deliverable:} quantitative
+      measures of usability/game play experience and qualitative data gathered to get participants thoughts surrounding their experience of the game.}
+    \item
+      Week 7-10: Write up. \textbf{Deliverable:} A final dissertation write-up.}
+    \end{itemize}
+    
+
+\section{Ethics}
+
+This project will carry out an initial evaluation prior to next semester starting, and then a final evaluation nearer the end of term. These evaluations will have human participants and it will focus on their game experience and potentially usability of the application. I have verified that the ethics checklist will apply to any evaluation I need to do. I will sign and complete the checklist.
 
 \end{document}
