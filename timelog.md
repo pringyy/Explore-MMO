@@ -113,7 +113,7 @@
 
 ### 6 Nov 2020
 
-* *5 hours* Cotinued with React front-end
+* *5 hours* Continued with React front-end
 
 ### 7 Nov 2020
 
@@ -153,3 +153,47 @@
 ### 20 Nov 2020
 
 * *9 hours* Nearly finished converting the skeleton game to Phaser 3 and integrating Phaser to work with Node JS still more work to be done and iron out bugs
+
+### 23 Nov 2020
+* *6 hours* Finished converting skeleton game and deployed the current state of the project online so people can use the application
+* *3 hours* Tried to implement JSON web tokens, but seem to be getting errors
+
+### 25 Nov 2020
+* *5 hours* Researching and writing literature review for Research Methods and Techniques which I am writing about my dissertation topic
+### 26 Nov 2020
+* *6 hours* Researching and writing literature review for Research Methods and Techniques which I am writing about my dissertation topic
+
+### 2 Nov 2020
+* *7 hours* Researching and writing literature review for Research Methods and Techniques which I am writing about my dissertation topic
+
+### 4 Nov 2020
+* *6 hours* Researching and writing literature review for Research Methods and Techniques which I am writing about my dissertation topic
+
+### 12 Dec 2020
+* *4 hours* Research into how to fix my JSON webtoken bug
+
+### 13 Dec 2020
+* *5 hours* Researching on how to use Phaser with Tiled in order to implement a custom map into the game engine
+* *2 hours* Researched and found copyright free sprites and tiles I can use to create my own custom map
+
+### 14 Dec 2020
+* *3 hours* Implementing new tiled map into application
+* *2 hours* Adding animation for new sprites
+* *3 hours* Makeing user interface changes to make application more usable
+
+### 15 Dec 2020
+* *2 hours* Fixing JSON web token bug which allowed players to play game without logging in
+* *8 hours* Implementing in game chat into static backend
+
+### 16 Dec 2020
+* *2 hours* Changed postioning of chat so displays next to game
+* *5 hours* Researched and implemented collisions in the game world to players could not walk through objects
+
+### 17 Dec 2020
+* *7 hours* Implementing game world 
+
+### 18 Dec 2020
+* *2 hours* Updating deployed application
+* *0.5 hours* Meeting with supervisor
+* *2 hours* Writing status report
+* *2 hours* Implementing world map
