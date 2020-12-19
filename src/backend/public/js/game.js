@@ -66,8 +66,43 @@ class initialiseAssets extends Phaser.Scene {
       trees.setCollisionByExclusion([-1]); 
       building.setCollisionByExclusion([-1]);
       
+      //Teleport from Entrance #1 to Cave #1
+      building.setTileLocationCallback(104,37, 1, 1, () => {
+          this.container.setPosition(6176, 1760);
+          
+      })
+
+    //Teleport from Cave #1 to Entrance #1
+     building.setTileLocationCallback(183,28, 1, 1, () => {
+      this.container.setPosition(4336, 1024);
       
-    
+      
+     })
+
+     //Teleport from cave #1 to exit #1
+    building.setTileLocationCallback(136,30, 1, 1, () => {
+      this.container.setPosition(5840, 960);
+      
+     })
+
+    //Teleport from exit #1 to cave #1
+    building.setTileLocationCallback(192,56, 3, 3, () => {
+      this.container.setPosition(3328, 1284);
+      
+     })
+
+     //Teleport into church
+    building.setTileLocationCallback(127,88, 1, 1, () => {
+      this.container.setPosition(6688, 4736);
+      
+     })
+
+     //Teleport out of church
+    building.setTileLocationCallback(209,149, 1, 1, () => {
+      this.container.setPosition(4064, 2880);
+      
+     })
+
       //Handles boundaries of the map
       this.physics.world.bounds.width = this.map.widthInPixels;
       this.physics.world.bounds.height = this.map.heightInPixels;
@@ -119,6 +154,7 @@ class initialiseAssets extends Phaser.Scene {
                 }
             }.bind(this));
         }.bind(this));
+        
         this.socket.on('new user message', (data) => {
           const usernameSpan = document.createElement('span');
           const usernameText = document.createTextNode(data.username);
