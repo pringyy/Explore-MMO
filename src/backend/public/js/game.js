@@ -104,24 +104,24 @@ class initialiseAssets extends Phaser.Scene {
 
     //Teleport into church basement
     building.setTileLocationCallback(215,133, 1, 1, () => {
-      this.container.setPosition(6624, 3456);
+      this.container.setPosition(6624, 3440);
      })
 
       //Teleport out of church basement
-    //building.setTileLocationCallback(206,108, 1, 1, () => {
-   //   this.container.setPosition(6688, 4736);
-    // })
+    building.setTileLocationCallback(205,107, 1, 2, () => {
+      this.container.setPosition(6848, 4256);
+    })
 
 
       //Teleport into blacksmith
-    ///building.setTileLocationCallback(215,133, 1, 1, () => {
-     // this.container.setPosition(46592, 3456);
-     //})
+    building.setTileLocationCallback(82,88, 1, 1, () => {
+      this.container.setPosition(5936, 4736);
+     })
 
     //Teleport out of blacksmith
-    //building.setTileLocationCallback(209,149, 1, 1, () => {
-    //  this.container.setPosition(4064, 2880);
-    // })
+    building.setTileLocationCallback(185,149, 1, 1, () => {
+     this.container.setPosition(2624, 2880);
+    })
 
       //Handles boundaries of the map
       this.physics.world.bounds.width = this.map.widthInPixels;
