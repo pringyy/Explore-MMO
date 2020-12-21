@@ -120,7 +120,7 @@ class initialiseAssets extends Phaser.Scene {
 
     //Teleport out of blacksmith
     building.setTileLocationCallback(185,149, 1, 1, () => {
-     this.container.setPosition(2624, 2880);
+     this.container.setPosition(2640, 2880);
     })
 
       //Handles boundaries of the map
