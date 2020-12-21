@@ -32,8 +32,8 @@ io.on('connection', function (socket) {
   //Spawns a newly logged in player to the game
   connectedPlayers[socket.id] = {
     flipX: false,
-    x: 2368,
-    y: 2784,
+    x: 2304,
+    y: 3232,
     playerId: socket.id
   };
   //Sends where all the other players currently are to the new user
