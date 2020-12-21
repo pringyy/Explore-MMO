@@ -366,7 +366,8 @@ function sendMessage() {
       type: 'POST',
       url: '/submitChat',
       data: {
-        message
+        message,
+        refreshToken: getCookie('refreshJwt')
       },
       success: function(data) {},
       error: function(xhr) {

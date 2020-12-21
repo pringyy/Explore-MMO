@@ -68,12 +68,13 @@ app.use(cors());
 
 app.use(express.static(__dirname + '/public'));
 
-app.post('/submitChat', asyncMiddleware(async (req, res, next) => {
+app.post('/submitChat', verify, asyncMiddleware(async (req, res, next) => {
   const { message } = req.body;
-  const  name  = req.body.username;
+  console.log(message);
+
   // await ChatModel.create({ email, message });
   io.emit('new user message', {
-    username: name,
+    username: "test",
     message,
   });
   res.status(200).json({ status: 'ok' });
@@ -87,7 +88,7 @@ app.get('/register', function (req, res) {
   res.sendFile(__dirname + '/public/register.html');
 });
 
-app.get('/play', function (req, res) {
+app.get('/play', verify, function (req, res) {
   res.sendFile(__dirname + '/public/game.html');
 });
 

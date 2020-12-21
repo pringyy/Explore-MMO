@@ -1,9 +1,15 @@
+const express = require('express');
 const router = require('express').Router();
 const User = require('../model/user');
 const bcrypt = require('bcryptjs');
 const webtoken = require('jsonwebtoken');
 const {registerValidation, loginValidation} = require('../validation');
+
 const asyncMiddleware = require('../middleware/asyncMiddleware');
+const user = require('../model/user');
+
+const tokenList = {};
+
 //Register
 router.post('/register', asyncMiddleware (async(req,res)=> {
 	const {error} = registerValidation(req.body);
@@ -44,7 +50,7 @@ router.post('/register', asyncMiddleware (async(req,res)=> {
 router.post('/login', asyncMiddleware(async (req,res) => {
 	const {error} = loginValidation(req.body);
 	console.log('called');
-
+	
 	//Sends error message if data is not valid
 	if (error) return res.status(400).send(`Validation error: ${error.details.map(x => x.message).join(', ')}`);
 
@@ -60,11 +66,52 @@ router.post('/login', asyncMiddleware(async (req,res) => {
 
 	console.log('success');
 	//Create and assign a JSON web token
-	const token = webtoken.sign({_id: user._id}, process.env.TOKEN_SECRET);
-	res.cookie('access_token', token, {
-		maxAge: 360000,
-		httpOnly: true
-	}).send(token);
+	const token = webtoken.sign({user: req.body}, process.env.TOKEN_SECRET, { expiresIn: 300 });
+	const refreshToken = webtoken.sign({ user: req.body }, process.env.TOKEN_SECRET, { expiresIn: 86400 });
+	
+	
+	res.cookie('access_token', token);
+	res.cookie('refreshJwt', refreshToken);
+
+	 // store tokens in memory
+	 tokenList[refreshToken] = {
+		token,
+		refreshToken,
+		email: user.email,
+		_id: user._id,
+		username: user.username
+	  };
+
+	return res.status(200).json({token, refreshToken });
 }));
 
+router.post('/token', (req, res) => {
+	const { refreshToken } = req.body;
+	if (refreshToken in tokenList) {
+	  const body = { email: tokenList[refreshToken].email, _id: tokenList[refreshToken]._id, username: tokenList[refreshToken].username };
+	  console.log(body.username);
+	  const token = webtoken.sign({ user: body}, process.env.TOKEN_SECRET, { expiresIn: 300 });
+  
+	  // update jwt
+	  res.cookie('access_token', token);
+	  tokenList[refreshToken].token = token;
+  
+	  res.status(200).json({ token });
+	} else {
+	  res.status(401).json({ message: 'Unauthorized' });
+	}
+  });
+
+
+  router.post('/logout', (req, res) => {
+	if (req.cookies) {
+	  const refreshToken = req.cookies['refreshJwt'];
+	  if (refreshToken in tokenList) delete tokenList[refreshToken]
+	  res.clearCookie('refreshJwt');
+	  res.clearCookie('refresh_token');
+	}
+  
+	res.status(200).json({ message: 'logged out' });
+  });
+  
 module.exports = router;
