@@ -1,4 +1,5 @@
-::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+::placeholder {
+  /* Chrome, Firefox, Opera, Safari 10.1+ */
   color: gray;
   opacity: 1; /* Firefox */
 }
@@ -29,8 +30,6 @@
   text-align: left;
 }
 
-
-
 ul {
   list-style: none;
   word-wrap: break-word;
@@ -38,4 +37,3 @@ ul {
 #chatContainer {
   width: 20%;
 }
-
