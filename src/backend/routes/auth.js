@@ -95,12 +95,12 @@ router.post(
 
     console.log("success");
     //Create and assign a JSON web token
-    const token = webtoken.sign({user: body}, process.env.TOKEN_SECRET, {
+    const token = webtoken.sign({info: body}, process.env.TOKEN_SECRET, {
       expiresIn: 300,
 	});
 	console.log(user.username);
     const refreshToken = webtoken.sign(
-      { user: body },
+      { info: body },
       process.env.TOKEN_SECRET,
       { expiresIn: 10000 }
     );
@@ -129,8 +129,8 @@ router.post("/token", (req, res) => {
       _id: tokenList[refreshToken]._id,
       username: tokenList[refreshToken].username,
     };
-    console.log(body.username);
-    const token = webtoken.sign({user: body}, process.env.TOKEN_SECRET, {
+
+    const token = webtoken.sign({info: body}, process.env.TOKEN_SECRET, {
       expiresIn: 300,
     });
 
