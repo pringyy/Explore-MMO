@@ -1,25 +1,7 @@
-class initialiseAssets extends Phaser.Scene {
-    constructor() {
-        super({
-          key: "initialiseAssets",
-          active: true,
-        });
-    }
-    
-    preload() {
-    this.load.image("tiles", "assets/world/tileset.png");
-    this.load.image("watertiles", "assets/world/water.png");
-    this.load.tilemapTiledJSON("map", "assets/world/world.json");
-    this.load.spritesheet("player", "assets/sprites/yoda.png", {frameWidth: 32,frameHeight: 48,});
-    this.load.spritesheet("darthvader", "assets/sprites/darthvader.png", {frameWidth: 32,frameHeight: 48,});
-    }
 
-    create() {
-    this.scene.start("mapScene");
-    }
- }
+import * as Phaser from 'phaser';
 
-class mapScene extends Phaser.Scene {
+export default class mapScene extends Phaser.Scene {
       constructor() {
         super({
           key: "mapScene",
@@ -109,8 +91,6 @@ class mapScene extends Phaser.Scene {
     
         //Handles user input from keyboard
         this.cursors = this.input.keyboard.createCursorKeys();
-
-        
     
         // listen for web socket events
         this.socket.on(
@@ -321,73 +301,3 @@ class mapScene extends Phaser.Scene {
       }
     }
     
-
-var config = {
-  type: Phaser.AUTO,
-  borderPadding: 10,
-  parent: "content",
-  width: 600,
-  height: 400,
-  zoom: 1.5,
-  pixelArt: true,
-
-  physics: {
-    default: "arcade",
-    arcade: {
-      gravity: {
-        y: 0,
-      },
-      debug: false,
-    },
-  },
-   scale: {
-    width: '50%',
-    height: '50%',
-    mode: Phaser.Scale.RESIZE,
-   
-  },
-  scene: [initialiseAssets, mapScene],
-};
-
-var game = new Phaser.Game(config);
-
-
-//All code below handles the ingame chat
-const input = document.getElementById("input");
-const messages = document.getElementById("messages");
-
-window.addEventListener("keydown", (event) => {
-  if (event.which === 13) {
-    sendMessage();
-  }
-  if (event.which === 32) {
-    if (document.activeElement === input) {
-      input.value = input.value + " ";
-    }
-  }
-});
-
-function sendMessage() {
-  let message = input.value;
-  if (message) {
-    input.value = "";
-    $.ajax({
-      type: "POST",
-      url: "/submitChat",
-      data: {
-        message,
-        refreshToken: getCookie("refreshJwt"),
-      },
-      success: function (data) {},
-      error: function (xhr) {
-        console.log(xhr);
-      },
-    });
-  }
-}
-
-function addMessageElement(el) {
-  messages.append(el);
-  messages.lastChild.scrollIntoView();
-}
- 

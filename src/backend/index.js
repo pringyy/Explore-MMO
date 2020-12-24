@@ -8,6 +8,8 @@ const cors = require("cors");
 const verify = require("./routes/verifyToken");
 const routes = require("./routes/auth");
 const asyncMiddleware = require("./middleware/asyncMiddleware");
+const webtoken = require("jsonwebtoken");
+const ChatSchema = require('./model/chat');
 
 //Establish connection to MongoDB database
 const uri = process.env.DB_CONNECT;
@@ -40,6 +42,7 @@ io.on("connection", function (socket) {
     y: 3232,
     playerId: socket.id,
   };
+  console.log(socket.id);
   //Sends where all the other players currently are to the new user
   socket.emit("currentPlayers", connectedPlayers);
   socket.broadcast.emit("newPlayer", connectedPlayers[socket.id]);
@@ -74,7 +77,7 @@ app.post("/submitChat", verify, asyncMiddleware(async (req, res, next) => {
   const username = req.user.info.username;
   console.log(req.user);
   const {message} = req.body;
-  // await ChatModel.create({ email, message });
+  await ChatSchema.create({ username, message });
   io.emit("new user message", {
     username,
     message,

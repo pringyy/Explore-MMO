@@ -46,8 +46,7 @@ router.post(
     });
 
     try {
-      const savedUser = await user.save();
-      res.send("Registered Successfully");
+      const savedUser = await user.save();   res.send("Registered Successfully");
     } catch (err) {
       res.status(400).send(err);
     }
