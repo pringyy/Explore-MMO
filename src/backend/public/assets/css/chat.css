@@ -1,0 +1,63 @@
+::placeholder {
+  /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: gray;
+  opacity: 1; /* Firefox */
+}
+
+ul {
+  list-style: none;
+  word-wrap: break-word;
+}
+
+#chatContainer {
+  width: calc(100% - 960px);
+}
+
+.flex-container {
+  display: flex;
+  flex-wrap: wrap;
+  align-content: stretch;
+}
+
+.flex-container > div {
+  background-color: #f1f1f1;
+}
+
+
+
+/* Font */
+
+.messages {
+  font-size: 100%;
+}
+
+.inputMessage {
+  font-size: 100%;
+}
+
+.log {
+  color: gray;
+  font-size: 70%;
+  margin: 5px;
+  text-align: center;
+}
+
+/* Messages */
+
+.chatArea {
+  max-height: 660px;
+  height: 660px;
+  overflow-y: scroll;
+}
+
+.messages {
+  overflow-y: scroll;
+}
+
+.username {
+  font-weight: 700;
+  overflow: hidden;
+  padding-right: 15px;
+  text-align: right;
+}
+

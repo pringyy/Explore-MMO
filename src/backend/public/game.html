@@ -6,10 +6,40 @@
   <title>Explore IO</title>
   <script src="//cdn.jsdelivr.net/npm/phaser@3.16.2/dist/phaser.min.js"></script>
   <script src="/socket.io/socket.io.js"></script>
+  <!-- Compiled and minified CSS -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+  <link rel="stylesheet" href="assets/css/chat.css">
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  
 </head>
  
 <body>
-  <script src="js/game.js"></script>
+  <nav>
+    <div class="nav-wrapper black">
+      <a href="#" class="brand-logo center">Explore IO</a>
+      <ul id="nav-mobile" class="right hide-on-med-and-down">
+        <li><a href="collapsible.html"><i class="material-icons center">settings</i>Settings</a></li>
+        <li><a href="collapsible.html"><i class="material-icons center">help_outline</i>Help</a></li>
+        <li><a href="/"><i class="material-icons center">power_settings_new</i>Log Off</a></li>
+      </ul>
+    </div>
+  </nav>
+  <body>
+    <div class="flex-container">
+      <div id="content"></div>
+      <div id="chatContainer">
+        <div class="chatArea">
+          <ul id="messages" class="messages"></ul>
+        </div>
+        <input id='input' class="inputMessage" placeholder="Type here..." type="text">
+      </div>
+    </div>
+    <script src="js/game.js"></script>
+    <script src="js/jwtToken.js"></script>
+  </body>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+ 
 </body>
  
 </html>
