@@ -111,6 +111,8 @@ class mapScene extends Phaser.Scene {
         this.cursors = this.input.keyboard.createCursorKeys();
 
         
+
+        
     
         // listen for web socket events
         this.socket.on(
@@ -270,7 +272,8 @@ class mapScene extends Phaser.Scene {
       update() {
         if (this.container) {
           this.container.body.setVelocity(0);
-    
+
+              
           //Handles verticle player movement
           if (this.cursors.up.isDown) {
             this.container.body.setVelocityY(-200);
@@ -330,7 +333,6 @@ var config = {
   height: 400,
   zoom: 1.5,
   pixelArt: true,
-
   physics: {
     default: "arcade",
     arcade: {
@@ -341,6 +343,7 @@ var config = {
     },
   },
    scale: {
+     
     width: '50%',
     height: '50%',
     mode: Phaser.Scale.RESIZE,
