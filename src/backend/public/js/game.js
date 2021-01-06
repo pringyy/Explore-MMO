@@ -20,7 +20,8 @@ class initialiseAssets extends Phaser.Scene {
  }
 
 class mapScene extends Phaser.Scene {
-      constructor() {
+      
+  constructor() {
         super({
           key: "mapScene",
         });
@@ -45,7 +46,7 @@ class mapScene extends Phaser.Scene {
         var building = this.map.createStaticLayer("building", tiles, 0, 0);
         var buildingaddon = this.map.createStaticLayer("buildingaddon", tiles, 0, 0);
         var trees = this.map.createStaticLayer("trees", tiles, 0, 0);
-    
+      
         water.setCollisionByExclusion([-1]);
         trees.setCollisionByExclusion([-1]);
         building.setCollisionByExclusion([-1]);
