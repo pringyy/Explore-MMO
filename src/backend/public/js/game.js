@@ -6,9 +6,11 @@ class initialiseAssets extends Phaser.Scene {
         });
     }
     
+    
     preload() {
     this.load.image("tiles", "assets/world/tileset.png");
     this.load.image("watertiles", "assets/world/water.png");
+    this.load.image("coin", "assets/world/coins.png");
     this.load.tilemapTiledJSON("map", "assets/world/world.json");
     this.load.spritesheet("player", "assets/sprites/yoda.png", {frameWidth: 32,frameHeight: 48,});
     this.load.spritesheet("darthvader", "assets/sprites/darthvader.png", {frameWidth: 32,frameHeight: 48,});
@@ -35,9 +37,10 @@ class mapScene extends Phaser.Scene {
         this.map = this.make.tilemap({
           key: "map",
         });
-    
-        var tiles = this.map.addTilesetImage("tileset", "tiles");
+        
         var watertiles = this.map.addTilesetImage("water", "watertiles");
+        var tiles = this.map.addTilesetImage("tileset", "tiles");
+        
     
         var ground = this.map.createStaticLayer("ground", tiles, 0, 0);
         var ground2 = this.map.createStaticLayer("ground2", tiles, 0, 0);
@@ -46,10 +49,21 @@ class mapScene extends Phaser.Scene {
         var building = this.map.createStaticLayer("building", tiles, 0, 0);
         var buildingaddon = this.map.createStaticLayer("buildingaddon", tiles, 0, 0);
         var trees = this.map.createStaticLayer("trees", tiles, 0, 0);
+        var coinsLayer = this.map.getObjectLayer('coinsLayer')['objects'];
+
+        var coins = this.physics.add.staticGroup()
+        //this is how we actually render our coin object with coin asset we loaded into our game in the preload function
+      coinsLayer.forEach(object => {
+        let obj = coins.create(object.x, object.y, "coin"); 
+        obj.setOrigin(0);
+        obj.body.width = object.width; 
+        obj.body.height = object.height; 
+      });
       
         water.setCollisionByExclusion([-1]);
         trees.setCollisionByExclusion([-1]);
         building.setCollisionByExclusion([-1]);
+      
     
         //Teleport from Entrance #1 to Cave #1
         building.setTileLocationCallback(104, 37, 1, 1, () => {
@@ -100,6 +114,26 @@ class mapScene extends Phaser.Scene {
         building.setTileLocationCallback(185, 149, 1, 1, () => {
           this.container.setPosition(2640, 2880);
         });
+
+        //Teleport into pub
+        building.setTileLocationCallback(67, 88, 1, 1, () => {
+          this.container.setPosition(5936, 3904);
+        });
+    
+        //Teleport out of pub
+        building.setTileLocationCallback(185, 123, 1, 1, () => {
+          this.container.setPosition(2160, 2880);
+        });
+
+         //Teleport into pub basement
+         building.setTileLocationCallback(189, 114, 1, 1, () => {
+          this.container.setPosition(5856, 2976);
+        });
+    
+        //Teleport out of pub basement
+        building.setTileLocationCallback(181, 93, 1, 2, () => {
+          this.container.setPosition(6016, 3648);
+        });
     
         //Handles boundaries of the map
         this.physics.world.bounds.width = this.map.widthInPixels;
@@ -122,13 +156,13 @@ class mapScene extends Phaser.Scene {
             Object.keys(players).forEach(
               function (id) {
                 if (players[id].playerId === this.socket.id) {
+                  
                   this.player = this.add.sprite(0, 0, "player", 0);
-                  var text = this.add.text(0, 0, 'testuser', { backgroundColor: '	rgb(0, 0, 0)'});text.alpha = 0.5;text.setOrigin(0.5, 2.9);text.setScale(0.7);
+                 
                   this.container = this.add.container(players[id].x, players[id].y);
                   this.container.setSize(16, 16);
                   this.physics.world.enable(this.container);
                   this.container.add(this.player);
-                  this.container.add(text);
                   this.updateCamera();
                   this.container.body.setCollideWorldBounds(true);
                   this.physics.add.collider(this.container, [
@@ -136,6 +170,10 @@ class mapScene extends Phaser.Scene {
                     water,
                     building,
                   ]);
+                  this.physics.add.overlap(this.container, coins, score, collectCoin, null, this);
+
+          
+                  
                 } else {
                   this.addOtherPlayers(players[id]);
                 }
@@ -179,6 +217,10 @@ class mapScene extends Phaser.Scene {
         );
     
         this.socket.on("new user message", (data) => {
+
+          var text = this.add.text(0, 0, data.username, { backgroundColor: '	rgb(0, 0, 0)'});text.alpha = 0.5;text.setOrigin(0.5, 2.9);text.setScale(0.7);
+          this.container.add(text);
+          
           const usernameSpan = document.createElement("span");
           const usernameText = document.createTextNode(data.username);
           usernameSpan.className = "username";
@@ -225,7 +267,7 @@ class mapScene extends Phaser.Scene {
           frames: this.anims.generateFrameNumbers("player", { start: 0, end: 3 }),
         });
       }
-    
+     
       addOtherPlayers(playerInfo) {
         this.otherPlayer = this.add.sprite(0, 0,"darthvader",0);
        
@@ -239,8 +281,10 @@ class mapScene extends Phaser.Scene {
         
        container.playerId = playerInfo.playerId;
         this.otherPlayers.add(container);
+
       }
-    
+
+  
       updateCamera() {
         this.cameras.main.setBounds(
           0,
@@ -346,7 +390,7 @@ var config = {
    scale: {
      
     width: '50%',
-    height: '50%',
+    height: '35%',
     mode: Phaser.Scale.RESIZE,
    
   },
@@ -368,6 +412,7 @@ window.addEventListener("keydown", (event) => {
     if (document.activeElement === input) {
       input.value = input.value + " ";
     }
+  
   }
 });
 
@@ -394,4 +439,15 @@ function addMessageElement(el) {
   messages.append(el);
   messages.lastChild.scrollIntoView();
 }
- 
+
+
+var score = 5;
+function collectCoin(player, coin) {
+  coin.destroy(coin.x, coin.y); // remove the tile/coin
+  score --;
+  alert("Number of coins remaining: " + score);
+  if (score == 0){
+    alert("You have completed the quest well done")
+  }
+  return false;
+}
