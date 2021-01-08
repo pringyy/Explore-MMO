@@ -14,12 +14,29 @@ class initialiseAssets extends Phaser.Scene {
     this.load.tilemapTiledJSON("map", "assets/world/world.json");
     this.load.spritesheet("player", "assets/sprites/yoda.png", {frameWidth: 32,frameHeight: 48,});
     this.load.spritesheet("darthvader", "assets/sprites/darthvader.png", {frameWidth: 32,frameHeight: 48,});
+    
     }
 
     create() {
     this.scene.start("mapScene");
+    this.scene.start("UiScene");
     }
  }
+class UiScene extends Phaser.Scene {
+  constructor() {
+    super('Ui');
+  }
+
+  init() {
+    // grab a reference to the game scene
+    alert("hello");
+    this.gameScene = this.scene.get('mapScene');
+
+  }
+  create() {
+    this.scoreText = this.add.text(35, 8, 'Coins: 0', { fontSize: '16px', fill: '#fff' });
+  }
+}
 
 class mapScene extends Phaser.Scene {
       
@@ -30,14 +47,17 @@ class mapScene extends Phaser.Scene {
       }
     
       create() {
+        
         this.socket = io();
         this.otherPlayers = this.physics.add.group();
-    
+  
         //Intialises map to user
         this.map = this.make.tilemap({
           key: "map",
         });
         
+
+      
         var watertiles = this.map.addTilesetImage("water", "watertiles");
         var tiles = this.map.addTilesetImage("tileset", "tiles");
         
@@ -374,9 +394,9 @@ var config = {
   type: Phaser.AUTO,
   borderPadding: 10,
   parent: "content",
-  width: 600,
-  height: 400,
-  zoom: 1.5,
+  width: 800,
+  height: 600,
+  zoom: 1,
   pixelArt: true,
   physics: {
     default: "arcade",
@@ -387,14 +407,8 @@ var config = {
       debug: false,
     },
   },
-   scale: {
-     
-    width: '50%',
-    height: '35%',
-    mode: Phaser.Scale.RESIZE,
    
-  },
-  scene: [initialiseAssets, mapScene],
+  scene: [initialiseAssets, UiScene, mapScene],
 };
 
 var game = new Phaser.Game(config);
