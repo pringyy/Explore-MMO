@@ -57,7 +57,7 @@ class mapScene extends Phaser.Scene {
         });
         
 
-        alert("Quest: work with your companion and find the 10 sets of coins scattered around the map!")
+        alert("Quest: work with your companion and find the 10 sets of coins scattered arond the map!")
         var watertiles = this.map.addTilesetImage("water", "watertiles");
         var tiles = this.map.addTilesetImage("tileset", "tiles");
         
