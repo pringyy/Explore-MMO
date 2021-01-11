@@ -265,7 +265,7 @@ class mapScene extends Phaser.Scene {
                 if (players[id].playerId === this.socket.id) {
                   
 
-                  this.player = this.add.sprite(0, 0, "player", 0);
+                  this.player = this.add.sprite(players[id].x, players[id].y, "player", 0);
                  
                   this.container = this.add.container(players[id].x, players[id].y);
                   this.container.setSize(16, 16);
