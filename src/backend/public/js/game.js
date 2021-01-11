@@ -100,7 +100,7 @@ class UiScene extends Phaser.Scene {
   };
 
   init(){
-    this.gameScene = this.scene.get('Game');
+    this.gameScene = this.scene.get('mapScene');
   }
 
   create() {
@@ -111,10 +111,14 @@ class UiScene extends Phaser.Scene {
 
   setupUiElements () {
      //create the score text game object
-     this.scoreText = this.add.text(35, 8, 'Coins: 0', { fontSize: '64px', fill: '#fff' });
+     this.scoreText = this.add.text(35, 8, 'Coins: 10', { fontSize: '24px', fill: '#fff' });
+     this.timeText = this.add.text(35, 50, 'Time left: ', { fontSize: '24px', fill: '#fff' });
   };
 
   setupEvents(){
+    this.gameScene.events.on('updateScore', (score) => {
+      this.scoreText.setText(`Coins: ${score}`);
+    })
   };
 };
 
@@ -130,6 +134,7 @@ class mapScene extends Phaser.Scene {
 
   init(){
     this.scene.launch('Ui');
+    this.coinsLeft = 10;
   }
     
       create() {
@@ -377,7 +382,8 @@ class mapScene extends Phaser.Scene {
       }
       
       collectCoin(player, coin) {
-
+        this.coinsLeft -= 1;
+        this.events.emit('updateScore', this.coinsLeft)
         coin.destroy(coin.x, coin.y); // remove the tile/coin
        
       }
