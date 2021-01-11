@@ -8,43 +8,129 @@ class initialiseAssets extends Phaser.Scene {
     
     
     preload() {
-    this.load.image("tiles", "assets/world/tileset.png");
-    this.load.image("watertiles", "assets/world/water.png");
-    this.load.image("coin", "assets/world/coins.png");
-    this.load.tilemapTiledJSON("map", "assets/world/world.json");
-    this.load.spritesheet("player", "assets/sprites/yoda.png", {frameWidth: 32,frameHeight: 48,});
-    this.load.spritesheet("darthvader", "assets/sprites/darthvader.png", {frameWidth: 32,frameHeight: 48,});
+      this.loadSprites();
+      this.loadTileMap();
+      this.loadImages();
+    }
     
+    loadSprites() {
+      this.load.spritesheet("player", "assets/sprites/yoda.png", {frameWidth: 32,frameHeight: 48,});
+      this.load.spritesheet("darthvader", "assets/sprites/darthvader.png", {frameWidth: 32,frameHeight: 48,});
+    }
+
+    loadTileMap(){
+      this.load.tilemapTiledJSON("map", "assets/world/world.json");
+    }
+
+    loadImages(){
+      //Load UI element
+      this.load.image("button1", "assets/images/button1.png");
+      this.load.image("button2", "assets/images/button2.png");
+      //Load tilesets and objects for map
+      this.load.image("tiles", "assets/world/tileset.png");
+      this.load.image("watertiles", "assets/world/water.png");
+      this.load.image("coin", "assets/world/coins.png");
     }
 
     create() {
-    this.scene.start("mapScene");
-    this.scene.start("UiScene");
+    this.scene.start("Title");
     }
  }
-class UiScene extends Phaser.Scene {
-  constructor() {
-    super('Ui');
+
+ class TitleScene extends Phaser.Scene {
+  constructor(){
+      super('Title');
   }
 
-  init() {
-    // grab a reference to the game scene
-    alert("hello");
-    this.gameScene = this.scene.get('mapScene');
-
-  }
   create() {
-    this.scoreText = this.add.text(35, 8, 'Coins: 0', { fontSize: '16px', fill: '#fff' });
+    this.titleText = this.add.text(this.scale.width/2, this.scale.height/2 * 0.7, 'Explore MMO', { fontSize: '64px', fill: '#fff' });
+    this.titleText.setOrigin(0.5);
+    this.titleButton = new UiButton(this, this.scale.width/2, this.scale.height/2*1.4, 'button1', 'button2', 'Start', this.startScene.bind(this, 'mapScene'));
+  }
+  startScene(targetScene){
+    this.scene.start(targetScene);
   }
 }
+
+class UiButton extends Phaser.GameObjects.Container {
+  constructor(scene, x, y, key, hoverKey, text, targetCallback){
+    super(scene, x, y);
+    this.scene = scene;
+    this.x = x;
+    this.y = y;
+    this.key = key;
+    this.hoverKey = hoverKey;
+    this.text = text;
+    this.targetCallback = targetCallback;
+
+    this.createButton(); //Create button
+    this.scene.add.existing(this); //Add this container to scene
+  }
+
+  createButton() {
+      this.button = this.scene.add.image(0, 0, 'button1');
+      this.button.setInteractive();
+
+      this.button.setScale(1.4);
+
+      this.buttonText = this.scene.add.text(0, 0, this.text, {fontSize: '26px', fill: '#fff'});
+      Phaser.Display.Align.In.Center(this.buttonText, this.button);
+
+      this.add(this.button);
+      this.add(this.buttonText);
+
+      this.button.on('pointerout', () => {
+        this.button.setTexture(this.key);
+      });
+  
+      this.button.on('pointerover', () => {
+        this.button.setTexture(this.hoverKey);
+  
+      });
+  
+      this.button.on('pointerdown', () => {
+        this.targetCallback();
+      });
+  };
+};
+
+class UiScene extends Phaser.Scene {
+  constructor(){
+    super ('Ui');
+  };
+
+  init(){
+    this.gameScene = this.scene.get('Game');
+  }
+
+  create() {
+    console.log("test");
+    this.setupUiElements();
+    this.setupEvents();
+  };
+
+  setupUiElements () {
+     //create the score text game object
+     this.scoreText = this.add.text(35, 8, 'Coins: 0', { fontSize: '64px', fill: '#fff' });
+  };
+
+  setupEvents(){
+  };
+};
+
+
 
 class mapScene extends Phaser.Scene {
       
   constructor() {
-        super({
-          key: "mapScene",
-        });
-      }
+    super({
+      key: "mapScene",
+    });
+  }
+
+  init(){
+    this.scene.launch('Ui');
+  }
     
       create() {
         
@@ -55,9 +141,10 @@ class mapScene extends Phaser.Scene {
         this.map = this.make.tilemap({
           key: "map",
         });
+
         
 
-        alert("Quest: work with your companion and find the 10 sets of coins scattered arond the map!")
+        alert("Quest: work with your companion and find the 10 sets of coins scattered aro  nd the map!")
         var watertiles = this.map.addTilesetImage("water", "watertiles");
         var tiles = this.map.addTilesetImage("tileset", "tiles");
         
@@ -177,6 +264,7 @@ class mapScene extends Phaser.Scene {
               function (id) {
                 if (players[id].playerId === this.socket.id) {
                   
+
                   this.player = this.add.sprite(0, 0, "player", 0);
                  
                   this.container = this.add.container(players[id].x, players[id].y);
@@ -190,7 +278,7 @@ class mapScene extends Phaser.Scene {
                     water,
                     building,
                   ]);
-                  this.physics.add.overlap(this.container, coins, score, collectCoin, null, this);
+                  this.physics.add.overlap(this.container, coins, this.collectCoin, null, this);
 
           
                   
@@ -286,6 +374,10 @@ class mapScene extends Phaser.Scene {
           frameRate: 8,
           frames: this.anims.generateFrameNumbers("player", { start: 0, end: 3 }),
         });
+      }
+      
+      collectCoin(player, coin) {
+        coin.destroy(coin.x, coin.y); // remove the tile/coin 
       }
      
       addOtherPlayers(playerInfo) {
@@ -408,7 +500,7 @@ var config = {
     },
   },
    
-  scene: [initialiseAssets, UiScene, mapScene],
+  scene: [initialiseAssets, TitleScene, mapScene, UiScene],
 };
 
 var game = new Phaser.Game(config);
@@ -455,13 +547,5 @@ function addMessageElement(el) {
 }
 
 
-var score = 10;
-function collectCoin(player, coin) {
-  coin.destroy(coin.x, coin.y); // remove the tile/coin
-  score --;
-  alert("Number of coins remaining: " + score);
-  if (score == 0){
-    alert("You have completed the quest well done")
-  }
-  return false;
-}
+
+
