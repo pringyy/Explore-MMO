@@ -1,13 +1,13 @@
-class mapScene extends Phaser.Scene {
+class gameScene extends Phaser.Scene {
 
     constructor() {
         super({
-            key: "mapScene",
+            key: "Game",
         });
     }
 
     init(){
-        this.scene.launch('Ui');
+        
         this.coinsLeft = 10;
     }
 
@@ -31,12 +31,7 @@ class mapScene extends Phaser.Scene {
 
         var coins = this.physics.add.staticGroup()
         //this is how we actually render our coin object with coin asset we loaded into our game in the preload function
-        coinsLayer.forEach(object => {
-        let obj = coins.create(object.x, object.y, "coin"); 
-        obj.setOrigin(0);
-        obj.body.width = object.width; 
-        obj.body.height = object.height; 
-        });
+        
 
         water.setCollisionByExclusion([-1]);
         trees.setCollisionByExclusion([-1]);
@@ -80,11 +75,19 @@ class mapScene extends Phaser.Scene {
 
         //Teleport out of church basement
         building.setTileLocationCallback(205, 107, 1, 2, () => {
+            
             this.container.setPosition(6848, 4256);
         });
 
         //Teleport into blacksmith
         building.setTileLocationCallback(82, 88, 1, 1, () => {
+            this.scene.launch('Ui');
+            coinsLayer.forEach(object => {
+                let obj = coins.create(object.x, object.y, "coin"); 
+                obj.setOrigin(0);
+                obj.body.width = object.width; 
+                obj.body.height = object.height; 
+                });
             this.container.setPosition(5936, 4736);
         });
 
