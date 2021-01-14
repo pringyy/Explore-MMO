@@ -31,16 +31,22 @@ class gameScene extends Phaser.Scene {
 
         var coins = this.physics.add.staticGroup()
         //this is how we actually render our coin object with coin asset we loaded into our game in the preload function
-        
+       
+        this.npc1 = this.add.sprite(2224, 2870, "darthvader", 0);
 
         water.setCollisionByExclusion([-1]);
         trees.setCollisionByExclusion([-1]);
         building.setCollisionByExclusion([-1]);
 
 
-        //Teleport from Entrance #1 to Cave #1
-        building.setTileLocationCallback(104, 37, 1, 1, () => {
-            this.container.setPosition(6176, 1760);
+
+
+
+        //Trigger for quest1
+        building.setTileLocationCallback(69, 89, 1, 1, () => {
+            this.container.setPosition(4336, 1024);
+            this.scene.pause();
+            this.scene.launch('quest2Info');
         });
 
         //Teleport from Cave #1 to Entrance #1
@@ -81,7 +87,8 @@ class gameScene extends Phaser.Scene {
 
         //Teleport into blacksmith
         building.setTileLocationCallback(82, 88, 1, 1, () => {
-            this.scene.launch('Ui');
+            this.scene.pause();
+            this.scene.launch('quest2Info');
             coinsLayer.forEach(object => {
                 let obj = coins.create(object.x, object.y, "coin"); 
                 obj.setOrigin(0);
@@ -97,7 +104,9 @@ class gameScene extends Phaser.Scene {
         });
 
         //Teleport into pub
+
         building.setTileLocationCallback(67, 88, 1, 1, () => {
+            this.scene.launch('blind');
             this.container.setPosition(5936, 3904);
         });
 

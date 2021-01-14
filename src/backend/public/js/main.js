@@ -17,7 +17,7 @@ var config = {
         debug: false,
       },
     },
-    scene: [initialiseAssets, titleScene, gameScene, UiScene],
+    scene: [initialiseAssets, titleScene, gameScene, UiScene, questBlind, quest2ModalScene],
   };
   
   var game = new Phaser.Game(config);
