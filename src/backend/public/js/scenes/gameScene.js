@@ -7,9 +7,12 @@ class gameScene extends Phaser.Scene {
     }
 
     init(){
+        this.quest2Scene = this.scene.get('quest2Info');
         this.startedQuest = false;
         this.container;
         this.coinsLeft = 10;
+        this.physics;
+        this.activeQuest = false;
     }
     create() {
 
@@ -32,13 +35,15 @@ class gameScene extends Phaser.Scene {
         var coins = this.physics.add.staticGroup()
         //this is how we actually render our coin object with coin asset we loaded into our game in the preload function
        
-        this.npc1 = this.add.sprite(2224, 2870, "darthvader", 0);
+        this.npc1 = this.add.sprite(2224, 2865, "pubNPC", 0);
+        this.npc1Q = this.add.sprite(2224, 2830, "qmark");this.npc1Q.setScale(1.3);
 
+        
         water.setCollisionByExclusion([-1]);
         trees.setCollisionByExclusion([-1]);
         building.setCollisionByExclusion([-1]);
 
-        this.eventTriggers(building);
+        this.eventTriggers(building, coinsLayer, coins);
 
         //Handles boundaries of the map
         this.physics.world.bounds.width = this.map.widthInPixels;
@@ -62,41 +67,35 @@ class gameScene extends Phaser.Scene {
 
                 if (players[id].playerId === this.socket.id) {
 
-                this.player = this.add.sprite(0, 0, "player", 0);
-                this.container = this.add.container(players[id].x, players[id].y);
-                this.container.setSize(16, 16);
-                this.physics.world.enable(this.container);
-                this.container.add(this.player);
-                this.updateCamera();
-                this.container.body.setCollideWorldBounds(true);
-                this.physics.add.collider(this.container, [trees,water,building,]);
-                this.physics.add.overlap(this.container, coins, this.collectCoin, null, this);
+                    this.player = this.add.sprite(0, 0, "player", 0);
+                    this.container = this.add.container(players[id].x, players[id].y);
+                    this.container.setSize(16, 16);
+                    this.physics.world.enable(this.container);
+                    this.container.add(this.player);
+                    this.updateCamera();
+                    this.container.body.setCollideWorldBounds(true);
+                    this.physics.add.collider(this.container, [trees,water,building,]);
+                    this.physics.add.overlap(this.container, coins, this.collectCoin, null, this);
 
                 } else {
-                this.addOtherPlayers(players[id]);
+                    this.addOtherPlayers(players[id]);
                 }
-            }.bind(this)
-            );
-        }.bind(this)
-        );
+            }.bind(this));
+        }.bind(this));
 
         this.socket.on("newPlayer",function (info) {
             this.addOtherPlayers(info);
             }.bind(this)
         );
 
-        this.socket.on(
-        "disconnect",
-        function (id) {
+        this.socket.on("disconnect", function (id) {
             this.otherPlayers.getChildren().forEach(
             function (player) {
                 if (player.id === id) {
-                player.sprite.destroy();
+                    player.sprite.destroy();
                 }
-            }.bind(this)
-            );
-        }.bind(this)
-        );
+            }.bind(this));
+        }.bind(this));
 
         this.socket.on(
         "playerMoved",
@@ -113,22 +112,30 @@ class gameScene extends Phaser.Scene {
         );
 
         this.socket.on("new user message", (data) => {
-        var text = this.add.text(0, 0, data.username, { backgroundColor: '	rgb(0, 0, 0)'});text.alpha = 0.5;text.setOrigin(0.5, 2.9);text.setScale(0.7);
-        this.container.add(text);
-        const usernameSpan = document.createElement("span");
-        const usernameText = document.createTextNode(data.username);
-        usernameSpan.className = "username";
-        usernameSpan.appendChild(usernameText);
-        const messageBodySpan = document.createElement("span");
-        const messageBodyText = document.createTextNode(data.message);
-        messageBodySpan.className = "messageBody";
-        messageBodySpan.appendChild(messageBodyText);
-        const messageList = document.createElement("li");
-        messageList.setAttribute("username", data.username);
-        messageList.append(usernameSpan);
-        messageList.append(messageBodySpan);
-        addMessageElement(messageList);
+            const usernameSpan = document.createElement("span");
+            const usernameText = document.createTextNode(data.username);
+            usernameSpan.className = "username";
+            usernameSpan.appendChild(usernameText);
+            const messageBodySpan = document.createElement("span");
+            const messageBodyText = document.createTextNode(data.message);
+            messageBodySpan.className = "messageBody";
+            messageBodySpan.appendChild(messageBodyText);
+            const messageList = document.createElement("li");
+            messageList.setAttribute("username", data.username);
+            messageList.append(usernameSpan);
+            messageList.append(messageBodySpan);
+            addMessageElement(messageList);
         });
+
+        this.quest2Scene.events.on('questOneActivated', () => {
+            this.activeQuest=true;
+            coinsLayer.forEach(object => {
+                let obj = coins.create(object.x, object.y, "coin"); 
+                obj.setOrigin(0);
+                obj.body.width = object.width; 
+                obj.body.height = object.height; 
+              });
+        })
     }
 
     handleAnimations() {
@@ -158,9 +165,11 @@ class gameScene extends Phaser.Scene {
     }
 
     collectCoin(player, coin) {
-        this.coinsLeft -= 1;
-        this.events.emit('updateScore', this.coinsLeft)
         coin.destroy(coin.x, coin.y); // remove the tile/coin
+        console.log(this.coinsLeft);
+        this.coinsLeft --;
+        this.events.emit('updateScore', this.coinsLeft)
+        
     }
 
     addOtherPlayers(playerInfo) {
@@ -201,17 +210,21 @@ class gameScene extends Phaser.Scene {
         return { x, y };
     }
 
-    eventTriggers(building){
+    eventTriggers(building, coinsLayer, coins){
         var keyObj = this.input.keyboard.addKey('E');  // Get key object
         
 
         //Trigger for quest1
         building.setTileLocationCallback(69, 89, 1, 1,() => {
-            if (keyObj.isDown == true && this.startedQuest==false){
+            if (keyObj.isDown == true && this.activeQuest==false){
+               
                 keyObj.isDown = false;
                 this.scene.pause();
                 this.scene.launch('quest2Info');
+                
             }
+
+            
         });
 
         //Teleport from Cave #1 to Entrance #1
@@ -219,7 +232,7 @@ class gameScene extends Phaser.Scene {
             this.container.setPosition(4336, 1024);
         });
 
-        //Teleport from cave #1 if (isDown == true){to exit #1
+        //Teleport from cave #1 to exit #1
         building.setTileLocationCallback(136, 30, 1, 1, () => {
             this.container.setPosition(5840, 960);
         });
@@ -255,7 +268,6 @@ class gameScene extends Phaser.Scene {
             this.scene.pause();
             this.scene.launch('quest2Info');
             
-            
         });
 
         //Teleport out of blacksmith
@@ -266,8 +278,10 @@ class gameScene extends Phaser.Scene {
         //Teleport into pub
 
         building.setTileLocationCallback(67, 88, 1, 1, () => {
-            this.scene.launch('blind');
-            this.container.setPosition(5936, 3904);
+            
+            if (keyObj.isDown == true){
+                this.container.setPosition(5936, 3904);
+            }
         });
 
         //Teleport out of pub

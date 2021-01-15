@@ -14,7 +14,7 @@ class UiButton extends Phaser.GameObjects.Container {
   }
 
   createButton() {
-      this.button = this.scene.add.image(0, 0, 'button1');
+      this.button = this.scene.add.image(0, 0, this.key);
       this.button.setInteractive();
       this.button.setScale(1.4);
       this.buttonText = this.scene.add.text(0, 0, this.text, {fontSize: '26px', fill: '#fff'});
