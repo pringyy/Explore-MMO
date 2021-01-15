@@ -38,7 +38,7 @@ class gameScene extends Phaser.Scene {
         this.npc1 = this.add.sprite(2224, 2865, "pubNPC", 0);
         this.npc1Q = this.add.sprite(2224, 2830, "qmark");this.npc1Q.setScale(1.3);
 
-        
+
         water.setCollisionByExclusion([-1]);
         trees.setCollisionByExclusion([-1]);
         building.setCollisionByExclusion([-1]);
@@ -213,11 +213,10 @@ class gameScene extends Phaser.Scene {
     eventTriggers(building, coinsLayer, coins){
         var keyObj = this.input.keyboard.addKey('E');  // Get key object
         
-
         //Trigger for quest1
         building.setTileLocationCallback(69, 89, 1, 1,() => {
+            
             if (keyObj.isDown == true && this.activeQuest==false){
-               
                 keyObj.isDown = false;
                 this.scene.pause();
                 this.scene.launch('quest2Info');
@@ -226,6 +225,11 @@ class gameScene extends Phaser.Scene {
 
             
         });
+
+         //Teleport from Entrance #1 to Cave #1
+         building.setTileLocationCallback(104, 37, 1, 1, () => {
+            this.container.setPosition(6176, 1760);
+          });
 
         //Teleport from Cave #1 to Entrance #1
         building.setTileLocationCallback(183, 28, 1, 1, () => {
@@ -264,24 +268,19 @@ class gameScene extends Phaser.Scene {
 
         //Teleport into blacksmith
         building.setTileLocationCallback(82, 88, 1, 1, () => {
-            
-            this.scene.pause();
-            this.scene.launch('quest2Info');
+            this.container.setPosition(5552, 4740);
             
         });
 
         //Teleport out of blacksmith
-        building.setTileLocationCallback(185, 149, 1, 1, () => {
+        building.setTileLocationCallback(173, 149, 1, 1, () => {
             this.container.setPosition(2640, 2880);
         });
 
         //Teleport into pub
 
         building.setTileLocationCallback(67, 88, 1, 1, () => {
-            
-            if (keyObj.isDown == true){
                 this.container.setPosition(5936, 3904);
-            }
         });
 
         //Teleport out of pub
