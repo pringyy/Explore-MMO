@@ -35,6 +35,7 @@ class quest2ModalScene extends Phaser.Scene {
       startScene(targetScene){
         this.scene.start(targetScene);
         this.scene.resume("Game");
+        this.events.emit('questOneActivated');
       }
 
 };

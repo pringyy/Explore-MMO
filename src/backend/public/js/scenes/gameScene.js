@@ -7,10 +7,10 @@ class gameScene extends Phaser.Scene {
     }
 
     init(){
-        
+        this.startedQuest = false;
+        this.container;
         this.coinsLeft = 10;
     }
-
     create() {
 
         this.socket = io();
@@ -38,99 +38,17 @@ class gameScene extends Phaser.Scene {
         trees.setCollisionByExclusion([-1]);
         building.setCollisionByExclusion([-1]);
 
-
-
-
-
-        //Trigger for quest1
-        building.setTileLocationCallback(69, 89, 1, 1, () => {
-            this.container.setPosition(4336, 1024);
-            this.scene.pause();
-            this.scene.launch('quest2Info');
-        });
-
-        //Teleport from Cave #1 to Entrance #1
-        building.setTileLocationCallback(183, 28, 1, 1, () => {
-            this.container.setPosition(4336, 1024);
-        });
-
-        //Teleport from cave #1 to exit #1
-        building.setTileLocationCallback(136, 30, 1, 1, () => {
-            this.container.setPosition(5840, 960);
-        });
-
-        //Teleport from exit #1 to cave #1
-        building.setTileLocationCallback(192, 56, 3, 3, () => {
-            this.container.setPosition(3328, 1284);
-        });
-
-        //Teleport into church
-        building.setTileLocationCallback(127, 88, 1, 1, () => {
-            this.container.setPosition(6688, 4736);
-        });
-
-        //Teleport out of church
-        building.setTileLocationCallback(209, 149, 1, 1, () => {
-            this.container.setPosition(4064, 2880);
-        });
-
-        //Teleport into church basement
-        building.setTileLocationCallback(215, 133, 1, 1, () => {
-            this.container.setPosition(6624, 3440);
-        });
-
-        //Teleport out of church basement
-        building.setTileLocationCallback(205, 107, 1, 2, () => {
-            
-            this.container.setPosition(6848, 4256);
-        });
-
-        //Teleport into blacksmith
-        building.setTileLocationCallback(82, 88, 1, 1, () => {
-            this.scene.pause();
-            this.scene.launch('quest2Info');
-            coinsLayer.forEach(object => {
-                let obj = coins.create(object.x, object.y, "coin"); 
-                obj.setOrigin(0);
-                obj.body.width = object.width; 
-                obj.body.height = object.height; 
-                });
-            this.container.setPosition(5936, 4736);
-        });
-
-        //Teleport out of blacksmith
-        building.setTileLocationCallback(185, 149, 1, 1, () => {
-            this.container.setPosition(2640, 2880);
-        });
-
-        //Teleport into pub
-
-        building.setTileLocationCallback(67, 88, 1, 1, () => {
-            this.scene.launch('blind');
-            this.container.setPosition(5936, 3904);
-        });
-
-        //Teleport out of pub
-        building.setTileLocationCallback(185, 123, 1, 1, () => {
-            this.container.setPosition(2160, 2880);
-        });
-
-        //Teleport into pub basement
-        building.setTileLocationCallback(189, 114, 1, 1, () => {
-        this.container.setPosition(5856, 2976);
-        });
-
-        //Teleport out of pub basement
-        building.setTileLocationCallback(181, 93, 1, 2, () => {
-        this.container.setPosition(6016, 3648);
-        });
+        this.eventTriggers(building);
 
         //Handles boundaries of the map
         this.physics.world.bounds.width = this.map.widthInPixels;
         this.physics.world.bounds.height = this.map.heightInPixels;
 
+
+
         //Handles player animations when moving
         this.handleAnimations();
+        
 
         //Handles user input from keyboard
         this.cursors = this.input.keyboard.createCursorKeys();
@@ -173,7 +91,7 @@ class gameScene extends Phaser.Scene {
             this.otherPlayers.getChildren().forEach(
             function (player) {
                 if (player.id === id) {
-                player.destroy();
+                player.sprite.destroy();
                 }
             }.bind(this)
             );
@@ -283,6 +201,93 @@ class gameScene extends Phaser.Scene {
         return { x, y };
     }
 
+    eventTriggers(building){
+        var keyObj = this.input.keyboard.addKey('E');  // Get key object
+        
+
+        //Trigger for quest1
+        building.setTileLocationCallback(69, 89, 1, 1,() => {
+            if (keyObj.isDown == true && this.startedQuest==false){
+                keyObj.isDown = false;
+                this.scene.pause();
+                this.scene.launch('quest2Info');
+            }
+        });
+
+        //Teleport from Cave #1 to Entrance #1
+        building.setTileLocationCallback(183, 28, 1, 1, () => {
+            this.container.setPosition(4336, 1024);
+        });
+
+        //Teleport from cave #1 if (isDown == true){to exit #1
+        building.setTileLocationCallback(136, 30, 1, 1, () => {
+            this.container.setPosition(5840, 960);
+        });
+
+        //Teleport from exit #1 to cave #1
+        building.setTileLocationCallback(192, 56, 3, 3, () => {
+            this.container.setPosition(3328, 1284);
+        });
+
+        //Teleport into church
+        building.setTileLocationCallback(127, 88, 1, 1, () => {
+            this.container.setPosition(6688, 4736);
+        });
+
+        //Teleport out of church
+        building.setTileLocationCallback(209, 149, 1, 1, () => {
+            this.container.setPosition(4064, 2880);
+        });
+
+        //Teleport into church basement
+        building.setTileLocationCallback(215, 133, 1, 1, () => {
+            this.container.setPosition(6624, 3440);
+        });
+
+        //Teleport out of church basement
+        building.setTileLocationCallback(205, 107, 1, 2, () => {
+            this.container.setPosition(6848, 4256);
+        });
+
+        //Teleport into blacksmith
+        building.setTileLocationCallback(82, 88, 1, 1, () => {
+            
+            this.scene.pause();
+            this.scene.launch('quest2Info');
+            
+            
+        });
+
+        //Teleport out of blacksmith
+        building.setTileLocationCallback(185, 149, 1, 1, () => {
+            this.container.setPosition(2640, 2880);
+        });
+
+        //Teleport into pub
+
+        building.setTileLocationCallback(67, 88, 1, 1, () => {
+            this.scene.launch('blind');
+            this.container.setPosition(5936, 3904);
+        });
+
+        //Teleport out of pub
+        building.setTileLocationCallback(185, 123, 1, 1, () => {
+            this.container.setPosition(2160, 2880);
+        });
+
+        //Teleport into pub basement
+        building.setTileLocationCallback(189, 114, 1, 1, () => {
+            this.container.setPosition(5856, 2976);
+        });
+
+        //Teleport out of pub basement
+        building.setTileLocationCallback(181, 93, 1, 2, () => {
+            this.container.setPosition(6016, 3648);
+        });
+
+
+    }
+
     update() {
 
         if (this.container) {
@@ -332,4 +337,8 @@ class gameScene extends Phaser.Scene {
 
         }
     }
+        
+      
+    
+
 };

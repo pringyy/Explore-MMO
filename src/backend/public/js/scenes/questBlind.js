@@ -4,6 +4,7 @@ class questBlind extends Phaser.Scene {
         };
     
         init(){
+
             this.gameScene = this.scene.get('Game');
         }
     
