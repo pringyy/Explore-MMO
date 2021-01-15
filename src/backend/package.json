@@ -23,7 +23,8 @@
     "mocha": "^8.2.1",
     "mongoose": "^5.10.15",
     "nodemon": "^2.0.6",
-    "phaser": "^3.50.1",
+    "phaser": "^3.51.0",
+    "phaser-ui-tools": "^2.0.0-beta",
     "socket.io": "^3.0.3"
   }
 }

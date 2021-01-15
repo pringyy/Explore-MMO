@@ -139,7 +139,7 @@ router.post("/token", (req, res) => {
 
     res.status(200).json({ token });
   } else {
-    res.status(401).json({ message: "Unauthorized" });
+    //res.status(401).json({ message: "Unauthorized" });
   }
 });
 
