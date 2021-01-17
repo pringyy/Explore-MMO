@@ -26,6 +26,7 @@ class initialiseAssets extends Phaser.Scene {
     }
 
     loadImages(){
+      this.load.image("logo", "assets/images/logo2.png");
       this.load.image("cross1", "assets/images/cross.png");
       this.load.image("cross2", "assets/images/cross2.png");
       //Load UI element

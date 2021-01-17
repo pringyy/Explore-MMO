@@ -1,5 +1,3 @@
-
-
 var config = {
     type: Phaser.AUTO,
     borderPadding: 10,
