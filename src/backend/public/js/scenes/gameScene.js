@@ -210,6 +210,14 @@ class gameScene extends Phaser.Scene {
         return { x, y };
     }
 
+    sleep() {
+        this.cursors.left.reset();
+        this.cursors.right.reset();
+        this.cursors.up.reset();
+        this.cursors.down.reset();
+
+      }
+
     eventTriggers(building, coinsLayer, coins){
         var keyObj = this.input.keyboard.addKey('E');  // Get key object
         
@@ -217,6 +225,7 @@ class gameScene extends Phaser.Scene {
         building.setTileLocationCallback(69, 89, 1, 1,() => {
             
             if (keyObj.isDown == true && this.activeQuest==false){
+                this.sleep();
                 keyObj.isDown = false;
                 this.scene.pause();
                 this.scene.launch('quest2Info');
