@@ -17,11 +17,10 @@
 <body>
   <nav>
     <div class="nav-wrapper black">
-      <a href="#" class="brand-logo center">Explore IO (Alpha)</a>
+      <a  class="brand-logo center"><img class="responsive-img" id="logo" src="assets/images/logo2.png" width = 55%></a>
       <ul id="nav-mobile" class="right hide-on-med-and-down">
-        <li><a href="collapsible.html"><i class="material-icons center">settings</i></a></li>
-        <li><a href="collapsible.html"><i class="material-icons center">help_outline</i></a></li>
-        <li><a href="/"><i class="material-icons center">power_settings_new</i></a></li>
+  
+        <li><a onClick = "logout()"><i class="material-icons center black">power_settings_new</i></a></li>
       </ul>
     </div>
   </nav>
@@ -46,6 +45,27 @@
     <script src="js/jwtToken.js"charset="utf-8"></script>
   </body>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+<script>
+  function logout() {
+  
+    $.ajax({
+      type: 'POST',
+      url: '/logout',
+      data: {
+        refreshToken: getCookie("refreshJwt"),
+      },
+      success: function (data) {
+        window.alert('logged out');
+        window.location.replace('/');
+      },
+      error: function (xhr) {
+        window.alert(JSON.stringify(xhr));
+        window.location.replace('/register');
+      }
+    });
+  }
+
+</script>
  
 </body>
  

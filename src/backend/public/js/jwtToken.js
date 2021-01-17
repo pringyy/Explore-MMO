@@ -26,5 +26,6 @@ setInterval(function () {
       window.alert(JSON.stringify(xhr));
       window.location.replace("/index.html");
     },
+
   });
 }, 1000);
