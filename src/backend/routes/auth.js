@@ -136,10 +136,11 @@ router.post("/token", (req, res) => {
     // update jwt
     res.cookie("access_token", token);
     tokenList[refreshToken].token = token;
+    console.log(token);
 
     res.status(200).json({ token });
   } else {
-    res.status(401).json({ message: "Unauthorized" });
+    res.status(401).json();
   }
 });
 
@@ -148,7 +149,7 @@ router.post("/logout", (req, res) => {
     const refreshToken = req.cookies["refreshJwt"];
     if (refreshToken in tokenList) delete tokenList[refreshToken];
     res.clearCookie("refreshJwt");
-    res.clearCookie("refresh_token");
+    res.clearCookie("access_token");
   }
 
   res.status(200).json({ message: "logged out" });

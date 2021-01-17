@@ -10,7 +10,7 @@ ul {
 }
 
 #chatContainer {
-  width: calc(100% - 960px);
+  width: calc(100% - 800px);
 }
 
 .flex-container {
@@ -45,8 +45,8 @@ ul {
 /* Messages */
 
 .chatArea {
-  max-height: 660px;
-  height: 660px;
+  max-height: 550px;
+  height: 550px;
   overflow-y: scroll;
 }
 
