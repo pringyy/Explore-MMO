@@ -88,11 +88,10 @@ class gameScene extends Phaser.Scene {
             }.bind(this)
         );
 
-        this.socket.on("disconnect", function (id) {
-            this.otherPlayers.getChildren().forEach(
-            function (player) {
-                if (player.id === id) {
-                    player.sprite.destroy();
+        this.socket.on("remove", function (id) {
+            this.otherPlayers.getChildren().forEach(function (player) {
+                if (player.playerId === id) {
+                    player.destroy();
                 }
             }.bind(this));
         }.bind(this));
