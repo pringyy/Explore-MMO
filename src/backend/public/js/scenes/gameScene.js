@@ -17,6 +17,7 @@ class gameScene extends Phaser.Scene {
         this.startedQuest = false;
         this.container;
         this.coinsLeft = 10;
+        this.swordFound = false;
         this.activeQuest = false;
     }
     create() {
@@ -36,8 +37,9 @@ class gameScene extends Phaser.Scene {
         var buildingaddon = this.map.createStaticLayer("buildingaddon", tiles, 0, 0);
         var trees = this.map.createStaticLayer("trees", tiles, 0, 0);
         var coinsLayer = this.map.getObjectLayer('coinsLayer')['objects'];
+        var swordLayer = this.map.getObjectLayer('swordLayer')['objects'];
 
-        var coins = this.physics.add.staticGroup()
+        var coins, sword = this.physics.add.staticGroup()
         //this is how we actually render our coin object with coin asset we loaded into our game in the preload function
        
         this.npc1 = this.add.sprite(2224, 2865, "pubNPC", 0);
@@ -50,7 +52,7 @@ class gameScene extends Phaser.Scene {
         this.npc3 = this.add.sprite(2256, 512, "pubNPC", 0);this.npc3.setScale(0.8);
         this.npc3Q = this.add.sprite(2256, 477, "qmark");this.npc3Q.setScale(1.3);
 
-        this.npc4 = this.add.sprite(1040, 64, "pubNPC", 0);
+        this.npc4 = this.add.sprite(1040, 64, "death", 0);
         this.npc4Q = this.add.sprite(1040, 29, "qmark");this.npc4Q.setScale(1.3);
 
 
@@ -94,6 +96,7 @@ class gameScene extends Phaser.Scene {
                     this.container.body.setCollideWorldBounds(true);
                     this.physics.add.collider(this.container, [trees,water,building,]);
                     this.physics.add.overlap(this.container, coins, this.collectCoin, null, this);
+                    this.physics.add.overlap(this.container, sword, this.collectSword, null, this);
 
                 } else {
                     this.addOtherPlayers(players[id]);
@@ -143,6 +146,7 @@ class gameScene extends Phaser.Scene {
             messageList.append(messageBodySpan);
             addMessageElement(messageList);
         });
+
         this.quest1Scene.events.on('questOneActivated', () => {
             this.activeQuest=true;
             coinsLayer.forEach(object => {
@@ -165,8 +169,8 @@ class gameScene extends Phaser.Scene {
             
         this.quest3Scene.events.on('questThreeActivated', () => {
         this.activeQuest=true;
-        coinsLayer.forEach(object => {
-            let obj = coins.create(object.x, object.y, "coin"); 
+        swordLayer.forEach(object => {
+            let obj = sword.create(object.x, object.y, "sword"); 
             obj.setOrigin(0);
             obj.body.width = object.width; 
             obj.body.height = object.height; 
@@ -229,6 +233,12 @@ class gameScene extends Phaser.Scene {
         this.coinsLeft --;
         this.events.emit('updateScore', this.coinsLeft)
         
+    }
+
+    collectSword(player, sword){
+        sword.destroy(sword.x, sword.y);
+        this.swordFound = true;
+        this.events.emit('completed');
     }
 
     addOtherPlayers(playerInfo) {
