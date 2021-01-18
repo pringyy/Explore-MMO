@@ -23,7 +23,6 @@ setInterval(function () {
     },
     success: function (data) {},
     error: function (xhr) {
-      window.alert(JSON.stringify(xhr));
       window.location.replace("/");
     },
 
