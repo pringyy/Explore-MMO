@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.4" tiledversion="1.4.2" orientation="orthogonal" renderorder="right-down" width="300" height="150" tilewidth="32" tileheight="32" infinite="0" nextlayerid="36" nextobjectid="109">
-<map version="1.4" tiledversion="1.4.2" orientation="orthogonal" renderorder="right-down" width="300" height="150" tilewidth="32" tileheight="32" infinite="0" nextlayerid="38" nextobjectid="112">
+<map version="1.4" tiledversion="1.4.2" orientation="orthogonal" renderorder="right-down" width="300" height="150" tilewidth="32" tileheight="32" infinite="0" nextlayerid="39" nextobjectid="113">
  <editorsettings>
   <export target="world.json" format="json"/>
  </editorsettings>
@@ -62,5 +62,8 @@
   <object id="106" gid="995" x="5967.75" y="3124.04" width="32" height="32"/>
   <object id="107" gid="995" x="6684.24" y="3565.96" width="32" height="32"/>
   <object id="108" gid="995" x="6580.26" y="4459.54" width="32" height="32"/>
+ </objectgroup>
+ <objectgroup id="38" name="swordLayer">
+  <object id="112" gid="1061" x="2177.47" y="697.818" width="32" height="32"/>
  </objectgroup>
 </map>
