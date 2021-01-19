@@ -241,20 +241,20 @@
         }, 
         {
          "draworder":"topdown",
-         "id":38,
+         "id":37,
          "name":"swordLayer",
          "objects":[
                 {
                  "gid":1061,
                  "height":32,
-                 "id":112,
+                 "id":109,
                  "name":"",
                  "rotation":0,
                  "type":"",
                  "visible":true,
                  "width":32,
-                 "x":2177.47319347319,
-                 "y":697.818181818182
+                 "x":2270.3855570669,
+                 "y":348.63262025473
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -262,8 +262,8 @@
          "x":0,
          "y":0
         }],
- "nextlayerid":39,
- "nextobjectid":113,
+ "nextlayerid":38,
+ "nextobjectid":110,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.4.2",
