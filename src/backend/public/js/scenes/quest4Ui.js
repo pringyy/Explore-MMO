@@ -1,7 +1,7 @@
 
-class UiScene extends Phaser.Scene {
+class quest4Ui extends Phaser.Scene {
     constructor(){
-      super ('Ui');
+      super ('quest4Ui');
     };
   
     init(){
