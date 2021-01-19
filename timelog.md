@@ -199,3 +199,37 @@
 * *2 hours* Implementing world map
 
 ## Christmas Holidays
+* *10 hours* Implementing world map
+* *5 hours* Designing game quests
+* *5 hours* Implementing first quest
+* *3 hours* Designing initial evaluation methodology
+* *5 hours* Carrying out intial evaluation
+* *2 hours* Analysing intial evaluation results
+
+## Week 12
+
+### 11 Jan 2021
+* *3 hours* Implementing more quests
+* *1 hours* Fixing bug identified in intial evaluation
+
+### 13 Jan 2021
+* *4 hours* Making code modular so classes are in different files to improve readability
+
+
+### 14 Jan 2021
+* *4 hours* Researching into creating modals to display quest information
+* *1.5 hours*Implementing new quest
+
+### 15 Jan 2021
+* *3 hours* Created modal template so now can easily have an interactive popup box to accept quests with
+* *3 hours* Further map design
+
+### 17 Jan 2021
+* *1.5 hours* added event triggers for speaking to NPCs
+* *3 hours* Implementing new login and registration user interface
+* *2 hours* fixing bugs idnetified in the intial evaluation
+
+## Week 13
+
+### 18 Jan 2021
+* *3 hours* Implementing more quests
