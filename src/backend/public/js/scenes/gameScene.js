@@ -299,6 +299,30 @@ class gameScene extends Phaser.Scene {
         });
 
 
+
+        //Teleport into grave
+        building.setTileLocationCallback(133, 132, 1, 1, () => {
+            this.container.setPosition(7760, 4384);
+        });
+
+
+         //Teleport out of grave
+         building.setTileLocationCallback(242, 132, 1, 1, () => {
+            this.container.setPosition(4272, 4192);
+        });
+
+         //Teleport into gulag
+         building.setTileLocationCallback(11, 36, 1, 2, () => {
+            this.container.setPosition(9216, 4640);
+        });
+
+        //Teleport out of gulag
+        building.setTileLocationCallback(181, 93, 1, 2, () => {
+            this.container.setPosition(6016, 3648);
+        });
+
+
+
     }
 
     update() {
