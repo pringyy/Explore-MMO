@@ -312,13 +312,56 @@ class gameScene extends Phaser.Scene {
         });
 
          //Teleport into gulag
-         building.setTileLocationCallback(11, 36, 1, 2, () => {
+         building.setTileLocationCallback(10, 35, 2, 1, () => {
             this.container.setPosition(9216, 4640);
         });
 
         //Teleport out of gulag
-        building.setTileLocationCallback(181, 93, 1, 2, () => {
-            this.container.setPosition(6016, 3648);
+        building.setTileLocationCallback(287, 146, 2, 1, () => {
+            this.container.setPosition(352, 1162);
+        });
+
+
+         //Teleport into farm house
+         building.setTileLocationCallback(107, 61, 1, 1, () => {
+            this.container.setPosition(7760, 3584);
+        });
+
+        //Teleport out of farm house
+        building.setTileLocationCallback(242, 113, 1, 1, () => {
+            this.container.setPosition(3440, 2016);
+        });
+
+        //Teleport into inn
+        building.setTileLocationCallback(41, 68, 1, 1, () => {
+            this.container.setPosition(7248, 2752);
+        });
+
+        //Teleport out of inn
+        building.setTileLocationCallback(226, 87, 1, 1, () => {
+            this.container.setPosition(1328, 2240);
+        });
+
+
+         //Entrance Cave 0/1
+         building.setTileLocationCallback(109, 48, 1, 1, () => {
+            this.container.setPosition(8944, 384);
+        });
+
+        //Leave through entraneCave 0/1
+        building.setTileLocationCallback(279, 13, 1, 1, () => {
+            this.container.setPosition(1328, 2240);
+        });
+
+
+        //Exit Cave 0/1
+        building.setTileLocationCallback(294, 12, 1, 1, () => {
+            this.container.setPosition(4336, 1600);
+        });
+
+        //Go back through exit Cave 0/1
+        building.setTileLocationCallback(226, 87, 1, 1, () => {
+            this.container.setPosition(9424, 352);
         });
 
 
