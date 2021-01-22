@@ -233,3 +233,7 @@
 
 ### 18 Jan 2021
 * *3 hours* Implementing more quests
+
+### 22 Jan 2021
+* *2 hours* setting up database to store game quest progress
+* *4 hours* Finalising the map
