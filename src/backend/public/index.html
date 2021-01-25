@@ -6,6 +6,7 @@
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
   <link rel="stylesheet" type="text/css" href ="assets/css/login.css"></style>
+  <link href="assets/css/toastr.min.css" rel="stylesheet"/>
 </head>
 
 <body>
@@ -15,6 +16,7 @@
         <div class="middle">  
           <img onload="this.style.opacity='0.8'" src="assets/images/logo.png" class= "center" width = "120%"  > <!-- Displays ORGE logo-->  
           <div class="transparency_bg">
+            
             <div class="container">
               <div class="row">
                 <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
@@ -59,12 +61,14 @@
         url: '/login',
         data,
         success: function (data) {
-          window.alert('Success');
-          window.location.replace('/play');
+         
+          toastr.success('Login Succesful')
+          window.location.replace('/play')
+        
         },
         error: function (xhr) {
-          window.alert(JSON.stringify(xhr));
-          window.location.replace('/');
+          
+          toastr.error(String(xhr.responseText))
         }
       });
     }
@@ -72,6 +76,7 @@
 
 
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.1/jquery.min.js"></script>
+  <script src="assets/toastr.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 </body>
 

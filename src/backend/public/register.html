@@ -8,6 +8,7 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
   <link rel="stylesheet" type="text/css" href ="assets/css/login.css"></style>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <link href="assets/css/toastr.min.css" rel="stylesheet"/>
 </head>
 
   <body>
@@ -69,19 +70,44 @@
         url: '/register',
         data,
         success: function (data) {
-          window.alert('user created successfully');
-          window.location.replace('/');
+          window.alert('user created successfully')
+          login();
         },
         error: function (xhr) {
-          window.alert(JSON.stringify(xhr));
-          window.location.replace('/register');
-        }
+          toastr.error(String(xhr.responseText))
+          console.log(xhr);
+                }
       });
     }
   </script>
+
+<script>
+function login() {
+  var data = {
+    username: document.getElementById("inputUsername").value,
+    password: document.getElementById("inputPassword").value
+  };
+  $.ajax({
+    type: 'POST',
+    url: '/login',
+    data,
+    success: function (data) {
+     
+      toastr.success('Login Succesful')
+      window.location.replace('/play')
+    
+    },
+    error: function (xhr) {
+      
+      toastr.error(String(xhr.responseText))
+    }
+  });
+}
+</script>
 </body>
 
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.1/jquery.min.js"></script>
+<script src="assets/toastr.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
  
 </html>
