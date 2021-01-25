@@ -6,7 +6,8 @@ const webtoken = require("jsonwebtoken");
 const { registerValidation, loginValidation } = require("../validation");
 
 const asyncMiddleware = require("../middleware/asyncMiddleware");
-const user = require("../model/user");
+const questProgress = require("../model/questProgress");
+
 
 const tokenList = {};
 
@@ -45,8 +46,14 @@ router.post(
       password: hashPassword,
     });
 
+    const questprogress = new questProgress({
+      username: req.body.username,
+    });
+
+
     try {
-      const savedUser = await user.save();   res.send("Registered Successfully");
+      const savedUser = await user.save();  
+      const savedQuest = await questprogress.save(); res.send("Test Successfully");
     } catch (err) {
       res.status(400).send(err);
     }
