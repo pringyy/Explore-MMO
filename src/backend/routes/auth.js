@@ -21,7 +21,7 @@ router.post(
       return res
         .status(400)
         .send(
-          `Validation error: ${error.details.map((x) => x.message).join(", ")}`
+          error.details.map((x) => x.message).join(", ")
         );
 
     //Checks if user details are already in the database
@@ -60,16 +60,6 @@ router.post(
     const { error } = loginValidation(req.body);
 	console.log("called");
 	
-
-
-
-    //Sends error message if data is not valid
-    if (error)
-      return res
-        .status(400)
-        .send(
-          `Validation error: ${error.details.map((x) => x.message).join(", ")}`
-        );
 
     //Checks if username exists
     const user = await User.findOne({ username: req.body.username });
