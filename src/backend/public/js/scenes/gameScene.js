@@ -443,19 +443,6 @@ class gameScene extends Phaser.Scene {
             this.events.emit('updateLocation', "in the Forest")
         });
 
-    }
-
-    launchQuest(keyObj, scene){
-        
-        if (keyObj.isDown == true/* && this.activeQuest==false*/){
-            this.sleep();
-            keyObj.isDown = false;
-            this.scene.pause();
-            this.scene.launch(scene);  
-        }  
-    
-
-
         //Teleport into grave
         building.setTileLocationCallback(133, 132, 1, 1, () => {
             this.container.setPosition(7760, 4384);
@@ -499,29 +486,22 @@ class gameScene extends Phaser.Scene {
         });
 
 
-         //Entrance Cave 0/1
-         building.setTileLocationCallback(109, 48, 1, 1, () => {
-            this.container.setPosition(8944, 384);
-        });
-
-        //Leave through entraneCave 0/1
-        building.setTileLocationCallback(279, 13, 1, 1, () => {
-            this.container.setPosition(1328, 2240);
-        });
 
 
-        //Exit Cave 0/1
-        building.setTileLocationCallback(294, 12, 1, 1, () => {
-            this.container.setPosition(4336, 1600);
-        });
+    }
 
-        //Go back through exit Cave 0/1
-        building.setTileLocationCallback(226, 87, 1, 1, () => {
-            this.container.setPosition(9424, 352);
-        });
+    launchQuest(keyObj, scene){
+        
+        if (keyObj.isDown == true/* && this.activeQuest==false*/){
+            this.sleep();
+            keyObj.isDown = false;
+            this.scene.pause();
+            this.scene.launch(scene);  
+        }  
+    
 
 
-
+        
     }
 
     MovePlayer(keyObj, scene){
