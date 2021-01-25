@@ -154,10 +154,16 @@ class gameScene extends Phaser.Scene {
         this.quest1Scene.events.on('questOneActivated', () => {
             this.activeQuest=true;
             
+            
         })
         this.quest2Scene.events.on('questTwoActivated', () => {
             this.activeQuest=true;
-            
+            coinsLayer.forEach(object => {
+                let obj = coins.create(object.x, object.y, "coin"); 
+                obj.setOrigin(0);
+                obj.body.width = object.width; 
+                obj.body.height = object.height; 
+            });
         })
 
             
