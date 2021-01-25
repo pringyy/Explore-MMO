@@ -56,6 +56,7 @@
     <script src="js/jwtToken.js"charset="utf-8"></script>
   </body>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
 <script>
   function logout() {
   
@@ -71,12 +72,13 @@
       },
       error: function (xhr) {
         window.alert(JSON.stringify(xhr));
-        window.location.replace('/register');
+        window.location.replace('/');
       }
     });
   }
 
 </script>
+
  
 </body>
  

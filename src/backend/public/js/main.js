@@ -60,4 +60,36 @@ var config = {
     messages.append(el);
     messages.lastChild.scrollIntoView();
   }
+
+  function completedQuest(questNumber) {
+  
+    $.ajax({
+      type: "POST",
+      url: "/completedQuest",
+      data: {
+        quest: questNumber,
+        refreshToken: getCookie("refreshJwt"),
+      },
+      success: function (data) {},
+      error: function (xhr) {
+        console.log(xhr);
+      },
+    });
+  }
+
+  function checkQuest() {
+  
+   $.ajax({
+      type: "GET",
+      url: "/questQuery",
+      success: function (data) {
+        console.log(data);
+        return data;
+      },
+      error: function (xhr) {
+        console.log(xhr);
+      },
+    });
+  }
+
   

@@ -133,7 +133,7 @@ router.post("/token", (req, res) => {
     // update jwt
     res.cookie("access_token", token);
     tokenList[refreshToken].token = token;
-    console.log(token);
+  
 
     res.status(200).json({ token });
   } else {

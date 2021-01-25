@@ -20,6 +20,7 @@ class gameScene extends Phaser.Scene {
         this.coinsLeft = 10;
         this.swordFound = false;
         this.activeQuest = false;
+        this.socket;
        
     }
     create() {
@@ -300,9 +301,11 @@ class gameScene extends Phaser.Scene {
 
         //Trigger for quest2
         building.setTileLocationCallback(68, 89, 3, 2,() => {
-           
+            var quest = checkQuest();
+            console.log(quest);
+            if (checkQuest() == true){
             this.launchQuest(keyObj, 'quest2Info')
-            
+             }   
             
         });
  
@@ -312,7 +315,7 @@ class gameScene extends Phaser.Scene {
         });
 
         //Trigger for quest4
-        building.setTileLocationCallback(31, 2, 3, 2,() => {
+        building.setTileLocationCallback(31, 2, 2, 3,() => {
             this.launchQuest(keyObj, 'quest4Info');
         });
 
@@ -322,26 +325,7 @@ class gameScene extends Phaser.Scene {
         });
 
        
-        
-         //Teleport from Entrance #1 to Cave #1
-         building.setTileLocationCallback(104, 37, 1, 1, () => {
-            this.container.setPosition(6176, 1760);
-          });
-
-        //Teleport from Cave #1 to Entrance #1
-        building.setTileLocationCallback(183, 28, 1, 1, () => {
-            this.container.setPosition(4336, 1024);
-        });
-
-        //Teleport from cave #1 to exit #1
-        building.setTileLocationCallback(136, 30, 1, 1, () => {
-            this.container.setPosition(5840, 960);
-        });
-
-        //Teleport from exit #1 to cave #1
-        building.setTileLocationCallback(192, 56, 3, 3, () => {
-            this.container.setPosition(3328, 1284);
-        });
+    
 
         //Teleport into church
         building.setTileLocationCallback(127, 88, 1, 1, () => {
@@ -367,6 +351,7 @@ class gameScene extends Phaser.Scene {
 
         //Teleport into blacksmith
         building.setTileLocationCallback(82, 88, 1, 1, () => {
+            checkQuest();
             this.events.emit('updateLocation', "in the Blacksmith")
             this.container.setPosition(5552, 4740);
             
@@ -428,7 +413,7 @@ class gameScene extends Phaser.Scene {
             this.events.emit('updateLocation', "scaling Mount Kong")
         });
 
-        building.setTileLocationCallback(71, 16, 1, 1, () => {
+        building.setTileLocationCallback(71, 14, 1, 1, () => {
             this.events.emit('updateLocation', "in the Forest")
         });
 

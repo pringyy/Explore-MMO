@@ -29,9 +29,10 @@ class quest2Ui extends Phaser.Scene {
   
     setupEvents(){
       this.gameScene.events.on('updateScore', (score) => {
-        if (score != 0 ){
+        if (score == 10 ){
           this.scoreText.setText(`Coins left: ${score}`);
-        } else {
+        } else if (score ==7){
+          completedQuest("quest2");
           this.scoreText.setText(`You have completed the quest`);
         }
       })

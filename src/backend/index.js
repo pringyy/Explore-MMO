@@ -10,6 +10,8 @@ const routes = require("./routes/auth");
 const asyncMiddleware = require("./middleware/asyncMiddleware");
 const webtoken = require("jsonwebtoken");
 const ChatSchema = require('./model/chat');
+const questSchema = require('./model/questProgress');
+const { collection } = require("./model/chat");
 
 //Establish connection to MongoDB database
 const uri = process.env.DB_CONNECT;
@@ -64,6 +66,7 @@ io.on("connection", function (socket) {
     connectedPlayers[socket.id].flipX = data.flipX;
     socket.broadcast.emit("playerMoved", connectedPlayers[socket.id]);
   });
+
 });
 
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -86,8 +89,25 @@ app.post("/submitChat", verify, asyncMiddleware(async (req, res, next) => {
   })
 );
 
+app.post("/completedQuest", verify, asyncMiddleware(async (req, res, next) => {
+  const user = req.user.info.username;
+  var quest = req.body.quest;
+  console.log(req.body.quest);
+  console.log(user);
+  var newvalues = { $set: {[quest]: true}};
+  await questSchema.updateOne({username: user}, newvalues);
+  })
+);
+
+app.get("/questQuery", verify, asyncMiddleware(async (req, res, next) => {
+  const user = req.user.info.username;
+  res.send(true);
+}));
+
+
 app.get("/", function (req, res) {
   res.sendFile(__dirname + "/public/index.html");
+  
 });
 
 app.get("/register", function (req, res) {
