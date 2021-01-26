@@ -13,6 +13,8 @@ class gameScene extends Phaser.Scene {
         this.quest4Scene = this.scene.get('quest4Info');
         this.quest5Scene = this.scene.get('quest5Info');
         this.UiScene = this.scene.get('Ui');
+
+     
     
         
         this.startedQuest = false;
@@ -21,6 +23,8 @@ class gameScene extends Phaser.Scene {
         this.swordFound = false;
         this.activeQuest = false;
         this.socket;
+        this.coins;
+        this.coinsLayer;
        
     }
     create() {
@@ -40,10 +44,11 @@ class gameScene extends Phaser.Scene {
         var building = this.map.createStaticLayer("building", tiles, 0, 0);
         var buildingaddon = this.map.createStaticLayer("buildingaddon", tiles, 0, 0);
         var trees = this.map.createStaticLayer("trees", tiles, 0, 0);
-        var coinsLayer = this.map.getObjectLayer('coinsLayer')['objects'];
         var swordLayer = this.map.getObjectLayer('swordLayer')['objects'];
+        this.coinsLayer = this.map.getObjectLayer('coinsLayer')['objects'];
+       
 
-        var coins = this.physics.add.staticGroup()
+        this.coins = this.physics.add.staticGroup()
         var sword = this.physics.add.staticGroup()
         //this is how we actually render our coin object with coin asset we loaded into our game in the preload function
        
@@ -68,7 +73,7 @@ class gameScene extends Phaser.Scene {
         trees.setCollisionByExclusion([-1]);
         building.setCollisionByExclusion([-1]);
 
-        this.eventTriggers(building, coinsLayer, coins);
+        this.eventTriggers(building);
 
         //Handles boundaries of the map
         this.physics.world.bounds.width = this.map.widthInPixels;
@@ -100,8 +105,8 @@ class gameScene extends Phaser.Scene {
                     this.updateCamera();
                     this.container.body.setCollideWorldBounds(true);
                     this.physics.add.collider(this.container, [trees,water,building,]);
-                    this.physics.add.overlap(this.container, coins, this.collectCoin, null, this);
-                    this.physics.add.overlap(this.container, coins, this.collectSword, null, this);
+                    this.physics.add.overlap(this.container, this.coins, this.collectCoin, null, this);
+                    this.physics.add.overlap(this.container, sword, this.collectSword, null, this);
 
                 } else {
                     this.addOtherPlayers(players[id]);
@@ -159,11 +164,12 @@ class gameScene extends Phaser.Scene {
         })
         this.quest2Scene.events.on('questTwoActivated', () => {
             this.activeQuest=true;
-            coinsLayer.forEach(object => {
-                let obj = coins.create(object.x, object.y, "coin"); 
+            this.coinsLayer.forEach(object => {
+                let obj = this.coins.create(object.x, object.y, "coin"); 
                 obj.setOrigin(0);
                 obj.body.width = object.width; 
                 obj.body.height = object.height; 
+                console.log('hello');
             });
         })
 
@@ -180,7 +186,7 @@ class gameScene extends Phaser.Scene {
 
         this.quest4Scene.events.on('questFourActivated', () => {
             this.activeQuest=true;
-            coinsLayer.forEach(object => {
+            this.coinsLayer.forEach(object => {
                 let obj = coins.create(object.x, object.y, "coin"); 
                 obj.setOrigin(0);
                 obj.body.width = object.width; 
@@ -190,7 +196,7 @@ class gameScene extends Phaser.Scene {
 
         this.quest5Scene.events.on('questFiveActivated', () => {
             this.activeQuest=true;
-            coinsLayer.forEach(object => {
+            this.coinsLayer.forEach(object => {
                 let obj = coins.create(object.x, object.y, "coin"); 
                 obj.setOrigin(0);
                 obj.body.width = object.width; 
@@ -226,20 +232,6 @@ class gameScene extends Phaser.Scene {
         frameRate: 8,
         frames: this.anims.generateFrameNumbers("player", { start: 0, end: 3 }),
         });
-    }
-
-    collectCoin(player, coin) {
-        coin.destroy(coin.x, coin.y); // remove the tile/coin
-        console.log(this.coinsLeft);
-        this.coinsLeft --;
-        this.events.emit('updateScore', this.coinsLeft)
-        
-    }
-
-    collectSword(player, sword){
-        sword.destroy(sword.x, sword.y);
-        this.swordFound = true;
-        this.events.emit('completed');
     }
 
     addOtherPlayers(playerInfo) {
@@ -280,16 +272,35 @@ class gameScene extends Phaser.Scene {
         return { x, y };
     }
 
+    //resets arrow keys to stop player moving uncontrollably when a new scene starts
     sleep() {
         this.cursors.left.reset();
         this.cursors.right.reset();
         this.cursors.up.reset();
         this.cursors.down.reset();
-      }
+    }
+
+    
+    collectCoin(player, coin) {
+        coin.destroy(coin.x, coin.y); // remove the tile/coin
+        console.log(this.coinsLeft);
+        this.coinsLeft --;
+        this.events.emit('updateScore', this.coinsLeft)
+    }
+
+    collectSword(player, sword){
+        this.activeQuest = false;
+        sword.destroy(sword.x, sword.y);
+        this.swordFound = true;
+        completedQuest("quest3");
+        this.scene.stop("quest3Ui")
+        this.scene.launch("completedNotification")
+    }
 
       
-
-    eventTriggers(building, coinsLayer, coins){
+    //Handles all the event tirggers for the entire game
+    eventTriggers(building){
+        
         // Get key object
         var keyObj = this.input.keyboard.addKey('E');
        
@@ -301,12 +312,7 @@ class gameScene extends Phaser.Scene {
 
         //Trigger for quest2
         building.setTileLocationCallback(68, 89, 3, 2,() => {
-            var quest = checkQuest();
-            console.log(quest);
-            if (checkQuest() == true){
-            this.launchQuest(keyObj, 'quest2Info')
-             }   
-            
+            this.launchQuest(keyObj, 'quest2Info') 
         });
  
         //Trigger for quest3
@@ -323,9 +329,6 @@ class gameScene extends Phaser.Scene {
         building.setTileLocationCallback(169, 146, 3, 3,() => {
             this.launchQuest(keyObj, 'quest5Info');
         });
-
-       
-    
 
         //Teleport into church
         building.setTileLocationCallback(127, 88, 1, 1, () => {
@@ -353,8 +356,7 @@ class gameScene extends Phaser.Scene {
         building.setTileLocationCallback(82, 88, 1, 1, () => {
             checkQuest();
             this.events.emit('updateLocation', "in the Blacksmith")
-            this.container.setPosition(5552, 4740);
-            
+            this.container.setPosition(5552, 4740);    
         });
 
         //Teleport out of blacksmith
@@ -430,63 +432,71 @@ class gameScene extends Phaser.Scene {
 
         //Teleport into grave
         building.setTileLocationCallback(133, 132, 1, 1, () => {
+            this.events.emit('updateLocation', "in a hole")
             this.container.setPosition(7760, 4384);
         });
 
 
          //Teleport out of grave
          building.setTileLocationCallback(242, 132, 1, 1, () => {
+            this.events.emit('updateLocation', "in the Swamp")
             this.container.setPosition(4272, 4192);
         });
 
          //Teleport into gulag
          building.setTileLocationCallback(10, 35, 2, 1, () => {
+            this.events.emit('updateLocation', "in the Gulag")
             this.container.setPosition(9216, 4640);
         });
 
         //Teleport out of gulag
         building.setTileLocationCallback(287, 146, 2, 1, () => {
+            this.events.emit('updateLocation', "out the Gulag")
             this.container.setPosition(352, 1162);
         });
 
 
          //Teleport into farm house
          building.setTileLocationCallback(107, 61, 1, 1, () => {
+            this.events.emit('updateLocation', "in the Farm house")
             this.container.setPosition(7760, 3584);
         });
 
         //Teleport out of farm house
         building.setTileLocationCallback(242, 113, 1, 1, () => {
+            this.events.emit('updateLocation', "in the Forest")
             this.container.setPosition(3440, 2016);
         });
 
         //Teleport into inn
         building.setTileLocationCallback(41, 68, 1, 1, () => {
+            this.events.emit('updateLocation', "in the Inn")
             this.container.setPosition(7248, 2752);
         });
 
         //Teleport out of inn
         building.setTileLocationCallback(226, 87, 1, 1, () => {
+            this.events.emit('updateLocation', "in the Forest")
             this.container.setPosition(1328, 2240);
         });
 
-
-
-
+        building.setTileLocationCallback(39, 100, 2, 2, () => {
+            if (this.scene.isActive("quest1Ui")){
+                this.scene.stop("quest1Ui");
+                completedQuest("quest1");
+                this.activeQuest = false;
+                this.scene.launch("completedNotification");
+            }
+        });
     }
 
-    launchQuest(keyObj, scene){
-        
-        if (keyObj.isDown == true/* && this.activeQuest==false*/){
+    launchQuest(keyObj, scene){    
+        if (keyObj.isDown == true && this.activeQuest==false){
             this.sleep();
             keyObj.isDown = false;
             this.scene.pause();
             this.scene.launch(scene);  
-        }  
-    
-
-
-        
+        }       
     }
 
     MovePlayer(keyObj, scene){
@@ -496,8 +506,7 @@ class gameScene extends Phaser.Scene {
             keyObj.isDown = false;
             this.scene.pause();
             this.scene.launch(scene);  
-        }  
-    
+        } 
     }
 
     
@@ -521,7 +530,6 @@ class gameScene extends Phaser.Scene {
             }
             this.test = false;
 
-            
             // Update the animation last and give left/right animations precedence over up/down animations
             if (this.cursors.left.isDown) {
                 this.player.anims.play("left", true);
@@ -544,18 +552,11 @@ class gameScene extends Phaser.Scene {
                 this.socket.emit("playerMovement", { x, y, flip });
             }
 
-          
-
             this.container.oldPosition = {
                 x: this.container.x,
                 y: this.container.y,
                 flipX: this.player.flipX,
             };
-
         }
     }
-        
-      
-    
-
 };
