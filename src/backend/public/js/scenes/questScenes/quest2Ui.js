@@ -20,6 +20,14 @@ class quest2Ui extends Phaser.Scene {
        this.objText = this.add.text(35, 8, 'Objective: find all the coins scattered around the map ', { backgroundColor: '	rgb(0, 0, 0)', fontSize: '16px', fill: '#fff' });this.objText.alpha = 0.7;
        this.quitButton = new UiButton(this, this.scale.width*0.86, this.scale.height*0.95, 'button1', 'button2', 'Give up/Respawn', this.endScene.bind());
        this.quitButton.setScale(0.7);    
+
+       this.timer = this.time.addEvent({
+        delay: 600000,
+        paused: false
+      });
+
+     this.timeLeft= this.add.text(35, 65, '',{ backgroundColor: '	rgb(0, 0, 0)',  fontSize: '16px', fill: '#fff' });this.timeLeft.alpha=0.7;
+
       };
   
     setupEvents(){
@@ -36,6 +44,13 @@ class quest2Ui extends Phaser.Scene {
 
     endScene(){
       location.reload();
+    }
+
+    update(){
+      this.timeLeft.setText('Time left: ' + (0.001 * (this.timer.delay - this.timer.elapsed)).toFixed(1));
+      if ((0.001 * (this.timer.delay - this.timer.elapsed)).toFixed(1)==0.0){
+        location.reload();
+      }
     }
 
   };

@@ -286,6 +286,9 @@ class gameScene extends Phaser.Scene {
         console.log(this.coinsLeft);
         this.coinsLeft --;
         this.events.emit('updateScore', this.coinsLeft)
+        if (this.coinsLeft == 0){
+            this.activeQuest= false;
+        }
     }
 
     collectSword(player, sword){
