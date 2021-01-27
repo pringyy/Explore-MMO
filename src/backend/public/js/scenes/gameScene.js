@@ -287,6 +287,7 @@ class gameScene extends Phaser.Scene {
         this.coinsLeft --;
         this.events.emit('updateScore', this.coinsLeft)
         if (this.coinsLeft == 0){
+            this.coinsLeft = 10;
             this.activeQuest= false;
         }
     }
@@ -310,26 +311,31 @@ class gameScene extends Phaser.Scene {
         //Trigger for quest1
         building.setTileLocationCallback(42, 100, 2, 2, () => {
             this.events.emit('updateLocation', "in the Maze")
+            this.scene.launch("Interact")
             this.launchQuest(keyObj, 'quest1Info')
         });
 
         //Trigger for quest2
         building.setTileLocationCallback(68, 89, 3, 2,() => {
+            this.scene.launch("Interact")
             this.launchQuest(keyObj, 'quest2Info') 
         });
  
         //Trigger for quest3
         building.setTileLocationCallback(69, 16, 3, 2,() => {
+            this.scene.launch("Interact")
             this.launchQuest(keyObj, 'quest3Info');
         });
 
         //Trigger for quest4
         building.setTileLocationCallback(31, 2, 2, 3,() => {
+            this.scene.launch("Interact")
             this.launchQuest(keyObj, 'quest4Info');
         });
 
         //Trigger for quest5
         building.setTileLocationCallback(169, 146, 3, 3,() => {
+            this.scene.launch("Interact")
             this.launchQuest(keyObj, 'quest5Info');
         });
 
@@ -496,6 +502,7 @@ class gameScene extends Phaser.Scene {
     launchQuest(keyObj, scene){    
         if (keyObj.isDown == true && this.activeQuest==false){
             this.sleep();
+            this.scene.stop("Interact");
             keyObj.isDown = false;
             this.scene.pause();
             this.scene.launch(scene);  
