@@ -40,7 +40,7 @@ class quest2Ui extends Phaser.Scene {
       };
   
     setupEvents(){
-      this.gameScene.events.on('itemCollected', (score) => {
+      this.gameScene.events.on('coinCollected', (score) => {
           this.scoreText.setText(`Coins left: ${score}`);
       })
 

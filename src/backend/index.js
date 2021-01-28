@@ -10,7 +10,7 @@ const routes = require("./routes/auth");
 const asyncMiddleware = require("./middleware/asyncMiddleware");
 const webtoken = require("jsonwebtoken");
 const ChatSchema = require('./model/chat');
-const questSchema = require('./model/questProgress');
+const userProgress = require('./model/userProgress');
 const { collection } = require("./model/chat");
 
 //Establish connection to MongoDB database
@@ -95,7 +95,7 @@ app.post("/completedQuest", verify, asyncMiddleware(async (req, res, next) => {
   console.log(req.body.quest);
   console.log(user);
   var newvalues = { $set: {[quest]: true}};
-  await questSchema.updateOne({username: user}, newvalues);
+  await userProgress.updateOne({username: user}, newvalues);
   })
 );
 

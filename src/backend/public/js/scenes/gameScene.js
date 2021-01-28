@@ -8,9 +8,11 @@ class gameScene extends Phaser.Scene {
 
     init(){
         this.quest1Scene = this.scene.get('quest1Info');
+        this.quest1UiScene = this.scene.get('quest1Ui');
         this.quest2Scene = this.scene.get('quest2Info');
         this.quest3Scene = this.scene.get('quest3Info');
         this.quest4Scene = this.scene.get('quest4Info');
+        this.quest4UiScene = this.scene.get('quest4Ui');
         this.quest5Scene = this.scene.get('quest5Info');
         this.UiScene = this.scene.get('Ui');
         this.activeQuest = false;
@@ -46,21 +48,21 @@ class gameScene extends Phaser.Scene {
         
         //this is how we actually render our coin object with coin asset we loaded into our game in the preload function
        
-        this.npc1 = this.add.sprite(2224, 2865, "pubNPC", 0);
+        this.npc1 = this.add.sprite(2224, 2865, "Cowan", 0);
         this.npc1Q = this.add.sprite(2224, 2830, "qmark");this.npc1Q.setScale(1.3);
     
-        this.npc2 = this.add.sprite(1376, 3200, "pubNPC", 0);
+        this.npc2 = this.add.sprite(1376, 3200, "Janet", 0);
         this.npc2Q = this.add.sprite(1376, 3165, "qmark");this.npc2Q.setScale(1.3);
 
        
-        this.npc3 = this.add.sprite(2256, 512, "pubNPC", 0);this.npc3.setScale(0.8);
+        this.npc3 = this.add.sprite(2256, 512, "Rod", 0);this.npc3.setScale(0.8);
         this.npc3Q = this.add.sprite(2256, 477, "qmark");this.npc3Q.setScale(1.3);
 
         this.npc4 = this.add.sprite(1040, 64, "death", 0);
         this.npc4Q = this.add.sprite(1040, 29, "qmark");this.npc4Q.setScale(1.3);
 
 
-        this.npc5 = this.add.sprite(5424, 4704, "pubNPC", 8);
+        this.npc5 = this.add.sprite(5424, 4704, "Zak", 8);
         this.npc5Q = this.add.sprite(5424, 4669, "qmark");this.npc5Q.setScale(1.3);
 
         water.setCollisionByExclusion([-1]);
@@ -99,9 +101,9 @@ class gameScene extends Phaser.Scene {
                     this.updateCamera();
                     this.container.body.setCollideWorldBounds(true);
                     this.physics.add.collider(this.container, [trees,water,building,]);
-                    this.physics.add.overlap(this.container, coin, this.collectItem, null, this);
-                    this.physics.add.overlap(this.container, sword, this.collectItem, null, this);
-                    this.physics.add.overlap(this.container, hat, this.collectItem, null, this);
+                    this.physics.add.overlap(this.container, coin, this.collectCoin, null, this);
+                    this.physics.add.overlap(this.container, sword, this.collectSword, null, this);
+                    this.physics.add.overlap(this.container, hat, this.collectHat, null, this);
 
                 } else {
                     this.addOtherPlayers(players[id]);
@@ -154,9 +156,21 @@ class gameScene extends Phaser.Scene {
 
         this.quest1Scene.events.on('questActivated', () => {
             this.activeQuest=true;
-            
-            
         })
+
+        this.quest1UiScene.events.on('questDeactivated', () => {
+            this.activeQuest=false;
+        })
+
+        this.quest4Scene.events.on('questActivated', () => {
+            this.activeQuest=true;
+        })
+
+        this.quest4UiScene.events.on('questDeactivated', () => {
+            this.activeQuest=false;
+        })
+        
+
         this.quest2Scene.events.on('questActivated', () => {
             this.createObjects(coinLayer, coin, "coin");
         })
@@ -218,7 +232,7 @@ class gameScene extends Phaser.Scene {
     }
 
     addOtherPlayers(playerInfo) {
-        this.otherPlayer = this.add.sprite(0, 0,"darthvader",0);     
+        this.otherPlayer = this.add.sprite(0, 0,"otherplayer",0);     
         var text = this.add.text(0, 0, 'testuser', { backgroundColor: '	rgb(0, 0, 0)'});text.alpha = 0.5;
         text.setOrigin(0.5, 2.9);
         text.setScale(0.7);
@@ -263,10 +277,28 @@ class gameScene extends Phaser.Scene {
         this.cursors.down.reset();
     }
 
-    collectItem(player,item) {
-        item.destroy(item.x, item.y); // remove the tile/coin
+    collectHat(player, hat) {
+        hat.destroy(hat.x, hat.y); // remove the tile/coin
+        this.itemsLeft --
+        this.checkComplete(this.itemsLeft);
+    }
+
+    collectSword(player,sword) {
+        sword.destroy(sword.x, sword.y); // remove the tile/coin
         this.itemsLeft --;
-        this.events.emit('itemCollected', this.itemsLeft)
+        this.events.emit('swordCollected', this.itemsLeft)
+        this.checkComplete(this.itemsLeft);
+    }
+
+    collectCoin(player,coin) {
+        coin.destroy(coin.x, coin.y); // remove the tile/coin
+        this.itemsLeft --;
+        this.events.emit('coinCollected', this.itemsLeft)
+        this.checkComplete(this.itemsLeft);
+    }
+
+    checkComplete(itemsLeft){
+        
         if (this.itemsLeft == 0){
             this.events.emit('completedQuest');
             this.scene.launch("completedNotification")
@@ -487,16 +519,16 @@ class gameScene extends Phaser.Scene {
 
             //Handles verticle player movement
             if (this.cursors.up.isDown) {
-                this.container.body.setVelocityY(-200);
+                this.container.body.setVelocityY(-180);
             } else if (this.cursors.down.isDown) {
-                this.container.body.setVelocityY(200);
+                this.container.body.setVelocityY(180);
             }
 
             //Handles horizontal player movement
             if (this.cursors.left.isDown) {
-                this.container.body.setVelocityX(-200);
+                this.container.body.setVelocityX(-180);
             } else if (this.cursors.right.isDown) {
-                this.container.body.setVelocityX(200);
+                this.container.body.setVelocityX(180);
             }
             this.test = false;
 

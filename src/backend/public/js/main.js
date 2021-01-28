@@ -19,9 +19,10 @@ var config = {
   };
 
   
+  var questStat;
   var timerDelay = 0;
   var game = new Phaser.Game(config);
-  var itemsLeft = 0;
+  
   
   
   //All code below handles the ingame chat
@@ -88,6 +89,7 @@ var config = {
       success: function (data) {
         console.log(data);
         return data;
+        
       },
       error: function (xhr) {
         console.log(xhr);

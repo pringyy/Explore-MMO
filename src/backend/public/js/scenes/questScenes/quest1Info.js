@@ -16,7 +16,7 @@ class quest1Info extends Phaser.Scene {
         this.rectangle1 = this.add.rectangle(this.scale.width/2, this.scale.height/2, this.scale.width *0.8, this.scale.height*0.6, '#000000', 0.7);
         this.rectangle1.setOrigin(0.5);
         this.titleText = this.add.text(this.scale.width/2, this.scale.height/2 * 0.7, 'Quest', { fontSize: '32px', fill: '#fff' });
-        this.helpText = this.add.text(this.scale.width/2, this.scale.height/2 * 1, 'Fraser: "I bet you can not complete this maze blind folded!"', { fontSize: '16px', fill: '#fff' });
+        this.helpText = this.add.text(this.scale.width/2, this.scale.height/2 * 1, 'Janet: "I bet you can not complete this maze blind folded!"', { fontSize: '16px', fill: '#fff' });
         this.helpText.setOrigin(0.5);
         
         this.titleText.setOrigin(0.5);

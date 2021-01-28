@@ -26,6 +26,7 @@ class quest1Ui extends Phaser.Scene {
         };
 
         endScene(targetScene){
+            this.events.emit('questDeactivated');
             this.scene.stop(targetScene);
           }
 
