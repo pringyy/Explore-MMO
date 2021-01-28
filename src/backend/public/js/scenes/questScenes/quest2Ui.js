@@ -36,7 +36,7 @@ class quest2Ui extends Phaser.Scene {
        this.quitButton.setScale(0.7);    
 
        this.timer = this.time.addEvent({
-        delay: 6000,
+        delay: 600000,
         paused: false
       });
 
