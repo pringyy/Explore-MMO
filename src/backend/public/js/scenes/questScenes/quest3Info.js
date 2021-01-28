@@ -16,7 +16,7 @@ class quest3Info extends Phaser.Scene {
         this.rectangle1 = this.add.rectangle(this.scale.width/2, this.scale.height/2, this.scale.width *0.9, this.scale.height*0.8, '#000000', 0.7 );
         this.rectangle1.setOrigin(0.5);
         this.titleText = this.add.text(this.scale.width/2, this.scale.height/2 * 0.5, 'Quest', { fontSize: '32px', fill: '#fff' });
-        this.helpText = this.add.text(this.scale.width/2, this.scale.height/2 * 0.8, 'Rod: "I hurt my knees coming down the mountain and I left my sword at the top!"', { fontSize: '14px', fill: '#fff' });
+        this.helpText = this.add.text(this.scale.width/2, this.scale.height/2 * 0.8, 'Rod: "I hurt my knees coming down the mountain and I left my hat at the top!"', { fontSize: '14px', fill: '#fff' });
         this.helpText2 = this.add.text(this.scale.width/2, this.scale.height/2 * 0.9, 'Rod: "Could you please retrieve it for me?"', { fontSize: '14px', fill: '#fff' });
         this.helpText3 = this.add.text(this.scale.width/2, this.scale.height/2 * 1.0, 'Rod: "The mountain is very hard to navigate alone.', { fontSize: '14px', fill: '#fff' });
         this.helpText4 = this.add.text(this.scale.width/2, this.scale.height/2 * 1.1, 'Rod: "I would recommend to get someone to help you, so you do not get lost!"', { fontSize: '14px', fill: '#fff' });
@@ -37,7 +37,7 @@ class quest3Info extends Phaser.Scene {
 
 
       startScene(targetScene){
-        this.events.emit('questThreeActivated');
+        this.events.emit('questActivated');
         this.scene.start(targetScene);
         this.scene.resume("Game");
       }

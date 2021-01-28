@@ -110,100 +110,6 @@
         }, 
         {
          "draworder":"topdown",
-         "id":37,
-         "name":"swordLayer",
-         "objects":[
-                {
-                 "gid":1061,
-                 "height":32,
-                 "id":109,
-                 "name":"",
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":32,
-                 "x":3678.3900204165,
-                 "y":188.569979583503
-                }],
-         "opacity":1,
-         "type":"objectgroup",
-         "visible":true,
-         "x":0,
-         "y":0
-        }, 
-        {
-         "draworder":"topdown",
-         "id":40,
-         "name":"weaponsLayer",
-         "objects":[
-                {
-                 "gid":4478,
-                 "height":32,
-                 "id":127,
-                 "name":"",
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":32,
-                 "x":4583.59312002959,
-                 "y":2079.99112261883
-                }, 
-                {
-                 "gid":4482,
-                 "height":32,
-                 "id":128,
-                 "name":"",
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":32,
-                 "x":240.285679582169,
-                 "y":188.476618486578
-                }, 
-                {
-                 "gid":4473,
-                 "height":32,
-                 "id":129,
-                 "name":"",
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":32,
-                 "x":5965.70668329695,
-                 "y":3095.72144267748
-                }, 
-                {
-                 "gid":4473,
-                 "height":32,
-                 "id":130,
-                 "name":"",
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":32,
-                 "x":2743.50901651765,
-                 "y":434.245188664949
-                }, 
-                {
-                 "gid":4478,
-                 "height":32,
-                 "id":131,
-                 "name":"",
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":32,
-                 "x":359.311720698254,
-                 "y":4413.75561097257
-                }],
-         "opacity":1,
-         "type":"objectgroup",
-         "visible":true,
-         "x":0,
-         "y":0
-        }, 
-        {
-         "draworder":"topdown",
          "id":39,
          "name":"coinsLayer",
          "objects":[
@@ -216,8 +122,8 @@
                  "type":"",
                  "visible":true,
                  "width":32,
-                 "x":736.655992817597,
-                 "y":102.787370941194
+                 "x":736.656,
+                 "y":102.787
                 }, 
                 {
                  "gid":995,
@@ -228,8 +134,8 @@
                  "type":"",
                  "visible":true,
                  "width":32,
-                 "x":3841.5490049379,
-                 "y":1542.26066137962
+                 "x":3841.55,
+                 "y":1542.26
                 }, 
                 {
                  "gid":995,
@@ -240,8 +146,8 @@
                  "type":"",
                  "visible":true,
                  "width":32,
-                 "x":2369.15636690109,
-                 "y":3064.03232081401
+                 "x":2369.16,
+                 "y":3064.03
                 }, 
                 {
                  "gid":995,
@@ -252,8 +158,8 @@
                  "type":"",
                  "visible":true,
                  "width":32,
-                 "x":7711.06868172976,
-                 "y":4516.97261708813
+                 "x":7711.07,
+                 "y":4516.97
                 }, 
                 {
                  "gid":995,
@@ -264,8 +170,8 @@
                  "type":"",
                  "visible":true,
                  "width":32,
-                 "x":6686.07990423463,
-                 "y":4479.56426754452
+                 "x":6686.08,
+                 "y":4479.56
                 }, 
                 {
                  "gid":995,
@@ -276,8 +182,8 @@
                  "type":"",
                  "visible":true,
                  "width":32,
-                 "x":5794.26485111477,
-                 "y":3689.4999251833
+                 "x":5794.26,
+                 "y":3689.5
                 }, 
                 {
                  "gid":995,
@@ -288,8 +194,8 @@
                  "type":"",
                  "visible":true,
                  "width":32,
-                 "x":312.817876577515,
-                 "y":3467.42989463934
+                 "x":312.818,
+                 "y":3467.43
                 }, 
                 {
                  "gid":995,
@@ -300,8 +206,8 @@
                  "type":"",
                  "visible":true,
                  "width":32,
-                 "x":737.709198813056,
-                 "y":1748.93768545994
+                 "x":737.709,
+                 "y":1748.94
                 }, 
                 {
                  "gid":995,
@@ -312,8 +218,8 @@
                  "type":"",
                  "visible":true,
                  "width":32,
-                 "x":7805.79863689256,
-                 "y":3601.63750207791
+                 "x":7805.8,
+                 "y":3601.64
                 }, 
                 {
                  "gid":995,
@@ -324,8 +230,138 @@
                  "type":"",
                  "visible":true,
                  "width":32,
-                 "x":1867.17061062386,
-                 "y":4391.3102763528
+                 "x":1867.17,
+                 "y":4391.31
+                }],
+         "opacity":1,
+         "type":"objectgroup",
+         "visible":true,
+         "x":0,
+         "y":0
+        }, 
+        {
+         "draworder":"topdown",
+         "id":45,
+         "name":"weaponsLayer",
+         "objects":[
+                {
+                 "gid":4478,
+                 "height":32,
+                 "id":137,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":32,
+                 "x":9529.00494559842,
+                 "y":4076.33630069238
+                }, 
+                {
+                 "gid":4478,
+                 "height":32,
+                 "id":138,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":32,
+                 "x":7137.8081107814,
+                 "y":2562.98318496538
+                }, 
+                {
+                 "gid":4478,
+                 "height":32,
+                 "id":139,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":32,
+                 "x":6791.61622156281,
+                 "y":3554.57566765579
+                }, 
+                {
+                 "gid":4478,
+                 "height":32,
+                 "id":140,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":32,
+                 "x":4571.04253214639,
+                 "y":2078.31454005935
+                }, 
+                {
+                 "gid":4478,
+                 "height":32,
+                 "id":141,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":32,
+                 "x":191.715133531157,
+                 "y":4192.55786350148
+                }, 
+                {
+                 "gid":4478,
+                 "height":32,
+                 "id":142,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":32,
+                 "x":1539.39070227498,
+                 "y":700.965380811078
+                }, 
+                {
+                 "gid":4478,
+                 "height":32,
+                 "id":143,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":32,
+                 "x":1949.87537091988,
+                 "y":3811.74678536103
+                }],
+         "opacity":1,
+         "type":"objectgroup",
+         "visible":true,
+         "x":0,
+         "y":0
+        }, 
+        {
+         "draworder":"topdown",
+         "id":48,
+         "name":"hatLayer",
+         "objects":[
+                {
+                 "gid":4483,
+                 "height":32,
+                 "id":144,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":32,
+                 "x":3677.41563786008,
+                 "y":190.897119341564
+                }, 
+                {
+                 "gid":4483,
+                 "height":32,
+                 "id":145,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":32,
+                 "x":-186.036764705882,
+                 "y":875.375
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -333,8 +369,8 @@
          "x":0,
          "y":0
         }],
- "nextlayerid":41,
- "nextobjectid":132,
+ "nextlayerid":49,
+ "nextobjectid":146,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.4.2",

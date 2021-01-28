@@ -37,7 +37,7 @@ class quest2Info extends Phaser.Scene {
 
 
       startScene(targetScene){
-        this.events.emit('questTwoActivated');
+        this.events.emit('questActivated');
         this.scene.start(targetScene);
         this.scene.resume("Game");
       }

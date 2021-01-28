@@ -37,7 +37,9 @@ class initialiseAssets extends Phaser.Scene {
       this.load.image("tiles", "assets/world/tileset.png");
       this.load.image("watertiles", "assets/world/water.png");
       this.load.image("coin", "assets/world/coins.png");
+      this.load.image("hat", "assets/world/coins.png");
       this.load.image("sword", "assets/world/coins.png");
+      
       
     }
 

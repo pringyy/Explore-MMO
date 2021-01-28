@@ -22,6 +22,7 @@ class completedNotification extends Phaser.Scene {
 
     endScene(targetScene){
         this.scene.stop('completedNotification');
+        this.scene.resume('Game')
     }
 
 };

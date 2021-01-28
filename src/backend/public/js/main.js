@@ -21,6 +21,7 @@ var config = {
   
   var timerDelay = 0;
   var game = new Phaser.Game(config);
+  var itemsLeft = 0;
   
   
   //All code below handles the ingame chat

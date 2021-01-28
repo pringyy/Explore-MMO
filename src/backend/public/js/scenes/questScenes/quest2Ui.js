@@ -45,15 +45,18 @@ class quest2Ui extends Phaser.Scene {
       };
   
     setupEvents(){
-      this.gameScene.events.on('updateScore', (score) => {
-        if (score != 0 ){
+      this.gameScene.events.on('itemCollected', (score) => {
           this.scoreText.setText(`Coins left: ${score}`);
-        } else {
-          completedQuest("quest2");
-          this.scene.start('completedNotification');
-          this.scene.stop('quest2Ui');
-        }
       })
+
+      this.gameScene.events.on('completedQuest', (score) => {
+        this.scene.stop("quest2Ui");
+        completedQuest('quest2');
+      })
+
+
+
+
     };
 
     endScene(){
