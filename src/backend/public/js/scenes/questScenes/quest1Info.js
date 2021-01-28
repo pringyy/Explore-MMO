@@ -8,7 +8,6 @@ class quest1Info extends Phaser.Scene {
     }
 
     create() {
-        console.log("test");
         this.setupUiElements();
     };
 

@@ -19,7 +19,7 @@
          "name":"ground",
          "opacity":1,
          "type":"tilelayer",
-         "visible":true,
+         "visible":false,
          "width":300,
          "x":0,
          "y":0
@@ -33,7 +33,7 @@
          "name":"ground2",
          "opacity":1,
          "type":"tilelayer",
-         "visible":true,
+         "visible":false,
          "width":300,
          "x":0,
          "y":0
@@ -47,7 +47,7 @@
          "name":"ladders",
          "opacity":1,
          "type":"tilelayer",
-         "visible":true,
+         "visible":false,
          "width":300,
          "x":0,
          "y":0
@@ -61,7 +61,7 @@
          "name":"water",
          "opacity":1,
          "type":"tilelayer",
-         "visible":true,
+         "visible":false,
          "width":300,
          "x":0,
          "y":0
@@ -75,7 +75,7 @@
          "name":"building",
          "opacity":1,
          "type":"tilelayer",
-         "visible":true,
+         "visible":false,
          "width":300,
          "x":0,
          "y":0
@@ -89,7 +89,7 @@
          "name":"buildingaddon",
          "opacity":1,
          "type":"tilelayer",
-         "visible":true,
+         "visible":false,
          "width":300,
          "x":0,
          "y":0
@@ -103,7 +103,7 @@
          "name":"trees",
          "opacity":1,
          "type":"tilelayer",
-         "visible":true,
+         "visible":false,
          "width":300,
          "x":0,
          "y":0
@@ -235,7 +235,7 @@
                 }],
          "opacity":1,
          "type":"objectgroup",
-         "visible":true,
+         "visible":false,
          "x":0,
          "y":0
         }, 
@@ -330,7 +330,7 @@
                 }],
          "opacity":1,
          "type":"objectgroup",
-         "visible":true,
+         "visible":false,
          "x":0,
          "y":0
         }, 
@@ -350,18 +350,6 @@
                  "width":32,
                  "x":3677.41563786008,
                  "y":190.897119341564
-                }, 
-                {
-                 "gid":4483,
-                 "height":32,
-                 "id":145,
-                 "name":"",
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":32,
-                 "x":-186.036764705882,
-                 "y":875.375
                 }],
          "opacity":1,
          "type":"objectgroup",

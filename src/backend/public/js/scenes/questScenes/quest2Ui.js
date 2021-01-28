@@ -9,21 +9,16 @@ class quest2Ui extends Phaser.Scene {
     }
   
     create() {
-      console.log("test");
+      
       this.setupUiElements();
       this.setupEvents();
 
       this.game.events.on('hidden',function(){
         this.hiddenTimeStamp = performance.now();
-        console.log(this.hiddenTimeStamp);
-    })
+      })
    
     this.game.events.on('visible',function(){
-        timerDelay = (performance.now()- this.hiddenTimeStamp)/1000;
-        console.log("memes" + timerDelay);
-       
-      
-    
+        timerDelay = (performance.now()- this.hiddenTimeStamp)/1000
     })
    
     };
@@ -77,7 +72,6 @@ class quest2Ui extends Phaser.Scene {
     update(){
     
       this.time1 = ((Math.floor(this.timer.delay - this.timer.elapsed))/1000 - timerDelay).toFixed(0);
-      console.log("hello: " + this.time1);
       this.timeLeft.setText('Time left: ' + this.formatTime(this.time1));
       
       if (((Math.floor(this.timer.delay - this.timer.elapsed))/1000 - timerDelay).toFixed(0)==0){

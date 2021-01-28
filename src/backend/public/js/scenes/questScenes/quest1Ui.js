@@ -9,7 +9,6 @@ class quest1Ui extends Phaser.Scene {
         }
     
         create() {
-            console.log("test");
             this.setupUiElements();
         };
     

@@ -6,16 +6,11 @@ class quest4Ui extends Phaser.Scene {
   
     init(){
       this.gameScene = this.scene.get('Game');
-
     }
   
     create() {
-      console.log("test");
       this.setupUiElements();
-      this.setupEvents();
-      //  Create our Timer
-    
-      
+      this.setupEvents(); 
     };
 
     

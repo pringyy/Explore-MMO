@@ -13,10 +13,6 @@ class gameScene extends Phaser.Scene {
         this.quest4Scene = this.scene.get('quest4Info');
         this.quest5Scene = this.scene.get('quest5Info');
         this.UiScene = this.scene.get('Ui');
-
-     
-        this.container;
-        this.itemsLeft;
         this.activeQuest = false;
         
        
@@ -25,7 +21,7 @@ class gameScene extends Phaser.Scene {
 
         this.socket = io();
         this.otherPlayers = this.physics.add.group();
-         this.scene.launch("Ui");
+        this.scene.launch("Ui");
 
         //Intialises map to user
         this.map = this.make.tilemap({key: "map",});
@@ -71,7 +67,7 @@ class gameScene extends Phaser.Scene {
         trees.setCollisionByExclusion([-1]);
         building.setCollisionByExclusion([-1]);
 
-        this.eventTriggers(building);
+        this.eventTriggers();
 
         //Handles boundaries of the map
         this.physics.world.bounds.width = this.map.widthInPixels;
@@ -171,7 +167,7 @@ class gameScene extends Phaser.Scene {
         })
 
         this.quest4Scene.events.on('questActivated', () => {
-            this.createObjects(weaponsLayer, sword, "sword");
+            this.activeQuest=true;
         })
 
         this.quest5Scene.events.on('questActivated', () => {
@@ -280,194 +276,187 @@ class gameScene extends Phaser.Scene {
         }
     }
       
-    eventTriggers(building){
+    eventTriggers(){
         
         // Get key object
         var keyObj = this.input.keyboard.addKey('E');
        
         //Trigger for quest1
-        building.setTileLocationCallback(42, 100, 2, 2, () => {
+        this.map.setTileLocationCallback(42, 100, 2, 2, () => {
             this.events.emit('updateLocation', "in the Maze")
-            this.scene.launch("Interact")
             this.launchQuest(keyObj, 'quest1Info')
         });
 
         //Trigger for quest2
-        building.setTileLocationCallback(68, 89, 3, 2,() => {
-            this.scene.launch("Interact")
+        this.map.setTileLocationCallback(68, 89, 3, 2,() => {
             this.launchQuest(keyObj, 'quest2Info') 
         });
  
         //Trigger for quest3
-        building.setTileLocationCallback(69, 16, 3, 2,() => {
-            this.scene.launch("Interact")
+        this.map.setTileLocationCallback(69, 16, 3, 2,() => {
             this.launchQuest(keyObj, 'quest3Info');
         });
 
         //Trigger for quest4
-        building.setTileLocationCallback(31, 2, 2, 3,() => {
-            this.scene.launch("Interact")
+        this.map.setTileLocationCallback(31, 2, 2, 3,() => {
             this.launchQuest(keyObj, 'quest4Info');
         });
 
         //Trigger for quest5
-        building.setTileLocationCallback(169, 146, 3, 3,() => {
-            this.scene.launch("Interact")
+        this.map.setTileLocationCallback(169, 146, 3, 3,() => {
             this.launchQuest(keyObj, 'quest5Info');
         });
 
         //Teleport into church
-        building.setTileLocationCallback(127, 88, 1, 1, () => {
+        this.map.setTileLocationCallback(127, 88, 1, 1, () => {
             this.events.emit('updateLocation', "in the Church")
             this.container.setPosition(6688, 4736);
         });
 
         //Teleport out of church
-        building.setTileLocationCallback(209, 149, 1, 1, () => {
+        this.map.setTileLocationCallback(209, 149, 1, 1, () => {
             this.events.emit('updateLocation', "in the Swamp")
             this.container.setPosition(4064, 2880);
         });
 
         //Teleport into church basement
-        building.setTileLocationCallback(215, 133, 1, 1, () => {
+        this.map.setTileLocationCallback(215, 133, 1, 1, () => {
             this.container.setPosition(6624, 3440);
         });
 
         //Teleport out of church basement
-        building.setTileLocationCallback(205, 107, 1, 2, () => {
+        this.map.setTileLocationCallback(205, 107, 1, 2, () => {
             this.container.setPosition(6848, 4256);
         });
 
         //Teleport into blacksmith
-        building.setTileLocationCallback(82, 88, 1, 1, () => {
+        this.map.setTileLocationCallback(82, 88, 1, 1, () => {
             checkQuest();
             this.events.emit('updateLocation', "in the Blacksmith")
             this.container.setPosition(5552, 4740);    
         });
 
         //Teleport out of blacksmith
-        building.setTileLocationCallback(173, 149, 1, 1, () => {
+        this.map.setTileLocationCallback(173, 149, 1, 1, () => {
             this.events.emit('updateLocation', "in the Spawn")
             this.container.setPosition(2640, 2880);
         });
 
         //Teleport into pub
-        building.setTileLocationCallback(67, 88, 1, 1, () => {
+        this.map.setTileLocationCallback(67, 88, 1, 1, () => {
                 this.events.emit('updateLocation', "in the Pub")
                 this.container.setPosition(5936, 3904);
         });
 
         //Teleport out of pub
-        building.setTileLocationCallback(185, 123, 1, 1, () => {
+        this.map.setTileLocationCallback(185, 123, 1, 1, () => {
             this.events.emit('updateLocation', "in the Spawn")
             this.container.setPosition(2160, 2880);
         });
 
         //Teleport into pub basement
-        building.setTileLocationCallback(189, 114, 1, 1, () => {
+        this.map.setTileLocationCallback(189, 114, 1, 1, () => {
             this.container.setPosition(5856, 2976);
         });
 
         //Teleport out of pub basement
-        building.setTileLocationCallback(181, 93, 1, 2, () => {
+        this.map.setTileLocationCallback(181, 93, 1, 2, () => {
             this.container.setPosition(6016, 3648);
         });
 
-        building.setTileLocationCallback(103, 100, 1, 2, () => {
+        this.map.setTileLocationCallback(103, 100, 1, 2, () => {
             this.events.emit('updateLocation', "in the Swamp")
         });
 
-        building.setTileLocationCallback(96, 100, 1, 2, () => {
+        this.map.setTileLocationCallback(96, 100, 1, 2, () => {
             this.events.emit('updateLocation', "in the Spawn")
         });
 
-        building.setTileLocationCallback(73, 120, 3, 1, () => {
+        this.map.setTileLocationCallback(73, 120, 3, 1, () => {
             this.events.emit('updateLocation', "in the Spawn")
         });
-        building.setTileLocationCallback(52, 100, 1, 3, () => {
+        this.map.setTileLocationCallback(52, 100, 1, 3, () => {
             this.events.emit('updateLocation', "in the Spawn")
         });
 
-
-        building.setTileLocationCallback(73, 126, 3, 1, () => {
+        this.map.setTileLocationCallback(73, 126, 3, 1, () => {
             this.events.emit('updateLocation', "in the Swamp")
         });
 
-        building.setTileLocationCallback(44, 99, 3, 4, () => {
+        this.map.setTileLocationCallback(44, 99, 3, 4, () => {
             this.events.emit('updateLocation', "in the Forest")
         });
 
-        building.setTileLocationCallback(71, 12, 1, 1, () => {
+        this.map.setTileLocationCallback(71, 12, 1, 1, () => {
             this.events.emit('updateLocation', "scaling Mount Kong")
         });
 
-        building.setTileLocationCallback(71, 14, 1, 1, () => {
+        this.map.setTileLocationCallback(71, 14, 1, 1, () => {
             this.events.emit('updateLocation', "in the Forest")
         });
 
-        building.setTileLocationCallback(73, 83, 3, 1, () => {
+        this.map.setTileLocationCallback(73, 83, 3, 1, () => {
             this.events.emit('updateLocation', "in the Spawn")
         });
 
-        building.setTileLocationCallback(73, 78, 3, 1, () => {
+        this.map.setTileLocationCallback(73, 78, 3, 1, () => {
             this.events.emit('updateLocation', "in the Forest")
         });
-        building.setTileLocationCallback(73, 16, 1, 1, () => {
+        this.map.setTileLocationCallback(73, 16, 1, 1, () => {
             this.events.emit('updateLocation', "in the Forest")
         });
 
         //Teleport into grave
-        building.setTileLocationCallback(133, 132, 1, 1, () => {
+        this.map.setTileLocationCallback(133, 132, 1, 1, () => {
             this.events.emit('updateLocation', "in a hole")
             this.container.setPosition(7760, 4384);
         });
 
 
          //Teleport out of grave
-         building.setTileLocationCallback(242, 132, 1, 1, () => {
+         this.map.setTileLocationCallback(242, 132, 1, 1, () => {
             this.events.emit('updateLocation', "in the Swamp")
             this.container.setPosition(4272, 4192);
         });
 
          //Teleport into gulag
-         building.setTileLocationCallback(10, 35, 2, 1, () => {
+         this.map.setTileLocationCallback(10, 35, 2, 1, () => {
             this.events.emit('updateLocation', "in the Gulag")
             this.container.setPosition(9216, 4640);
         });
 
         //Teleport out of gulag
-        building.setTileLocationCallback(287, 146, 2, 1, () => {
+        this.map.setTileLocationCallback(287, 146, 2, 1, () => {
             this.events.emit('updateLocation', "out the Gulag")
             this.container.setPosition(352, 1162);
         });
 
-
          //Teleport into farm house
-         building.setTileLocationCallback(107, 61, 1, 1, () => {
+        this.map.setTileLocationCallback(107, 61, 1, 1, () => {
             this.events.emit('updateLocation', "in the Farm house")
             this.container.setPosition(7760, 3584);
         });
 
         //Teleport out of farm house
-        building.setTileLocationCallback(242, 113, 1, 1, () => {
+        this.map.setTileLocationCallback(242, 113, 1, 1, () => {
             this.events.emit('updateLocation', "in the Forest")
             this.container.setPosition(3440, 2016);
         });
 
         //Teleport into inn
-        building.setTileLocationCallback(41, 68, 1, 1, () => {
+        this.map.setTileLocationCallback(41, 68, 1, 1, () => {
             this.events.emit('updateLocation', "in the Inn")
             this.container.setPosition(7248, 2752);
         });
 
         //Teleport out of inn
-        building.setTileLocationCallback(226, 87, 1, 1, () => {
+        this.map.setTileLocationCallback(226, 87, 1, 1, () => {
             this.events.emit('updateLocation', "in the Forest")
             this.container.setPosition(1328, 2240);
         });
 
         //Event trigger for completing the maze
-        building.setTileLocationCallback(39, 100, 2, 2, () => {
+        this.map.setTileLocationCallback(39, 100, 2, 2, () => {
             if (this.scene.isActive("quest1Ui")){
                 this.scene.stop("quest1Ui");
                 completedQuest("quest1");
@@ -477,7 +466,10 @@ class gameScene extends Phaser.Scene {
         });
     }
 
-    launchQuest(keyObj, scene){    
+    launchQuest(keyObj, scene){   
+        if (this.activeQuest == false) {
+        this.scene.launch("Interact") 
+        }
         if (keyObj.isDown == true && this.activeQuest==false){
             this.sleep();
             this.scene.stop("Interact");
