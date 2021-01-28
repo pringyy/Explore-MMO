@@ -77,7 +77,8 @@ class quest2Ui extends Phaser.Scene {
       console.log("hello: " + this.time1);
       this.timeLeft.setText('Time left: ' + this.formatTime(this.time1));
       
-      if (((Math.floor(this.timer.delay - this.timer.elapsed))/1000 - timerDelay).toFixed(1)==0){
+      if (((Math.floor(this.timer.delay - this.timer.elapsed))/1000 - timerDelay).toFixed(0)==0){
+        timerDelay = 0;
         this.scene.pause("Game");
         this.scene.start("failedQuest");
         this.scene.stop("quest2Ui");
