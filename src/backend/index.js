@@ -101,7 +101,7 @@ app.post("/completedQuest", verify, asyncMiddleware(async (req, res, next) => {
 
 app.get("/questQuery", verify, asyncMiddleware(async (req, res, next) => {
   const user = req.user.info.username;
-  res.send(true);
+  res.send(false);
 }));
 
 

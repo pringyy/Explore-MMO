@@ -88,7 +88,7 @@ var config = {
       url: "/questQuery",
       success: function (data) {
         console.log(data);
-        return data;
+        questStat = data;
         
       },
       error: function (xhr) {
