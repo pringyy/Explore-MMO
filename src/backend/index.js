@@ -44,6 +44,7 @@ io.on("connection", function (socket) {
     x: 2304,
     y: 3232,
     playerId: socket.id,
+    name: "hello",
   };
   console.log(socket.id);
   //Sends where all the other players currently are to the new user
@@ -102,15 +103,18 @@ app.post("/completedQuest", verify, asyncMiddleware(async (req, res, next) => {
 
 app.get("/questQuery", verify, asyncMiddleware(async (req, res, next) => {
   const user = req.user.info.username;
-  var quest = req.query.quest;
+
 
   
   const query = {"username": user};  
   
   const test = userProgress.find(query, '-username', {lean: true}, function(err, results){
-    res.send(results[0][quest])
+    
+    res.send(results[0])
   })
 }));
+
+
 
 
 app.get("/", function (req, res) {

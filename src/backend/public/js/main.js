@@ -81,13 +81,12 @@ var config = {
     });
   }
 
-  function checkQuest(questNumber) {
+  function checkQuest() {
    $.ajax({
      
       type: "GET",
       url: "/questQuery",
       data: {
-        quest: questNumber,
         refreshToken: getCookie("refreshJwt"),
       },
       success: function (data) {
@@ -98,7 +97,6 @@ var config = {
       },
      
     });
-    return questStatus;
    
   }
 

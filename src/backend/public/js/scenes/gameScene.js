@@ -20,7 +20,7 @@ class gameScene extends Phaser.Scene {
        
     }
     create() {
-
+        checkQuest();
         this.socket = io();
         this.otherPlayers = this.physics.add.group();
         this.scene.launch("Ui");
@@ -229,7 +229,7 @@ class gameScene extends Phaser.Scene {
 
     addOtherPlayers(playerInfo) {
         this.otherPlayer = this.add.sprite(0, 0,"otherplayer",0);     
-        var text = this.add.text(0, 0, 'testuser', { backgroundColor: '	rgb(0, 0, 0)'});text.alpha = 0.5;
+        var text = this.add.text(0, 0, playerInfo.name, { backgroundColor: '	rgb(0, 0, 0)'});text.alpha = 0.5;
         text.setOrigin(0.5, 2.9);
         text.setScale(0.7);
         const container = this.add.container(playerInfo.x, playerInfo.y);
@@ -343,6 +343,7 @@ class gameScene extends Phaser.Scene {
                 this.sleep();
                 completedQuest("quest4");
                 this.activeQuest = false;
+                checkQuest();
                 this.scene.launch("completedNotification");
             }
             this.events.emit('updateLocation', "in the Church")
@@ -367,7 +368,6 @@ class gameScene extends Phaser.Scene {
 
         //Teleport into blacksmith
         this.map.setTileLocationCallback(82, 88, 1, 1, () => {
-            checkQuest();
             this.events.emit('updateLocation', "in the Blacksmith")
             this.container.setPosition(5552, 4740);    
         });
@@ -498,13 +498,14 @@ class gameScene extends Phaser.Scene {
                 completedQuest("quest1");
                 this.activeQuest = false;
                 this.scene.launch("completedNotification");
+                checkQuest();
             }
         });
     }
 
     launchQuest(keyObj, scene, quest){  
        
-        var complete = checkQuest(quest)
+        
         if (!this.activeQuest && !this.scene.isActive("Interact")) {
                 this.scene.launch("Interact")
         }
@@ -513,7 +514,8 @@ class gameScene extends Phaser.Scene {
             this.scene.stop("Interact");
             keyObj.isDown = false;
             this.scene.pause();
-            this.scene.launch(scene, {completed: complete}); 
+            console.log(questStatus)
+            this.scene.launch(scene, {completed: questStatus[quest]}); 
             this.sleep();
 
         }     
@@ -521,24 +523,30 @@ class gameScene extends Phaser.Scene {
 
     
     update() {
+        var speed;
+        
 
+        if (!checkQuest("gameComplete")){
+            speed = 180
+        }else{
+           speed=400
+        }
         if (this.container) {
             this.container.body.setVelocity(0);
-
             //Handles verticle player movement
             if (this.cursors.up.isDown) {
-                this.container.body.setVelocityY(-180);
+                this.container.body.setVelocityY(-speed);
             } else if (this.cursors.down.isDown) {
-                this.container.body.setVelocityY(180);
+                this.container.body.setVelocityY(speed);
             }
 
             //Handles horizontal player movement
             if (this.cursors.left.isDown) {
-                this.container.body.setVelocityX(-180);
+                this.container.body.setVelocityX(-speed);
             } else if (this.cursors.right.isDown) {
-                this.container.body.setVelocityX(180);
+                this.container.body.setVelocityX(speed);
             }
-            this.test = false;
+          
 
             // Update the animation last and give left/right animations precedence over up/down animations
             if (this.cursors.left.isDown) {

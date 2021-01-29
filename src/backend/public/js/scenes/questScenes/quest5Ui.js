@@ -51,6 +51,7 @@ class quest5Ui extends Phaser.Scene {
       this.gameScene.events.on('completedQuest', (score) => {
         this.scene.stop("quest5Ui");
         completedQuest("quest5");
+        checkQuest();
       })
     };
 
