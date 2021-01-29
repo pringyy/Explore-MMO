@@ -322,6 +322,7 @@ class gameScene extends Phaser.Scene {
         //Trigger for quest2
         this.map.setTileLocationCallback(68, 89, 3, 2,() => {
             checkQuest();
+            //console.log(questStat)
             if (!questStat){
             this.launchQuest(keyObj, 'quest2Info')
             }

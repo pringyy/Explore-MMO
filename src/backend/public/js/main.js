@@ -82,7 +82,7 @@ var config = {
   }
 
   function checkQuest() {
-  
+
    $.ajax({
       type: "GET",
       url: "/questQuery",

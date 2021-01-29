@@ -101,7 +101,11 @@ app.post("/completedQuest", verify, asyncMiddleware(async (req, res, next) => {
 
 app.get("/questQuery", verify, asyncMiddleware(async (req, res, next) => {
   const user = req.user.info.username;
-  res.send(false);
+  const query = { "username": user};  
+ const test = userProgress.find(query, '-username', {lean: true}, function(err, results){
+    console.log(results[0].quest1)
+    res.send(results[0].quest1)
+  })
 }));
 
 
@@ -130,3 +134,4 @@ app.use((req, res, next) => {
 server.listen(process.env.PORT || 3020, () => {
   console.log(`Server now listening on port ${process.env.PORT || 3000}`);
 });
+
