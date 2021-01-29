@@ -40,8 +40,7 @@ class gameScene extends Phaser.Scene {
         var weaponsLayer = this.map.getObjectLayer('weaponsLayer')['objects'];
         var coinLayer = this.map.getObjectLayer('coinsLayer')['objects'];
         
-       
-
+    
         var coin = this.physics.add.staticGroup()
         var sword = this.physics.add.staticGroup()
         var hat = this.physics.add.staticGroup()
@@ -75,12 +74,9 @@ class gameScene extends Phaser.Scene {
         this.physics.world.bounds.width = this.map.widthInPixels;
         this.physics.world.bounds.height = this.map.heightInPixels;
 
-       
-
         //Handles player animations when moving
         this.handleAnimations();
         
-
         //Handles user input from keyboard
         this.cursors = this.input.keyboard.createCursorKeys();
 
@@ -316,35 +312,39 @@ class gameScene extends Phaser.Scene {
         //Trigger for quest1
         this.map.setTileLocationCallback(42, 100, 2, 2, () => {
             this.events.emit('updateLocation', "in the Maze")
-            this.launchQuest(keyObj, 'quest1Info')
+            this.launchQuest(keyObj, 'quest1Info', 'quest1')
         });
 
         //Trigger for quest2
         this.map.setTileLocationCallback(68, 89, 3, 2,() => {
-            checkQuest();
-            //console.log(questStat)
-            if (!questStat){
-            this.launchQuest(keyObj, 'quest2Info')
-            }
+             this.launchQuest(keyObj, 'quest2Info', 'quest2')
         });
  
         //Trigger for quest3
         this.map.setTileLocationCallback(69, 16, 3, 2,() => {
-            this.launchQuest(keyObj, 'quest3Info');
+            this.launchQuest(keyObj, 'quest3Info', 'quest3');
         });
 
         //Trigger for quest4
         this.map.setTileLocationCallback(31, 2, 2, 3,() => {
-            this.launchQuest(keyObj, 'quest4Info');
+            this.launchQuest(keyObj, 'quest4Info', 'quest4');
         });
 
         //Trigger for quest5
         this.map.setTileLocationCallback(169, 146, 3, 3,() => {
-            this.launchQuest(keyObj, 'quest5Info');
+            this.launchQuest(keyObj, 'quest5Info', 'quest5');
         });
 
         //Teleport into church
         this.map.setTileLocationCallback(127, 88, 1, 1, () => {
+            if (this.scene.isActive("quest4Ui")){
+                this.scene.stop("quest4Ui");
+                this.scene.pause("Game");
+                this.sleep();
+                completedQuest("quest4");
+                this.activeQuest = false;
+                this.scene.launch("completedNotification");
+            }
             this.events.emit('updateLocation', "in the Church")
             this.container.setPosition(6688, 4736);
         });
@@ -502,17 +502,21 @@ class gameScene extends Phaser.Scene {
         });
     }
 
-    launchQuest(keyObj, scene){   
-        if (this.activeQuest == false) {
-        this.scene.launch("Interact") 
+    launchQuest(keyObj, scene, quest){  
+       
+        var complete = checkQuest(quest)
+        if (!this.activeQuest && !this.scene.isActive("Interact")) {
+                this.scene.launch("Interact")
         }
-        if (keyObj.isDown == true && this.activeQuest==false){
-            this.sleep();
+        if (keyObj.isDown && !this.activeQuest){
+            
             this.scene.stop("Interact");
             keyObj.isDown = false;
             this.scene.pause();
-            this.scene.launch(scene);  
-        }       
+            this.scene.launch(scene, {completed: complete}); 
+            this.sleep();
+
+        }     
     }
 
     

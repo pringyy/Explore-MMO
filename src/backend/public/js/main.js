@@ -19,7 +19,7 @@ var config = {
   };
 
   
-  var questStat;
+  var questStatus;
   var timerDelay = 0;
   var game = new Phaser.Game(config);
   
@@ -81,20 +81,25 @@ var config = {
     });
   }
 
-  function checkQuest() {
-
+  function checkQuest(questNumber) {
    $.ajax({
+     
       type: "GET",
       url: "/questQuery",
+      data: {
+        quest: questNumber,
+        refreshToken: getCookie("refreshJwt"),
+      },
       success: function (data) {
-        console.log(data);
-        questStat = data;
-        
+        questStatus = data;
       },
       error: function (xhr) {
         console.log(xhr);
       },
+     
     });
+    return questStatus;
+   
   }
 
   

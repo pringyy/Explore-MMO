@@ -15,6 +15,7 @@ const { collection } = require("./model/chat");
 
 //Establish connection to MongoDB database
 const uri = process.env.DB_CONNECT;
+
 mongoose.connect(uri, {
   useNewUrlParser: true,
   useCreateIndex: true,
@@ -101,10 +102,13 @@ app.post("/completedQuest", verify, asyncMiddleware(async (req, res, next) => {
 
 app.get("/questQuery", verify, asyncMiddleware(async (req, res, next) => {
   const user = req.user.info.username;
-  const query = { "username": user};  
- const test = userProgress.find(query, '-username', {lean: true}, function(err, results){
-    console.log(results[0].quest1)
-    res.send(results[0].quest1)
+  var quest = req.query.quest;
+
+  
+  const query = {"username": user};  
+  
+  const test = userProgress.find(query, '-username', {lean: true}, function(err, results){
+    res.send(results[0][quest])
   })
 }));
 

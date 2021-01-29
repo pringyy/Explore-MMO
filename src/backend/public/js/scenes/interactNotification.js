@@ -20,7 +20,7 @@ class interactNotification extends Phaser.Scene {
         this.scoreText.alpha=0.7;
 
        this.timer = this.time.addEvent({
-        delay: 60,
+        delay: 300,
         paused: false
       });
 
