@@ -237,3 +237,17 @@
 ### 22 Jan 2021
 * *2 hours* setting up database to store game quest progress
 * *4 hours* Finalising the map
+
+### 27 Jan 2021
+* *2 hours* Refactoring code
+* *3 hours* Making UI changes
+* *1 hour* Updating event triggers for teleportation
+* *1 hour* Added counter code for timed limited quests
+* *1 hour* Added event trigger to notify what button to press to talk to NPCs when in an event trigger zone
+
+
+### 28 Jan 2021
+* *5 hours* finished all quest functionality
+* *1 hour* Research into querying MongoDB with Mongoose
+* *3 hours* Making the frontend check if the quest have been completed in backend
+
