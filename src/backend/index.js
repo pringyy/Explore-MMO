@@ -13,6 +13,7 @@ const ChatSchema = require('./model/chat');
 const userProgress = require('./model/userProgress');
 const { collection } = require("./model/chat");
 
+
 //Establish connection to MongoDB database
 const uri = process.env.DB_CONNECT;
 
@@ -102,14 +103,15 @@ app.post("/completedQuest", verify, asyncMiddleware(async (req, res, next) => {
 );
 
 app.get("/questQuery", verify, asyncMiddleware(async (req, res, next) => {
-  const user = req.user.info.username;
+  var user = req.user.info.username;
 
 
   
-  const query = {"username": user};  
+  var query = {"username": user};  
   
-  const test = userProgress.find(query, '-username', {lean: true}, function(err, results){
-    
+  var test = userProgress.find(query, '-username', {lean: true}, function(err, results){
+    var numberCompleted =  Object.values(results[0]).filter(item => item === true).length
+    io.emit("update progress", numberCompleted);
     res.send(results[0])
   })
 }));

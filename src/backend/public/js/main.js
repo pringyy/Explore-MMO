@@ -19,7 +19,9 @@ var config = {
   };
 
   
-  var questStatus;
+  var questStatus = {1:true};
+  var numberCompleted;
+
   var timerDelay = 0;
   var game = new Phaser.Game(config);
   
@@ -86,18 +88,27 @@ var config = {
      
       type: "GET",
       url: "/questQuery",
+      async: true,
       data: {
         refreshToken: getCookie("refreshJwt"),
       },
       success: function (data) {
         questStatus = data;
+       
+        
       },
       error: function (xhr) {
         console.log(xhr);
+        
       },
      
     });
-   
+   return questStatus
   }
+
+  
+
+
+  
 
   

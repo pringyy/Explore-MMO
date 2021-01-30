@@ -17,10 +17,12 @@ class gameScene extends Phaser.Scene {
         this.UiScene = this.scene.get('Ui');
         this.activeQuest = false;
         
+        
        
     }
     create() {
-        checkQuest();
+        checkQuest()
+        
         this.socket = io();
         this.otherPlayers = this.physics.add.group();
         this.scene.launch("Ui");
@@ -112,6 +114,10 @@ class gameScene extends Phaser.Scene {
             }.bind(this)
         );
 
+        this.socket.on("update progress",function (data) {
+            this.events.emit('progress', data)
+            }.bind(this)
+        );
         this.socket.on("remove", function (id) {
             this.otherPlayers.getChildren().forEach(function (player) {
                 if (player.playerId === id) {
@@ -368,6 +374,9 @@ class gameScene extends Phaser.Scene {
 
         //Teleport into blacksmith
         this.map.setTileLocationCallback(82, 88, 1, 1, () => {
+             
+         
+
             this.events.emit('updateLocation', "in the Blacksmith")
             this.container.setPosition(5552, 4740);    
         });
@@ -508,9 +517,14 @@ class gameScene extends Phaser.Scene {
         
         if (!this.activeQuest && !this.scene.isActive("Interact")) {
                 this.scene.launch("Interact")
+
         }
         if (keyObj.isDown && !this.activeQuest){
             
+            console.log(numberCompleted)
+            
+            console.log(questStatus)
+          
             this.scene.stop("Interact");
             keyObj.isDown = false;
             this.scene.pause();
@@ -529,7 +543,7 @@ class gameScene extends Phaser.Scene {
         if (!checkQuest("gameComplete")){
             speed = 180
         }else{
-           speed=400
+           speed=360
         }
         if (this.container) {
             this.container.body.setVelocity(0);
@@ -577,4 +591,6 @@ class gameScene extends Phaser.Scene {
             };
         }
     }
+
+    
 };
