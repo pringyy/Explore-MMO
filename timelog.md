@@ -251,3 +251,10 @@
 * *1 hour* Research into querying MongoDB with Mongoose
 * *3 hours* Making the frontend check if the quest have been completed in backend
 
+
+### 30 Jan 2021
+* *3 hours* number of quests completed now displayed to user
+* *2 hours* fixed series of bugs with quests
+* *3 hours* refractored a series of functions
+* *1 hour* fixed quest related bugs
+
