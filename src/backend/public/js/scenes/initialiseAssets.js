@@ -15,10 +15,10 @@ class initialiseAssets extends Phaser.Scene {
     }
     
     loadSprites() {
-      this.load.spritesheet("Zak", "assets/sprites/zak.png", {frameWidth: 32,frameHeight: 48,});
-      this.load.spritesheet("player", "assets/sprites/player.png", {frameWidth: 32,frameHeight: 48,});
-      this.load.spritesheet("otherplayer", "assets/sprites/otherplayer.png", {frameWidth: 32,frameHeight: 48,});
-      this.load.spritesheet("Rod", "assets/sprites/rod.png", {frameWidth: 32,frameHeight: 48,});
+      this.load.spritesheet("Zak", "assets/sprites/Zak.png", {frameWidth: 32,frameHeight: 48,});
+      this.load.spritesheet("player", "assets/sprites/Player.png", {frameWidth: 32,frameHeight: 48,});
+      this.load.spritesheet("otherplayer", "assets/sprites/OtherPlayer.png", {frameWidth: 32,frameHeight: 48,});
+      this.load.spritesheet("Rod", "assets/sprites/Rod.png", {frameWidth: 32,frameHeight: 48,});
       this.load.spritesheet("Janet", "assets/sprites/blonde.png", {frameWidth: 32,frameHeight: 48,});
       this.load.spritesheet("Cowan", "assets/sprites/cowan.png", {frameWidth: 32,frameHeight: 48,});
       this.load.spritesheet("Pringle", "assets/sprites/pringle.png",{frameWidth: 32,frameHeight: 48,});
