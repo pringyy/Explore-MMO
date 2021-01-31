@@ -66,9 +66,14 @@ class gameScene extends Phaser.Scene {
         this.npc5 = this.add.sprite(5424, 4704, "Zak", 8);
         this.npc5Q = this.add.sprite(5424, 4669, "qmark");this.npc5Q.setScale(1.3);
 
+
+        this.npc6 = this.add.sprite(5920, 1888, "Pringle", 0);
+        this.npc6Q = this.add.sprite(5920, 1853, "qmark");this.npc6Q.setScale(1.3);
+
         water.setCollisionByExclusion([-1]);
         trees.setCollisionByExclusion([-1]);
         building.setCollisionByExclusion([-1]);
+        buildingaddon.setCollisionByExclusion([-1]);
 
         this.eventTriggers();
 
@@ -98,7 +103,7 @@ class gameScene extends Phaser.Scene {
                     this.container.add(this.player);
                     this.updateCamera();
                     this.container.body.setCollideWorldBounds(true);
-                    this.physics.add.collider(this.container, [trees,water,building,]);
+                    this.physics.add.collider(this.container, [trees,water,building,buildingaddon]);
                     this.physics.add.overlap(this.container, coin, this.collectCoin, null, this);
                     this.physics.add.overlap(this.container, sword, this.collectSword, null, this);
                     this.physics.add.overlap(this.container, hat, this.collectHat, null, this);
@@ -115,7 +120,9 @@ class gameScene extends Phaser.Scene {
         );
 
         this.socket.on("update progress",function (data) {
+            numberCompleted = data;
             this.events.emit('progress', data)
+         
             }.bind(this)
         );
         this.socket.on("remove", function (id) {
@@ -451,6 +458,14 @@ class gameScene extends Phaser.Scene {
             this.events.emit('updateLocation', "in the Forest")
         });
 
+        this.map.setTileLocationCallback(19, 68, 3, 3, () => {
+            this.events.emit('updateLocation', "in the Forest")
+        });
+
+        this.map.setTileLocationCallback(19, 64, 3, 1, () => {
+            this.events.emit('updateLocation', "in the Forest of the Dead")
+        });
+
         //Teleport into grave
         this.map.setTileLocationCallback(133, 132, 1, 1, () => {
             this.events.emit('updateLocation', "in a hole")
@@ -472,7 +487,7 @@ class gameScene extends Phaser.Scene {
 
         //Teleport out of gulag
         this.map.setTileLocationCallback(287, 146, 2, 1, () => {
-            this.events.emit('updateLocation', "out the Gulag")
+            this.events.emit('updateLocation', "in the Forest of the Dead")
             this.container.setPosition(352, 1162);
         });
 
@@ -500,8 +515,28 @@ class gameScene extends Phaser.Scene {
             this.container.setPosition(1328, 2240);
         });
 
+     
+
+        //Teleport into the hall of champiobs
+         this.map.setTileLocationCallback(67, 61, 2, 2, () => {
+            if (numberCompleted == 5){
+                this.events.emit('updateLocation', "in the Hall of Champions")
+                this.container.setPosition(5920, 2272);
+            } else {
+                this.scene.launch('Interact', {text: "Locked: come back when you complete the game"})
+            }
+        });
+
+         //Teleport out of the game complete room
+         this.map.setTileLocationCallback(184, 72, 2, 1, () => {
+                this.events.emit('updateLocation', "in the Forest")
+                this.container.setPosition(2176, 2016);
+         
+        });
+
+
         //Event trigger for completing the maze
-        this.map.setTileLocationCallback(39, 100, 2, 2, () => {
+        this.map.setTileLocationCallback(12, 106, 4, 1, () => {
             if (this.scene.isActive("quest1Ui")){
                 this.scene.stop("quest1Ui");
                 completedQuest("quest1");
@@ -510,14 +545,19 @@ class gameScene extends Phaser.Scene {
                 checkQuest();
             }
         });
+
+        this.map.setTileLocationCallback(184, 59, 2, 2, () => {
+            this.launchQuest(keyObj, 'completeGame');
+     
+    });
+
     }
 
     launchQuest(keyObj, scene, quest){  
        
         
         if (!this.activeQuest && !this.scene.isActive("Interact")) {
-                this.scene.launch("Interact")
-
+                this.scene.launch("Interact", {text: "Press E to interact"})
         }
         if (keyObj.isDown && !this.activeQuest){
             
@@ -540,11 +580,14 @@ class gameScene extends Phaser.Scene {
         var speed;
         
 
-        if (!checkQuest("gameComplete")){
+        checkQuest();
+        if (numberCompleted != 5){
             speed = 180
-        }else{
-           speed=360
+        } else {
+            speed=300
         }
+        
+        
         if (this.container) {
             this.container.body.setVelocity(0);
             //Handles verticle player movement

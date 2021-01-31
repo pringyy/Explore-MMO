@@ -12,7 +12,7 @@ const webtoken = require("jsonwebtoken");
 const ChatSchema = require('./model/chat');
 const userProgress = require('./model/userProgress');
 const { collection } = require("./model/chat");
-
+const { number } = require("@hapi/joi");
 
 //Establish connection to MongoDB database
 const uri = process.env.DB_CONNECT;
@@ -109,7 +109,7 @@ app.get("/questQuery", verify, asyncMiddleware(async (req, res, next) => {
   
   var query = {"username": user};  
   
-  var test = userProgress.find(query, '-username', {lean: true}, function(err, results){
+  const test = userProgress.find(query, '-username', {lean: true}, function(err, results){
     var numberCompleted =  Object.values(results[0]).filter(item => item === true).length
     io.emit("update progress", numberCompleted);
     res.send(results[0])

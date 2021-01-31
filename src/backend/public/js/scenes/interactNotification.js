@@ -3,8 +3,9 @@ class interactNotification extends Phaser.Scene {
       super ('Interact');
     };
   
-    init(){
+    init(data){
       this.gameScene = this.scene.get('Game');
+      this.text = data["text"]
 
     }
   
@@ -15,7 +16,7 @@ class interactNotification extends Phaser.Scene {
     };
   
     setupUiElements () {
-       this.scoreText = this.add.text(this.scale.width/2, this.scale.height*0.4 , 'Press E to speak', { backgroundColor: '	rgb(0, 0, 0)', fontSize: '18px', fill: '#fff' });
+       this.scoreText = this.add.text(this.scale.width/2, this.scale.height*0.4 , this.text, { backgroundColor: '	rgb(0, 0, 0)', fontSize: '15px', fill: '#fff' });
         this.scoreText.setOrigin(0.5);
         this.scoreText.alpha=0.7;
 
