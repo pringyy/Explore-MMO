@@ -320,7 +320,7 @@ class gameScene extends Phaser.Scene {
     eventTriggers(){
         
         // Get key object
-        var keyObj = this.input.keyboard.addKey('E');
+        var keyObj = Phaser.Input.Keyboard.KeyCodes.E;
        
         //Trigger for quest1
         this.map.setTileLocationCallback(42, 100, 2, 2, () => {
@@ -536,7 +536,7 @@ class gameScene extends Phaser.Scene {
 
 
         //Event trigger for completing the maze
-        this.map.setTileLocationCallback(12, 106, 4, 1, () => {
+        this.map.setTileLocationCallback(12, 106, 4, 4, () => {
             if (this.scene.isActive("quest1Ui")){
                 this.scene.stop("quest1Ui");
                 completedQuest("quest1");

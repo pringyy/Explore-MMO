@@ -83,7 +83,7 @@ app.post("/submitChat", verify, asyncMiddleware(async (req, res, next) => {
   const username = req.user.info.username + ":";
   console.log(req.user);
   const {message} = req.body;
-  await ChatSchema.create({ username, message });
+  ChatSchema.create({ username, message });
   io.emit("new user message", {
     username,
     message,
