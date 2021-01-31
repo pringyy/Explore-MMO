@@ -23,6 +23,7 @@ class initialiseAssets extends Phaser.Scene {
       this.load.spritesheet("Cowan", "assets/sprites/cowan.png", {frameWidth: 32,frameHeight: 48,});
       this.load.spritesheet("Pringle", "assets/sprites/pringle.png",{frameWidth: 32,frameHeight: 48,});
       this.load.spritesheet("death", "assets/sprites/death.png", {frameWidth: 32,frameHeight: 48,});
+      this.load.spritesheet("Priest", "assets/sprites/priest.png",{frameWidth: 32,frameHeight: 48,});
       this.load.spritesheet("qmark", "assets/sprites/qmark.png",{frameWidth: 16,frameHeight: 24,});
     }
 

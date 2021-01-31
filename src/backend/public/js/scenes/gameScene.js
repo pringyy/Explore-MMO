@@ -21,8 +21,7 @@ class gameScene extends Phaser.Scene {
        
     }
     create() {
-        checkQuest()
-        
+    
         this.socket = io();
         this.otherPlayers = this.physics.add.group();
         this.scene.launch("Ui");
@@ -69,6 +68,9 @@ class gameScene extends Phaser.Scene {
 
         this.npc6 = this.add.sprite(5920, 1888, "Pringle", 0);
         this.npc6Q = this.add.sprite(5920, 1853, "qmark");this.npc6Q.setScale(1.3);
+
+        this.npc7 = this.add.sprite(6560, 4224, "Priest", 1);
+        this.npc7Q = this.add.sprite(6560, 4189, "qmark");this.npc7Q.setScale(1.3);
 
         water.setCollisionByExclusion([-1]);
         trees.setCollisionByExclusion([-1]);
@@ -549,7 +551,16 @@ class gameScene extends Phaser.Scene {
         this.map.setTileLocationCallback(184, 59, 2, 2, () => {
             this.launchQuest(keyObj, 'completeGame');
      
-    });
+         });
+         this.map.setTileLocationCallback(203, 132, 3, 2, () => {
+            this.launchQuest(keyObj, 'priestScene');
+     
+         });
+
+         this.map.setTileLocationCallback(208, 132, 3, 3, () => {
+            this.launchQuest(keyObj, 'mountainGuide');
+     
+         });
 
     }
 
