@@ -562,6 +562,65 @@ class gameScene extends Phaser.Scene {
      
          });
 
+
+
+
+         this.map.setTileLocationCallback(109, 48, 1, 1, () => {
+            this.container.setPosition(8944, 352)
+         });
+
+         this.map.setTileLocationCallback(279, 13, 1, 1, () => {
+            this.container.setPosition(3504, 1600)
+         });
+
+         this.map.setTileLocationCallback(294, 12, 1, 1, () => {
+            this.container.setPosition(4304, 1568)
+         });
+
+         this.map.setTileLocationCallback(134, 47, 1, 1, () => {
+            this.container.setPosition(9424, 320)
+         });
+
+
+
+
+
+
+
+
+         this.map.setTileLocationCallback(130, 22, 1, 1, () => {
+            this.container.setPosition(9424, 1120)
+         });
+
+         this.map.setTileLocationCallback(294, 37, 1, 1, () => {
+            this.container.setPosition(4176, 768)
+         });
+
+         this.map.setTileLocationCallback(279, 38, 1, 1, () => {
+            this.container.setPosition(3344, 896)
+         });
+
+         this.map.setTileLocationCallback(104, 26, 1, 1, () => {
+            this.container.setPosition(8944, 1152)
+         });
+
+
+
+         this.map.setTileLocationCallback(118, 20, 1, 1, () => {
+            this.container.setPosition(9424, 1888)
+         });
+         this.map.setTileLocationCallback(294, 61, 1, 1, () => {
+            this.container.setPosition(3792, 704)
+         });
+
+         this.map.setTileLocationCallback(279, 62, 1, 1, () => {
+            this.container.setPosition(3312, 480)
+         });
+         this.map.setTileLocationCallback(103, 13, 1, 1, () => {
+            this.container.setPosition(8944, 1920)
+         });
+
+
     }
 
     launchQuest(keyObj, scene, quest){  
