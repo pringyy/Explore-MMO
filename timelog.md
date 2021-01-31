@@ -258,3 +258,9 @@
 * *3 hours* refractored a series of functions
 * *1 hour* fixed quest related bugs
 
+### 31 Jan 2021
+* *1 hours* refractored quest code
+* *3 hours* Fixed and added features to quests
+* *2 hours* Fixed a big where users could not type the chracter 'e'
+* *1 hour* fixed map texture bugs
+
