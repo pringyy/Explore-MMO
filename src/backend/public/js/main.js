@@ -41,6 +41,13 @@ var config = {
       }
     
     }
+
+    if (event.which === 69) {
+      if (document.activeElement === input) {
+        input.value = input.value + "e";
+      }
+    
+    }
   });
   
   function sendMessage() {

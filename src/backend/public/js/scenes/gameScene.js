@@ -320,7 +320,7 @@ class gameScene extends Phaser.Scene {
     eventTriggers(){
         
         // Get key object
-        var keyObj = Phaser.Input.Keyboard.KeyCodes.E;
+        var keyObj = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.E);
        
         //Trigger for quest1
         this.map.setTileLocationCallback(42, 100, 2, 2, () => {
