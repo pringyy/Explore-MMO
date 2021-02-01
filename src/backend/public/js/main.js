@@ -91,8 +91,43 @@ var config = {
     });
   }
 
+function test1(a, b){
+    numberCompleted = b
+    questStatus = a
+    console.log(questStatus)
+    console.log(numberCompleted)
+}
 
   
+
+
+function checkQuest() {
+  console.log("hello12")
+  
+  $.ajax({
+    
+     type: "GET",
+     url: "/questQuery",
+     async: true,
+     data: {
+       refreshToken: getCookie("refreshJwt"),
+     },
+     success: function (data) {
+       test1(data.result, data.number)
+
+      
+       
+     },
+     error: function (xhr) {
+       console.log(xhr);
+       
+     },
+    
+   });
+
+  
+
+ }
 
 
   

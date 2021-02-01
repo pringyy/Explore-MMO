@@ -45,9 +45,7 @@ io.on("connection", function (socket) {
     x: 2304,
     y: 3232,
     playerId: socket.id,
-    name: "hello",
-  };
-  console.log(socket.id);
+  }
   //Sends where all the other players currently are to the new user
   socket.emit("currentPlayers", connectedPlayers);
   socket.broadcast.emit("newPlayer", connectedPlayers[socket.id]);
@@ -61,6 +59,7 @@ io.on("connection", function (socket) {
     delete connectedPlayers[socket.id];
     io.emit("remove", socket.id);
   });
+  
 
   //Handles moving players
   socket.on("playerMovement", function (data) {

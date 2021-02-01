@@ -6,6 +6,7 @@ class quest3Ui extends Phaser.Scene {
   
     init(){
       this.gameScene = this.scene.get('Game');
+      
     }
   
     create() {
@@ -25,7 +26,6 @@ class quest3Ui extends Phaser.Scene {
       this.gameScene.events.on('completedQuest', () => {
         this.scene.stop("quest3Ui");
         completedQuest('quest3');
-        checkQuest();
       })
     };
   

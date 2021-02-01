@@ -6,6 +6,7 @@ class UiScene extends Phaser.Scene {
 
     init(){
         this.gameScene = this.scene.get('Game');
+        this.UiScene = this.scene.get('Ui');
     }
 
     create() {  

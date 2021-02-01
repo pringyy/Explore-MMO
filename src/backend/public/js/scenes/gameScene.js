@@ -29,7 +29,8 @@ class gameScene extends Phaser.Scene {
         this.socket = io();
         this.otherPlayers = this.physics.add.group();
         this.scene.launch("Ui");
-       
+        checkQuest();
+  
        
 
         //Intialises map to user
@@ -202,6 +203,7 @@ class gameScene extends Phaser.Scene {
         })
 
        
+       
         
     }
 
@@ -246,13 +248,9 @@ class gameScene extends Phaser.Scene {
 
     addOtherPlayers(playerInfo) {
         this.otherPlayer = this.add.sprite(0, 0,"otherplayer",0);     
-        var text = this.add.text(0, 0, playerInfo.name, { backgroundColor: '	rgb(0, 0, 0)'});text.alpha = 0.5;
-        text.setOrigin(0.5, 2.9);
-        text.setScale(0.7);
         const container = this.add.container(playerInfo.x, playerInfo.y);
         container.setSize(16, 16);
         container.add(this.otherPlayer);
-        container.add(text);
         container.playerId = playerInfo.playerId;
         this.otherPlayers.add(container);
     }
@@ -312,16 +310,19 @@ class gameScene extends Phaser.Scene {
 
     checkComplete(itemsLeft){
         
-        if (this.itemsLeft == 0){
+        if (this.itemsLeft <= 0){
             this.events.emit('completedQuest');
             this.scene.launch("completedNotification")
             this.activeQuest= false;
             this.scene.pause('Game');
+            checkQuest();
             this.sleep();
         }
     }
       
     eventTriggers(){
+
+        
         
         // Get key object
         var keyObj = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.E);
@@ -361,6 +362,7 @@ class gameScene extends Phaser.Scene {
                 completedQuest("quest4");
                 this.activeQuest = false;
                 checkQuest();
+                this.events.emit('progress', numberCompleted)
                 this.scene.launch("completedNotification");
             }
             this.events.emit('updateLocation', "in the Church")
@@ -400,6 +402,7 @@ class gameScene extends Phaser.Scene {
 
         //Teleport into pub
         this.map.setTileLocationCallback(67, 88, 1, 1, () => {
+            alert(numberCompleted)
                 this.events.emit('updateLocation', "in the Pub")
                 this.container.setPosition(5936, 3904);
         });
@@ -441,6 +444,10 @@ class gameScene extends Phaser.Scene {
 
         this.map.setTileLocationCallback(44, 99, 3, 4, () => {
             this.events.emit('updateLocation', "in the Forest")
+        });
+
+        this.map.setTileLocationCallback(71, 100, 3, 4, () => {
+            this.events.emit('progress', numberCompleted)
         });
 
         this.map.setTileLocationCallback(71, 12, 1, 1, () => {
@@ -663,47 +670,21 @@ class gameScene extends Phaser.Scene {
         }     
     }
 
-    checkQuest() {
-        $.ajax({
-          
-           type: "GET",
-           url: "/questQuery",
-           async: true,
-           data: {
-             refreshToken: getCookie("refreshJwt"),
-           },
-           success: function (data) {
-             
-            questStatus= data.result
-            numberCompleted = data.number;
-           
-     
-            
-             
-           },
-           error: function (xhr) {
-             console.log(xhr);
-             
-           },
-          
-         });
-         this.events.emit('progress', numberCompleted)
-        
-        
-     
-       }
+
+       
 
        
 
     
     update() {
-        this.checkQuest();
+        this.events.emit('progress', numberCompleted)
+       
         var speed;
        
         
        
         if (numberCompleted != 5){
-            speed = 180
+            speed = 350
         } else {
             speed=300
         }
@@ -756,5 +737,9 @@ class gameScene extends Phaser.Scene {
         }
     }
 
+   
+
     
 };
+
+
