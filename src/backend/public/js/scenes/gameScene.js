@@ -621,6 +621,22 @@ class gameScene extends Phaser.Scene {
          });
 
 
+
+
+         this.map.setTileLocationCallback(111, 38, 1, 1, () => {
+            this.container.setPosition(8944, 2720)
+         });
+         this.map.setTileLocationCallback(279, 87, 1, 1, () => {
+            this.container.setPosition(3568, 1280)
+         });
+
+         this.map.setTileLocationCallback(294, 86, 1, 1, () => {
+            this.container.setPosition(4496, 960)
+         });
+         this.map.setTileLocationCallback(140, 28, 1, 1, () => {
+            this.container.setPosition(9424, 2688)
+         });
+
     }
 
     launchQuest(keyObj, scene, quest){  
