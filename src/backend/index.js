@@ -92,7 +92,7 @@ app.post("/submitChat", verify, asyncMiddleware(async (req, res, next) => {
   })
 );
 
-app.post("/completedQuest", verify, asyncMiddleware(async (req, res, next) => {
+app.post("/completedQuest", asyncMiddleware(async (req, res, next) => {
   const user = req.user.info.username;
   var quest = req.body.quest;
   console.log(req.body.quest);
@@ -102,7 +102,7 @@ app.post("/completedQuest", verify, asyncMiddleware(async (req, res, next) => {
   })
 );
 
-app.get("/questQuery", verify, asyncMiddleware(async (req, res, next) => {
+app.get("/questQuery", asyncMiddleware(async (req, res, next) => {
   var user = req.user.info.username;
 
 
