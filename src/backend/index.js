@@ -111,7 +111,7 @@ app.get("/questQuery", verify, asyncMiddleware(async (req, res, next) => {
   
   const test = userProgress.find(query, '-username', {lean: true}, function(err, results){
     var numberCompleted =  Object.values(results[0]).filter(item => item === true).length
-    socket.emit("update progress", numberCompleted);
+    io.emit("update progress", numberCompleted);
     res.send(results[0])
   })
 }));
