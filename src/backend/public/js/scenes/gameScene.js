@@ -16,6 +16,10 @@ class gameScene extends Phaser.Scene {
         this.quest5Scene = this.scene.get('quest5Info');
         this.UiScene = this.scene.get('Ui');
         this.activeQuest = false;
+        this.numberComplete;
+        this.questProgress;
+        
+      
         
         
        
@@ -25,6 +29,8 @@ class gameScene extends Phaser.Scene {
         this.socket = io();
         this.otherPlayers = this.physics.add.group();
         this.scene.launch("Ui");
+       
+       
 
         //Intialises map to user
         this.map = this.make.tilemap({key: "map",});
@@ -78,6 +84,7 @@ class gameScene extends Phaser.Scene {
         buildingaddon.setCollisionByExclusion([-1]);
 
         this.eventTriggers();
+        
 
         //Handles boundaries of the map
         this.physics.world.bounds.width = this.map.widthInPixels;
@@ -121,12 +128,7 @@ class gameScene extends Phaser.Scene {
             }.bind(this)
         );
 
-        this.socket.on("update progress",function (data) {
-            numberCompleted = data;
-            this.events.emit('progress', data)
-         
-            }.bind(this)
-        );
+       
         this.socket.on("remove", function (id) {
             this.otherPlayers.getChildren().forEach(function (player) {
                 if (player.playerId === id) {
@@ -661,12 +663,45 @@ class gameScene extends Phaser.Scene {
         }     
     }
 
+    checkQuest() {
+        $.ajax({
+          
+           type: "GET",
+           url: "/questQuery",
+           async: true,
+           data: {
+             refreshToken: getCookie("refreshJwt"),
+           },
+           success: function (data) {
+             
+            questStatus= data.result
+            numberCompleted = data.number;
+           
+     
+            
+             
+           },
+           error: function (xhr) {
+             console.log(xhr);
+             
+           },
+          
+         });
+         this.events.emit('progress', numberCompleted)
+        
+        
+     
+       }
+
+       
+
     
     update() {
+        this.checkQuest();
         var speed;
+       
         
-
-        checkQuest();
+       
         if (numberCompleted != 5){
             speed = 180
         } else {

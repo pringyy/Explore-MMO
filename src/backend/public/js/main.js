@@ -1,3 +1,4 @@
+
 var config = {
     type: Phaser.AUTO,
     borderPadding: 10,
@@ -90,28 +91,6 @@ var config = {
     });
   }
 
-  function checkQuest() {
-   $.ajax({
-     
-      type: "GET",
-      url: "/questQuery",
-      async: true,
-      data: {
-        refreshToken: getCookie("refreshJwt"),
-      },
-      success: function (data) {
-        questStatus = data;
-       
-        
-      },
-      error: function (xhr) {
-        console.log(xhr);
-        
-      },
-     
-    });
-   return questStatus
-  }
 
   
 
