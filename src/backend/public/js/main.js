@@ -114,6 +114,7 @@ function checkQuest() {
      },
      success: function (data) {
        test1(data.result, data.number)
+       console.log("checkQuest")
 
       
        
