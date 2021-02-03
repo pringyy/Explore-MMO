@@ -19,10 +19,10 @@ class quest1Info extends Phaser.Scene {
 
         if (!this.complete){
             this.titleText = this.add.text(this.scale.width/2, this.scale.height/2*0.7, 'Uncompleted Quest', {fontSize: '32px', fill: '#fff'}).setOrigin(0.5);
-            this.startButton = new UiButton(this, this.scale.width/2, this.scale.height/2*1.4, 'button1', 'button2', 'Accept Quest', this.startScene.bind(this, 'quest1Ui')).setOrigin(0.5);
+            this.startButton = new UiButton(this, this.scale.width/2, this.scale.height/2*1.4, 'button1', 'button2', 'Accept Quest', this.startScene.bind(this, 'quest1Ui'));
         }else{
             this.titleText = this.add.text(this.scale.width/2, this.scale.height/2*0.6, 'Already Completed Quest!', {fontSize: '32px', fill: '#fff'}).setOrigin(0.5);;
-            this.startButton = new UiButton(this, this.scale.width/2, this.scale.height/2*1.4, 'button1', 'button2', 'Redo Quest', this.startScene.bind(this, 'quest1Ui')).setOrigin(0.5);
+            this.startButton = new UiButton(this, this.scale.width/2, this.scale.height/2*1.4, 'button1', 'button2', 'Redo Quest', this.startScene.bind(this, 'quest1Ui'));
         }
         
         this.modalText = this.add.text(this.scale.width/2, this.scale.height/2*1, 'Janet: "I bet you can not complete this maze blind folded!"', {fontSize: '16px', fill: '#fff'}).setOrigin(0.5);

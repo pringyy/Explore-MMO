@@ -755,17 +755,10 @@ class gameScene extends Phaser.Scene {
 
     
     update() {
+        
         this.events.emit('progress', numberCompleted)
        
-        var speed;
-       
-        
-       
-        if (numberCompleted != 5){
-            speed = 350
-        } else {
-            speed=300
-        }
+        var speed = 180;
         
         
         if (this.container) {
