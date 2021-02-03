@@ -14,7 +14,6 @@ class gameScene extends Phaser.Scene {
         this.quest4Scene = this.scene.get('quest4Info');
         this.quest4UiScene = this.scene.get('quest4Ui');
         this.quest5Scene = this.scene.get('quest5Info');
-        this.UiScene = this.scene.get('Ui');
         this.activeQuest = false;
         this.numberComplete;
         this.questProgress; 
@@ -25,6 +24,7 @@ class gameScene extends Phaser.Scene {
         this.socket = io();
         this.otherPlayers = this.physics.add.group();
         this.scene.launch("Ui");
+        this.scene.launch("Information");
         checkQuest();
   
         //Intialises map to user

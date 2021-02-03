@@ -9,7 +9,8 @@ class UiScene extends Phaser.Scene {
         this.UiScene = this.scene.get('Ui');
     }
 
-    create() {  
+    create() {
+          
         this.setupUiElements();
         this.setupEvents();   
       };
