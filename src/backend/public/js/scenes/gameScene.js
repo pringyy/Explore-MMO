@@ -530,7 +530,7 @@ class gameScene extends Phaser.Scene {
 
         //Teleport into the hall of champiobs
          this.map.setTileLocationCallback(67, 61, 2, 2, () => {
-            if (numberCompleted == 4){
+            if (numberCompleted <= 4){
                 this.events.emit('updateLocation', "in the Hall of Champions")
                 this.container.setPosition(5920, 2272);
             } else {
@@ -684,7 +684,7 @@ class gameScene extends Phaser.Scene {
         
        
         if (numberCompleted != 5){
-            speed = 350
+            speed = 180
         } else {
             speed=300
         }

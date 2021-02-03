@@ -22,7 +22,6 @@ var config = {
   
   var questStatus = {1:true};
   var numberCompleted;
-
   var timerDelay = 0;
   var game = new Phaser.Game(config);
   
