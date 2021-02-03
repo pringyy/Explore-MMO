@@ -1,3 +1,4 @@
+
 var config = {
     type: Phaser.AUTO,
     borderPadding: 10,
@@ -15,10 +16,16 @@ var config = {
         debug: false,
       },
     },
-    scene: [initialiseAssets, titleScene, gameScene, UiScene, questBlind, quest2ModalScene],
+    scene: [initialiseAssets, titleScene, gameScene, UiScene, quest1Ui, quest2Ui, quest3Ui, quest4Ui, quest5Ui, quest1Info, quest2Info, quest3Info,quest4Info, quest5Info, interactNotification, completedNotification, failedQuest, completeGame, priestScene, mountainGuide],
   };
+
   
+  var questStatus = {1:true};
+  var numberCompleted;
+
+  var timerDelay = 0;
   var game = new Phaser.Game(config);
+  
   
   
   //All code below handles the ingame chat
@@ -32,6 +39,13 @@ var config = {
     if (event.which === 32) {
       if (document.activeElement === input) {
         input.value = input.value + " ";
+      }
+    
+    }
+
+    if (event.which === 69) {
+      if (document.activeElement === input) {
+        input.value = input.value + "e";
       }
     
     }
@@ -60,4 +74,63 @@ var config = {
     messages.append(el);
     messages.lastChild.scrollIntoView();
   }
+
+  function completedQuest(questNumber) {
+  
+    $.ajax({
+      type: "POST",
+      url: "/completedQuest",
+      data: {
+        quest: questNumber,
+        refreshToken: getCookie("refreshJwt"),
+      },
+      success: function (data) {},
+      error: function (xhr) {
+        console.log(xhr);
+      },
+    });
+  }
+
+function test1(a, b){
+    numberCompleted = b
+    questStatus = a
+    console.log(questStatus)
+    console.log(numberCompleted)
+}
+
+  
+
+
+function checkQuest() {
+  console.log("hello12")
+  
+  $.ajax({
+    
+     type: "GET",
+     url: "/questQuery",
+     async: true,
+     data: {
+       refreshToken: getCookie("refreshJwt"),
+     },
+     success: function (data) {
+       test1(data.result, data.number)
+       console.log("checkQuest")
+
+      
+       
+     },
+     error: function (xhr) {
+       console.log(xhr);
+       
+     },
+    
+   });
+
+  
+
+ }
+
+
+  
+
   

@@ -15,9 +15,15 @@ class initialiseAssets extends Phaser.Scene {
     }
     
     loadSprites() {
-      this.load.spritesheet("player", "assets/sprites/yoda.png", {frameWidth: 32,frameHeight: 48,});
-      this.load.spritesheet("darthvader", "assets/sprites/darthvader.png", {frameWidth: 32,frameHeight: 48,});
-      this.load.spritesheet("pubNPC", "assets/sprites/pubNPC.png", {frameWidth: 32,frameHeight: 48,});
+      this.load.spritesheet("Zak", "assets/sprites/Zak.png", {frameWidth: 32,frameHeight: 48,});
+      this.load.spritesheet("player", "assets/sprites/Player.png", {frameWidth: 32,frameHeight: 48,});
+      this.load.spritesheet("otherplayer", "assets/sprites/OtherPlayer.png", {frameWidth: 32,frameHeight: 48,});
+      this.load.spritesheet("Rod", "assets/sprites/Rod.png", {frameWidth: 32,frameHeight: 48,});
+      this.load.spritesheet("Janet", "assets/sprites/blonde.png", {frameWidth: 32,frameHeight: 48,});
+      this.load.spritesheet("Cowan", "assets/sprites/cowan.png", {frameWidth: 32,frameHeight: 48,});
+      this.load.spritesheet("Pringle", "assets/sprites/pringle.png",{frameWidth: 32,frameHeight: 48,});
+      this.load.spritesheet("death", "assets/sprites/death.png", {frameWidth: 32,frameHeight: 48,});
+      this.load.spritesheet("Priest", "assets/sprites/priest.png",{frameWidth: 32,frameHeight: 48,});
       this.load.spritesheet("qmark", "assets/sprites/qmark.png",{frameWidth: 16,frameHeight: 24,});
     }
 
@@ -36,6 +42,9 @@ class initialiseAssets extends Phaser.Scene {
       this.load.image("tiles", "assets/world/tileset.png");
       this.load.image("watertiles", "assets/world/water.png");
       this.load.image("coin", "assets/world/coins.png");
+      this.load.image("hat", "assets/world/hat.png");
+      this.load.image("sword", "assets/world/sword.png");
+      
       
     }
 

@@ -6,7 +6,8 @@ const webtoken = require("jsonwebtoken");
 const { registerValidation, loginValidation } = require("../validation");
 
 const asyncMiddleware = require("../middleware/asyncMiddleware");
-const user = require("../model/user");
+const userProgress = require("../model/userProgress");
+
 
 const tokenList = {};
 
@@ -21,7 +22,7 @@ router.post(
       return res
         .status(400)
         .send(
-          `Validation error: ${error.details.map((x) => x.message).join(", ")}`
+          error.details.map((x) => x.message).join(", ")
         );
 
     //Checks if user details are already in the database
@@ -45,8 +46,14 @@ router.post(
       password: hashPassword,
     });
 
+    const userprogress = new userProgress({
+      username: req.body.username,
+    });
+
+
     try {
-      const savedUser = await user.save();   res.send("Registered Successfully");
+      await user.save();  
+       await userprogress.save(); res.send("Test Successfully");
     } catch (err) {
       res.status(400).send(err);
     }
@@ -60,16 +67,6 @@ router.post(
     const { error } = loginValidation(req.body);
 	console.log("called");
 	
-
-
-
-    //Sends error message if data is not valid
-    if (error)
-      return res
-        .status(400)
-        .send(
-          `Validation error: ${error.details.map((x) => x.message).join(", ")}`
-        );
 
     //Checks if username exists
     const user = await User.findOne({ username: req.body.username });
@@ -136,7 +133,7 @@ router.post("/token", (req, res) => {
     // update jwt
     res.cookie("access_token", token);
     tokenList[refreshToken].token = token;
-    console.log(token);
+  
 
     res.status(200).json({ token });
   } else {
