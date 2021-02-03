@@ -5,9 +5,11 @@ class gameInformation extends Phaser.Scene {
     }
   
     create() {
+        this.scene.pause("Game");
         this.modalBox = this.add.rectangle(this.scale.width/2, this.scale.height/2, this.scale.width, this.scale.height,'#000000').setOrigin(0.5);
         this.modalBox.setAlpha(0.9);
-        this.infoText = this.add.text(this.scale.width/2, this.scale.height/2*0.3 , 'Hello user!', {  ontSize: '18px'});
+        this.titleText = this.add.text(this.scale.width/2, this.scale.height/2*0.14 , 'Game Information', { fontSize: '24px'}).setOrigin(0.5);
+        this.infoText = this.add.text(this.scale.width/2, this.scale.height/2*0.33 , 'Hello user!', {  ontSize: '18px'});
         this.infoText.setOrigin(0.5);
         this.infoText2 = this.add.text(this.scale.width/2, this.scale.height/2 * 0.4 , 'The goal of this game is to find and complete all 5 quests.', {  fontSize: '14px'});
         this.infoText2.setOrigin(0.5);
@@ -40,6 +42,8 @@ class gameInformation extends Phaser.Scene {
   
     startScene(targetScene){
       this.scene.stop(targetScene);
+      this.scene.resume("Game")
+      this.scene.start("Ui")
     }
     
 };

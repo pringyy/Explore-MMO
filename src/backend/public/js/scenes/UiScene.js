@@ -26,6 +26,7 @@ class UiScene extends Phaser.Scene {
          this.locationText.alpha = 0.7;
          this.locationText.setOrigin(0.5);
          this.progressText.setOrigin(0.5);
+         this.titleButton = new UiButton(this, this.scale.width*0.10, this.scale.height*0.95, 'info2', 'info', '', this.startScene.bind(this, 'Information')).setScale(0.06);
         
          
       };
@@ -39,6 +40,10 @@ class UiScene extends Phaser.Scene {
             this.progressText.setText(`${number}/5 Quests Completed`);
          })
     };
+
+    startScene(targetScene){
+        this.scene.start(targetScene);
+    }
 };
     
     
