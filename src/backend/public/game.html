@@ -45,17 +45,21 @@
     <script  src="js/scenes/questScenes/quest3Info.js" charset="utf-8"> </script>
     <script  src="js/scenes/questScenes/quest4Info.js" charset="utf-8"> </script>
     <script  src="js/scenes/questScenes/quest5Info.js" charset="utf-8"> </script>
-    
     <script  src="js/scenes/questScenes/quest1Ui.js" charset="utf-8"> </script>
     <script  src="js/scenes/questScenes/quest2Ui.js" charset="utf-8"> </script>
     <script  src="js/scenes/questScenes/quest3Ui.js" charset="utf-8"> </script>
     <script  src="js/scenes/questScenes/quest4Ui.js" charset="utf-8"> </script>
     <script  src="js/scenes/questScenes/quest5Ui.js" charset="utf-8"> </script>
-    
+    <script  src="js/scenes/questScenes/completedNotification.js" charset="utf-8"> </script>
+    <script  src="js/scenes/questScenes/priestScene.js" charset="utf-8"> </script>
+    <script  src="js/scenes/questScenes/mountainGuide.js" charset="utf-8"> </script>
+    <script  src="js/scenes/questScenes/completeGame.js" charset="utf-8"> </script>
+    <script  src="js/scenes/questScenes/failedQuest.js" charset="utf-8"> </script>
     <script  src="js/main.js" charset="utf-8"></script>
     <script src="js/jwtToken.js"charset="utf-8"></script>
   </body>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
 <script>
   function logout() {
   
@@ -71,12 +75,15 @@
       },
       error: function (xhr) {
         window.alert(JSON.stringify(xhr));
-        window.location.replace('/register');
+        window.location.replace('/');
       }
     });
   }
 
 </script>
+
+
+
  
 </body>
  

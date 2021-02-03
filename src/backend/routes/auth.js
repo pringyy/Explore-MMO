@@ -6,7 +6,7 @@ const webtoken = require("jsonwebtoken");
 const { registerValidation, loginValidation } = require("../validation");
 
 const asyncMiddleware = require("../middleware/asyncMiddleware");
-const questProgress = require("../model/questProgress");
+const userProgress = require("../model/userProgress");
 
 
 const tokenList = {};
@@ -46,14 +46,14 @@ router.post(
       password: hashPassword,
     });
 
-    const questprogress = new questProgress({
+    const userprogress = new userProgress({
       username: req.body.username,
     });
 
 
     try {
-      const savedUser = await user.save();  
-      const savedQuest = await questprogress.save(); res.send("Test Successfully");
+      await user.save();  
+       await userprogress.save(); res.send("Test Successfully");
     } catch (err) {
       res.status(400).send(err);
     }
@@ -133,7 +133,7 @@ router.post("/token", (req, res) => {
     // update jwt
     res.cookie("access_token", token);
     tokenList[refreshToken].token = token;
-    console.log(token);
+  
 
     res.status(200).json({ token });
   } else {

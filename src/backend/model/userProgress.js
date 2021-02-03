@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const questProgress= new mongoose.Schema({
+const userProgress= new mongoose.Schema({
     username: {
         type: String,
         require: true,
@@ -22,6 +22,21 @@ const questProgress= new mongoose.Schema({
         type: Boolean,
         default: false
     },
+
+    quest4: {
+        type: Boolean,
+        default: false
+    },
+
+    quest5: {
+        type: Boolean,
+        default: false
+    },
+
+    gameComplete: {
+        type: Boolean,
+        default: false
+    },
 });
 
-module.exports = mongoose.model('questProgress', questProgress);
+module.exports = mongoose.model('userProgress', userProgress);
