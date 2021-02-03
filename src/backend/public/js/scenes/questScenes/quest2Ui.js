@@ -1,3 +1,4 @@
+
 class quest2Ui extends Phaser.Scene {
   constructor(){
     super ('quest2Ui');
@@ -5,7 +6,7 @@ class quest2Ui extends Phaser.Scene {
 
   init(){
     this.gameScene = this.scene.get('Game');
-  };
+  }
 
   create() {
     
@@ -51,26 +52,28 @@ class quest2Ui extends Phaser.Scene {
 
   endScene(){
     location.reload();
-  };
+  }
 
   formatTime(seconds){
-    var minutes = Math.floor(seconds/60);
-    var partInSeconds = (seconds%60).toString().padStart(2,'0');
-    return `${minutes} mins ${partInSeconds} secs`;
-  };
+      var minutes = Math.floor(seconds/60);
+      var partInSeconds = seconds%60;
+      partInSeconds = partInSeconds.toString().padStart(2,'0');
+      return `${minutes} mins ${partInSeconds} secs`;
+  }
 
   update(){
   
-    this.time = ((Math.floor(this.timer.delay - this.timer.elapsed))/1000 - timerDelay).toFixed(0);
-    this.timeLeft.setText('Time left: ' + this.formatTime(this.time));
+    this.time1 = ((Math.floor(this.timer.delay - this.timer.elapsed))/1000 - timerDelay).toFixed(0);
+    this.timeLeft.setText('Time left: ' + this.formatTime(this.time1));
     
     if (((Math.floor(this.timer.delay - this.timer.elapsed))/1000 - timerDelay).toFixed(0)<=0){
       timerDelay = 0;
       this.scene.pause("Game");
       this.scene.start("failedQuest");
       this.scene.stop("quest2Ui");
-    };
-  };
+    }   
+  }
+  
 };
   
   

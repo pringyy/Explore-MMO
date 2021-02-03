@@ -5,7 +5,7 @@ class quest1Ui extends Phaser.Scene {
 
     init(){
         this.gameScene = this.scene.get('Game');
-    };
+    }
 
     create() {
         this.setupUiElements();
@@ -21,7 +21,7 @@ class quest1Ui extends Phaser.Scene {
     endScene(targetScene){
         this.events.emit('questDeactivated');
         this.scene.stop(targetScene);
-    };
+    }
 
   };
   

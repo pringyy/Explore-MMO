@@ -392,9 +392,8 @@ class gameScene extends Phaser.Scene {
 
         //Teleport into pub
         this.map.setTileLocationCallback(67, 88, 1, 1, () => {
-            alert(numberCompleted)
-                this.events.emit('updateLocation', "in the Pub")
-                this.container.setPosition(5936, 3904);
+            this.events.emit('updateLocation', "in the Pub")
+            this.container.setPosition(5936, 3904);
         });
 
         //Teleport out of pub
@@ -520,7 +519,7 @@ class gameScene extends Phaser.Scene {
 
         //Teleport into the hall of champiobs
          this.map.setTileLocationCallback(67, 61, 2, 2, () => {
-            if (numberCompleted <= 4){
+            if (numberCompleted == 4){
                 this.events.emit('updateLocation', "in the Hall of Champions")
                 this.container.setPosition(5920, 2272);
             } else {
@@ -531,7 +530,7 @@ class gameScene extends Phaser.Scene {
          //Teleport out of the game complete room
          this.map.setTileLocationCallback(184, 72, 2, 1, () => {
                 this.events.emit('updateLocation', "in the Forest")
-                this.container.setPosition(2176, 2016);
+                this.container.setPosition(2176, 2032);
          
         });
 
@@ -620,15 +619,12 @@ class gameScene extends Phaser.Scene {
          });
 
 
-
-
-         this.map.setTileLocationCallback(111, 38, 1, 1, () => {
+        this.map.setTileLocationCallback(111, 38, 1, 1, () => {
             this.container.setPosition(8944, 2720)
          });
          this.map.setTileLocationCallback(279, 87, 1, 1, () => {
             this.container.setPosition(3568, 1280)
          });
-
          this.map.setTileLocationCallback(294, 86, 1, 1, () => {
             this.container.setPosition(4496, 960)
          });
@@ -636,6 +632,98 @@ class gameScene extends Phaser.Scene {
             this.container.setPosition(9424, 2688)
          });
 
+
+
+
+         this.map.setTileLocationCallback(136, 30, 1, 1, () => {
+            this.container.setPosition(7888, 1856)
+         });
+         this.map.setTileLocationCallback(246, 60, 1, 1, () => {
+            this.container.setPosition(4368, 1024)
+         });
+
+         this.map.setTileLocationCallback(231, 61, 1, 1, () => {
+            this.container.setPosition(3344, 1248)
+         });
+         this.map.setTileLocationCallback(104, 37, 1, 1, () => {
+            this.container.setPosition(7408, 1888)
+         });
+
+
+
+
+         this.map.setTileLocationCallback(85, 18, 1, 1, () => {
+            this.container.setPosition(5904, 896)
+         });
+         this.map.setTileLocationCallback(184, 30, 1, 1, () => {
+            this.container.setPosition(2736, 640)
+         });
+
+
+
+
+         this.map.setTileLocationCallback(123, 36, 1, 1, () => {
+            this.container.setPosition(6928, 896)
+         });
+         this.map.setTileLocationCallback(216, 30, 1, 1, () => {
+            this.container.setPosition(3952, 1216)
+         });
+
+
+
+
+         this.map.setTileLocationCallback(100, 23, 1, 1, () => {
+            this.container.setPosition(8048, 896)
+         });
+         this.map.setTileLocationCallback(251, 30, 1, 1, () => {
+            this.container.setPosition(3216, 800)
+         });
+
+
+
+
+
+         this.map.setTileLocationCallback(117, 29, 1, 1, () => {
+            this.container.setPosition(10800, 320)
+         });
+         this.map.setTileLocationCallback(337, 12, 1, 1, () => {
+            this.container.setPosition(3760, 992)
+         });
+         this.map.setTileLocationCallback(326, 13, 1, 1, () => {
+            this.container.setPosition(3120, 576)
+         });
+         this.map.setTileLocationCallback(97, 16, 1, 1, () => {
+            this.container.setPosition(10448, 416)
+         });
+
+
+
+         this.map.setTileLocationCallback(95, 7, 1, 1, () => {
+            this.container.setPosition(10448, 1216)
+         });
+         this.map.setTileLocationCallback(326, 40, 1, 1, () => {
+            this.container.setPosition(3056, 288)
+         });
+         this.map.setTileLocationCallback(337, 39, 1, 1, () => {
+            this.container.setPosition(4336, 480)
+         });
+         this.map.setTileLocationCallback(135, 13, 1, 1, () => {
+            this.container.setPosition(10800, 1184)
+         });
+
+
+         this.map.setTileLocationCallback(113, 21, 1, 1, () => {
+            this.container.setPosition(10448, 2176)
+         });
+         this.map.setTileLocationCallback(326, 70, 1, 1, () => {
+            this.container.setPosition(3632, 736)
+         });
+         this.map.setTileLocationCallback(337, 69, 1, 1, () => {
+            this.container.setPosition(4048, 544)
+         });
+         this.map.setTileLocationCallback(126, 15, 1, 1, () => {
+            this.container.setPosition(10800, 2144)
+         });
     }
 
     launchQuest(keyObj, scene, quest){  
@@ -674,7 +762,7 @@ class gameScene extends Phaser.Scene {
         
        
         if (numberCompleted != 5){
-            speed = 180
+            speed = 350
         } else {
             speed=300
         }

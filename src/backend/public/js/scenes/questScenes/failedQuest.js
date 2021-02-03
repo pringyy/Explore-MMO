@@ -5,7 +5,7 @@ class failedQuest extends Phaser.Scene {
 
     init(){
         this.gameScene = this.scene.get('Game');
-    };
+    }
 
     create() {
         this.setupUiElements();
@@ -19,6 +19,7 @@ class failedQuest extends Phaser.Scene {
 
     endScene(){
         location.reload();
-    };
+    }
+
 };
 

@@ -1,3 +1,4 @@
+
 class priestScene extends Phaser.Scene {
     constructor(){
         super ('priestScene');
@@ -5,7 +6,7 @@ class priestScene extends Phaser.Scene {
 
     init(){
         this.gameScene = this.scene.get('Game');
-    };
+    }
 
     create() {
         this.setupUiElements();
@@ -24,7 +25,7 @@ class priestScene extends Phaser.Scene {
     endScene(targetScene){
         this.scene.stop(targetScene);
         this.scene.resume("Game");
-    };
+      }
 
 };
 

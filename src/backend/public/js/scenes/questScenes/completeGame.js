@@ -1,3 +1,4 @@
+
 class completeGame extends Phaser.Scene {
     constructor(){
         super ('completeGame');
@@ -5,7 +6,7 @@ class completeGame extends Phaser.Scene {
 
     init(){
         this.gameScene = this.scene.get('Game');
-    };
+    }
 
     create() {
         this.setupUiElements();
@@ -25,7 +26,7 @@ class completeGame extends Phaser.Scene {
     endScene(targetScene){
         this.scene.stop(targetScene);
         this.scene.resume("Game");
-    };
+    }
 
 };
 
