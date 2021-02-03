@@ -1,4 +1,3 @@
-
 class quest5Ui extends Phaser.Scene {
   constructor(){
     super ('quest5Ui');

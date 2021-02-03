@@ -4,7 +4,7 @@ class gameScene extends Phaser.Scene {
         super({
             key: "Game",
         });
-    }
+    };
 
     init(){
         this.quest1Scene = this.scene.get('quest1Info');
@@ -17,13 +17,9 @@ class gameScene extends Phaser.Scene {
         this.UiScene = this.scene.get('Ui');
         this.activeQuest = false;
         this.numberComplete;
-        this.questProgress;
-        
-      
-        
-        
-       
-    }
+        this.questProgress; 
+    };
+
     create() {
     
         this.socket = io();
@@ -31,8 +27,6 @@ class gameScene extends Phaser.Scene {
         this.scene.launch("Ui");
         checkQuest();
   
-       
-
         //Intialises map to user
         this.map = this.make.tilemap({key: "map",});
         var watertiles = this.map.addTilesetImage("water", "watertiles");
@@ -47,8 +41,6 @@ class gameScene extends Phaser.Scene {
         var hatLayer = this.map.getObjectLayer('hatLayer')['objects'];
         var weaponsLayer = this.map.getObjectLayer('weaponsLayer')['objects'];
         var coinLayer = this.map.getObjectLayer('coinsLayer')['objects'];
-        
-    
         var coin = this.physics.add.staticGroup()
         var sword = this.physics.add.staticGroup()
         var hat = this.physics.add.staticGroup()
@@ -56,28 +48,26 @@ class gameScene extends Phaser.Scene {
         //this is how we actually render our coin object with coin asset we loaded into our game in the preload function
        
         this.npc1 = this.add.sprite(2224, 2865, "Cowan", 0);
-        this.npc1Q = this.add.sprite(2224, 2830, "qmark");this.npc1Q.setScale(1.3);
-    
+        this.npc1Q = this.add.sprite(2224, 2830, "qmark").setScale(1.3);
         this.npc2 = this.add.sprite(1376, 3200, "Janet", 0);
-        this.npc2Q = this.add.sprite(1376, 3165, "qmark");this.npc2Q.setScale(1.3);
+        this.npc2Q = this.add.sprite(1376, 3165, "qmark").setScale(1.3);
 
-       
         this.npc3 = this.add.sprite(2256, 512, "Rod", 0);this.npc3.setScale(0.8);
-        this.npc3Q = this.add.sprite(2256, 477, "qmark");this.npc3Q.setScale(1.3);
+        this.npc3Q = this.add.sprite(2256, 477, "qmark").setScale(1.3);
 
         this.npc4 = this.add.sprite(1040, 64, "death", 0);
-        this.npc4Q = this.add.sprite(1040, 29, "qmark");this.npc4Q.setScale(1.3);
+        this.npc4Q = this.add.sprite(1040, 29, "qmark").setScale(1.3);
 
 
         this.npc5 = this.add.sprite(5424, 4704, "Zak", 8);
-        this.npc5Q = this.add.sprite(5424, 4669, "qmark");this.npc5Q.setScale(1.3);
+        this.npc5Q = this.add.sprite(5424, 4669, "qmark").setScale(1.3);
 
 
         this.npc6 = this.add.sprite(5920, 1888, "Pringle", 0);
-        this.npc6Q = this.add.sprite(5920, 1853, "qmark");this.npc6Q.setScale(1.3);
+        this.npc6Q = this.add.sprite(5920, 1853, "qmark").setScale(1.3);
 
         this.npc7 = this.add.sprite(6560, 4224, "Priest", 1);
-        this.npc7Q = this.add.sprite(6560, 4189, "qmark");this.npc7Q.setScale(1.3);
+        this.npc7Q = this.add.sprite(6560, 4189, "qmark").setScale(1.3);
 
         water.setCollisionByExclusion([-1]);
         trees.setCollisionByExclusion([-1]);
