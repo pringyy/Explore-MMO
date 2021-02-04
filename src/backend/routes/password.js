@@ -45,7 +45,7 @@ router.post('/forgot-password', asyncMiddleware(async (req, res, next) => {
       to: user.email,
       from: email,
       subject: 'Explore MMO Password Reset',
-      text: "You username is: " + user.username +". Reset you password using " + `http://localhost:${process.env.PORT || 3020}/reset-password.html?token=${token}`,
+      text: "You username is: " + user.username +". Reset you password using " + `${process.env.URL}${process.env.PORT || 3020}/reset-password.html?token=${token}`,
       }
   
   
