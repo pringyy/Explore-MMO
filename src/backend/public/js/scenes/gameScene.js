@@ -14,6 +14,7 @@ class gameScene extends Phaser.Scene {
         this.quest4Scene = this.scene.get('quest4Info');
         this.quest4UiScene = this.scene.get('quest4Ui');
         this.quest5Scene = this.scene.get('quest5Info');
+        this.UiScene = this.scene.get('Ui');
         this.activeQuest = false;
         this.numberComplete;
         this.questProgress; 
@@ -199,6 +200,10 @@ class gameScene extends Phaser.Scene {
             this.createObjects(weaponsLayer, sword, "sword");    
         })
 
+        this.UiScene.events.on('infoActivated', () => {
+            this.sleep();
+        })
+        
        
        
         
@@ -530,7 +535,7 @@ class gameScene extends Phaser.Scene {
 
         //Teleport into the hall of champiobs
          this.map.setTileLocationCallback(67, 61, 2, 2, () => {
-            if (numberCompleted == 4){
+            if (numberCompleted == 5){
                 this.events.emit('updateLocation', "in the Hall of Champions")
                 this.container.setPosition(5920, 2272);
             } else {

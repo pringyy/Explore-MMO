@@ -42,6 +42,7 @@ class UiScene extends Phaser.Scene {
     };
 
     startScene(targetScene){
+        this.events.emit("infoActivated")
         this.scene.start(targetScene);
     }
 };

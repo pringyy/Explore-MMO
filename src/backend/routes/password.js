@@ -1,22 +1,27 @@
+
 const express = require('express');
 const hbs = require('nodemailer-express-handlebars');
 const nodemailer = require('nodemailer');
 const path = require('path');
 const crypto = require('crypto');
- 
+const bcrypt = require("bcryptjs");
 const asyncMiddleware = require('../middleware/asyncMiddleware');
 const UserModel = require('../model/user');
  
 const email = process.env.EMAIL;
 const pass = process.env.PASSWORD;
- 
+console.log(pass)
 const smtpTransport = nodemailer.createTransport({
-  service: process.env.EMAIL_PROVIDER,
+  service: 'Gmail',
   auth: {
-    user: email,
-    pass: pass
+    user: 'exploremmog@gmail.com',
+    pass: 'RiCkRoLlEd2020'
   }
 });
+
+console.log("HEY    " + smtpTransport)
+
+
  
 const handlebarsOptions = { 
   viewEngine: 'handlebars',
@@ -24,7 +29,7 @@ const handlebarsOptions = {
   extName: '.html'
 };
  
-smtpTransport.use('compile', hbs(handlebarsOptions));
+smtpTransport.use('compile', hbs(handlebarsOptions);
  
 const router = express.Router();
 
@@ -49,14 +54,14 @@ router.post('/forgot-password', asyncMiddleware(async (req, res, next) => {
     const data = {
       to: user.email,
       from: email,
-      template: 'forgot-password',
+      template: './forgot-password',
       subject: 'Phaser Leaderboard Password Reset',
       context: {
         url: `http://localhost:${process.env.PORT || 3020}/reset-password.html?token=${token}`,
         name: user.name
       }
     };
-    console.log("test3")
+    console.log(data.context.url)
     await smtpTransport.sendMail(data);
     console.log("test5")
     res.status(200).json({ message: 'An email has been sent to your email. Password reset link is only valid for 10 minutes.' });
@@ -74,24 +79,17 @@ router.post('/forgot-password', asyncMiddleware(async (req, res, next) => {
       res.status(400).json({ 'message': 'passwords do not match' });
       return;
     }
-   
     // update user model
-    user.password = req.body.password;
+
+    const salt = await bcrypt.genSaltSync(10);
+    const hashPassword = await bcrypt.hashSync(req.body.password, salt);
+
+    user.password = hashPassword;
     user.resetToken = undefined;
     user.resetTokenExp = undefined;
     await user.save();
    
-    // send user password update email
-    const data = {
-      to: user.email,
-      from: email,
-      template: 'reset-password',
-      subject: 'Phaser Leaderboard Password Reset Confirmation',
-      context: {
-        name: user.name
-      }
-    };
-    await smtpTransport.sendMail(data);
+
    
     res.status(200).json({ message: 'password updated' });
   }));
