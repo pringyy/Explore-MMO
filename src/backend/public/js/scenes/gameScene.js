@@ -20,8 +20,11 @@ class gameScene extends Phaser.Scene {
     };
 
     create() {
-    
-        this.socket = io();
+       
+        this.socket = io( {
+           query:"name=" + username
+        });
+
         this.otherPlayers = this.physics.add.group();
         this.scene.launch("Ui");
         this.scene.launch("Information");
@@ -101,6 +104,10 @@ class gameScene extends Phaser.Scene {
                     this.container.setSize(16, 16);
                     this.physics.world.enable(this.container);
                     this.container.add(this.player);
+                    var text = this.add.text(0, 0, username, { backgroundColor: '	rgb(0, 0, 0)'});text.alpha = 0.5;
+                    text.setOrigin(0.5, 2.9);
+                    text.setScale(0.7);
+                    this.container.add(text);
                     this.updateCamera();
                     this.container.body.setCollideWorldBounds(true);
                     this.physics.add.collider(this.container, [trees,water,building,buildingaddon]);
@@ -239,7 +246,11 @@ class gameScene extends Phaser.Scene {
     addOtherPlayers(playerInfo) {
         this.otherPlayer = this.add.sprite(0, 0,"otherplayer",0);     
         const container = this.add.container(playerInfo.x, playerInfo.y);
+        var text = this.add.text(0, 0, playerInfo.name, { backgroundColor: '	rgb(0, 0, 0)'});text.alpha = 0.5;
+        text.setOrigin(0.5, 2.9);
+        text.setScale(0.7);
         container.setSize(16, 16);
+        container.add(text);
         container.add(this.otherPlayer);
         container.playerId = playerInfo.playerId;
         this.otherPlayers.add(container);

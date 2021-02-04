@@ -34,11 +34,17 @@ mongoose.connection.on("connected", function () {
 //Starts express instance for phaser game
 const app = express();
 const server = require("http").Server(app);
-const io = require("socket.io")(server);
+const io = require("socket.io")(server,{
+  cors: {
+    allowedHeaders: ["test"],
+    credentials: true
+  }
+});;
 
 const connectedPlayers = {};
 
 io.on("connection", function (socket) {
+
   console.log("a new user connected to server: ", socket.id);
   //Spawns a newly logged in player to the game
   connectedPlayers[socket.id] = {
@@ -46,8 +52,9 @@ io.on("connection", function (socket) {
     x: 2304,
     y: 3232,
     playerId: socket.id,
+    name: socket.handshake.query.name,
   }
-  //Sends where all the other players currently are to the new user
+
   socket.emit("currentPlayers", connectedPlayers);
   socket.broadcast.emit("newPlayer", connectedPlayers[socket.id]);
 
@@ -81,7 +88,6 @@ app.use(express.static(__dirname + "/public"));
 
 app.post("/submitChat", verify, asyncMiddleware(async (req, res, next) => {
   const username = req.user.info.username + ":";
-  console.log(req.user);
   const {message} = req.body;
   ChatSchema.create({ username, message });
   io.emit("new user message", {
@@ -111,8 +117,7 @@ app.get("/questQuery", verify, asyncMiddleware(async (req, res, next) => {
   
   const test = userProgress.find(query, '-username', {lean: true}, function(err, results){
     var numberCompleted =  Object.values(results[0]).filter(item => item === true).length
-    
-    res.send({result: results[0], number: numberCompleted})
+    res.send({result: results[0], number: numberCompleted, username:user})
   })
 }));
 

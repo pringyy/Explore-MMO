@@ -15,6 +15,7 @@ class initialiseAssets extends Phaser.Scene {
     }
     
     loadSprites() {
+      checkQuest();
       this.load.spritesheet("Zak", "assets/sprites/Zak.png", {frameWidth: 32,frameHeight: 48,});
       this.load.spritesheet("player", "assets/sprites/Player.png", {frameWidth: 32,frameHeight: 48,});
       this.load.spritesheet("otherplayer", "assets/sprites/OtherPlayer.png", {frameWidth: 32,frameHeight: 48,});
