@@ -22,6 +22,7 @@ var config = {
   
   var questStatus = {1:true};
   var numberCompleted;
+  var username;
 
   var timerDelay = 0;
   var game = new Phaser.Game(config);
@@ -91,11 +92,11 @@ var config = {
     });
   }
 
-function test1(a, b){
+function test1(a, b, c){
     numberCompleted = b
     questStatus = a
-    console.log(questStatus)
-    console.log(numberCompleted)
+    username = c
+    
 }
 
   
@@ -113,7 +114,7 @@ function checkQuest() {
        refreshToken: getCookie("refreshJwt"),
      },
      success: function (data) {
-       test1(data.result, data.number)
+       test1(data.result, data.number, data.username)
        console.log("checkQuest")
 
       
@@ -125,6 +126,11 @@ function checkQuest() {
      },
     
    });
+
+
+
+
+
 
   
 
