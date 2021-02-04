@@ -1,8 +1,6 @@
 
 const express = require('express');
-const hbs = require('nodemailer-express-handlebars');
 const nodemailer = require('nodemailer');
-const path = require('path');
 const crypto = require('crypto');
 const bcrypt = require("bcryptjs");
 const asyncMiddleware = require('../middleware/asyncMiddleware');
@@ -22,21 +20,13 @@ const smtpTransport = nodemailer.createTransport({
 console.log("HEY    " + smtpTransport)
 
 
- 
-const handlebarsOptions = { 
-  viewEngine: 'handlebars',
-  viewPath: path.resolve('./templates/'),
-  extName: '.html'
-};
- 
-smtpTransport.use('compile', hbs(handlebarsOptions);
- 
 const router = express.Router();
 
 router.post('/forgot-password', asyncMiddleware(async (req, res, next) => {
     const { email } = req.body;
 
     const user = await UserModel.findOne({ email });
+    console.log(user.email)
     if (!user) {
       res.status(400).json({ 'message': 'invalid email' });
       return;
@@ -49,22 +39,19 @@ router.post('/forgot-password', asyncMiddleware(async (req, res, next) => {
     // update user reset password token and exp
     console.log("test1")
     await UserModel.findByIdAndUpdate({ _id: user._id }, { resetToken: token, resetTokenExp: Date.now() + 600000 });
-   console.log("test")
+    
     // send user password reset email
     const data = {
       to: user.email,
       from: email,
-      template: './forgot-password',
-      subject: 'Phaser Leaderboard Password Reset',
-      context: {
-        url: `http://localhost:${process.env.PORT || 3020}/reset-password.html?token=${token}`,
-        name: user.name
+      subject: 'Explore MMO Password Reset',
+      text: "You username is: " + user.username +". Reset you password using " + `http://localhost:${process.env.PORT || 3020}/reset-password.html?token=${token}`,
       }
-    };
-    console.log(data.context.url)
+  
+  
     await smtpTransport.sendMail(data);
-    console.log("test5")
-    res.status(200).json({ message: 'An email has been sent to your email. Password reset link is only valid for 10 minutes.' });
+ 
+    res.status(200).json({ message: 'A password reset link has been sent to your email and will only be valid for 10 minutes!' });
   }));
 
   router.post('/reset-password', asyncMiddleware(async (req, res, next) => {
