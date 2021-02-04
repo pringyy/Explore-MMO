@@ -7,6 +7,7 @@ const mongoose = require("mongoose");
 const cors = require("cors");
 const verify = require("./routes/verifyToken");
 const routes = require("./routes/auth");
+const passwordRoutes = require('./routes/password');
 const asyncMiddleware = require("./middleware/asyncMiddleware");
 const webtoken = require("jsonwebtoken");
 const ChatSchema = require('./model/chat');
@@ -133,6 +134,7 @@ app.get("/play", verify, function (req, res) {
 
 // main routes
 app.use("/", routes);
+app.use('/', passwordRoutes);
 
 //If route does not exist return 404 page
 app.use((req, res, next) => {
