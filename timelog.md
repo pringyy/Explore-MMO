@@ -264,3 +264,12 @@
 * *2 hours* Fixed a big where users could not type the chracter 'e'
 * *1 hour* fixed map texture bugs
 
+
+### 4 Feb 2021
+* *4 hours* remailing reset password links now works
+* *2 hours* Fixed bug where users couldn't see other users names above their chracters heads
+
+### 5 Feb 2021
+* *4 hours* Planned out dissertation approach and started to write small parts
+
+
