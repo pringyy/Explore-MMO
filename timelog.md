@@ -272,4 +272,8 @@
 ### 5 Feb 2021
 * *4 hours* Planned out dissertation approach and started to write small parts
 
+### 10 Feb 2021
+* *2 hours* finalised some code
+* *4 hours* Planned final evaluation
+
 
