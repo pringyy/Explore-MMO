@@ -12,8 +12,7 @@ const asyncMiddleware = require("./middleware/asyncMiddleware");
 const webtoken = require("jsonwebtoken");
 const ChatSchema = require('./model/chat');
 const userProgress = require('./model/userProgress');
-const { collection } = require("./model/chat");
-const { number } = require("@hapi/joi");
+
 
 //Establish connection to MongoDB database
 const uri = process.env.DB_CONNECT;
@@ -46,7 +45,7 @@ const connectedPlayers = {};
 
 io.on("connection", function (socket) {
 
-  console.log("a new user connected to server: ", socket.id);
+  console.log(socket.handshake.query.name + " has connected to the server.");
   //Spawns a newly logged in player to the game
   connectedPlayers[socket.id] = {
     flipX: false,
