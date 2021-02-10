@@ -63,10 +63,6 @@ var config = {
           message,
           refreshToken: getCookie("refreshJwt"),
         },
-        success: function (data) {},
-        error: function (xhr) {
-          console.log(xhr);
-        },
       });
     }
   }
@@ -85,10 +81,6 @@ var config = {
         quest: questNumber,
         refreshToken: getCookie("refreshJwt"),
       },
-      success: function (data) {},
-      error: function (xhr) {
-        console.log(xhr);
-      },
     });
   }
 
@@ -103,7 +95,6 @@ function test1(a, b, c){
 
 
 function checkQuest() {
-  console.log("hello12")
   
   $.ajax({
     
@@ -114,11 +105,7 @@ function checkQuest() {
        refreshToken: getCookie("refreshJwt"),
      },
      success: function (data) {
-       test1(data.result, data.number, data.username)
-       console.log("checkQuest")
-
-      
-       
+       test1(data.result, data.number, data.username) 
      },
      error: function (xhr) {
        console.log(xhr);

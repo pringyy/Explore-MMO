@@ -709,7 +709,7 @@ class gameScene extends Phaser.Scene {
             this.container.setPosition(3120, 576)
          });
          this.map.setTileLocationCallback(97, 16, 1, 1, () => {
-            this.container.setPosition(10448, 416)
+            this.container.setPosition(10448, 352)
          });
 
 
@@ -749,15 +749,9 @@ class gameScene extends Phaser.Scene {
                 this.scene.launch("Interact", {text: "Press E to interact"})
         }
         if (keyObj.isDown && !this.activeQuest){
-            
-            console.log(numberCompleted)
-            
-            console.log(questStatus)
-          
             this.scene.stop("Interact");
             keyObj.isDown = false;
             this.scene.pause();
-            console.log(questStatus)
             this.scene.launch(scene, {completed: questStatus[quest]}); 
             this.sleep();
 

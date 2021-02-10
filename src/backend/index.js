@@ -63,7 +63,7 @@ io.on("connection", function (socket) {
 
   //Handles disconnect
   socket.on("disconnect", function () {
-    console.log("a user disconnected from server: ", socket.id);
+    console.log(socket.handshake.query.name + "has disconnected from the server");
     delete connectedPlayers[socket.id];
     io.emit("remove", socket.id);
   });
@@ -101,8 +101,6 @@ app.post("/submitChat", verify, asyncMiddleware(async (req, res, next) => {
 app.post("/completedQuest", verify, asyncMiddleware(async (req, res, next) => {
   const user = req.user.info.username;
   var quest = req.body.quest;
-  console.log(req.body.quest);
-  console.log(user);
   var newvalues = { $set: {[quest]: true}};
   await userProgress.updateOne({username: user}, newvalues);
   })
@@ -148,6 +146,6 @@ app.use((req, res, next) => {
 
 //Starts server on port 3000
 server.listen(process.env.PORT || 3020, () => {
-  console.log(`Server now listening on port ${process.env.PORT || 3000}`);
+  console.log(`Server now listening on port ${process.env.PORT || 3020}`);
 });
 

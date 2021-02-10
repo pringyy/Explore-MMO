@@ -16,7 +16,7 @@ router.post(
   "/register",
   asyncMiddleware(async (req, res) => {
     const { error } = registerValidation(req.body);
-    console.log("reg called");
+
     //Sends error message if data is not valid
     if (error)
       return res
@@ -65,13 +65,11 @@ router.post(
   "/login",
   asyncMiddleware(async (req, res) => {
     const { error } = loginValidation(req.body);
-	console.log("called");
-	
 
     //Checks if username exists
     const user = await User.findOne({ username: req.body.username });
     if (!user) {
-      console.log("error");
+  
       return res.status(400).send("Incorrect username or password");
 	}
     //Checks if password entered matches the usernames actual password
@@ -89,12 +87,11 @@ router.post(
 	};
 
 
-    console.log("success");
     //Create and assign a JSON web token
     const token = webtoken.sign({info: body}, process.env.TOKEN_SECRET, {
       expiresIn: 300,
 	});
-	console.log(user.username);
+	
     const refreshToken = webtoken.sign(
       { info: body },
       process.env.TOKEN_SECRET,

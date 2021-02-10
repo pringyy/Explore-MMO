@@ -70,13 +70,12 @@
         url: '/register',
         data,
         success: function (data) {
-          window.alert('user created successfully')
           login();
         },
         error: function (xhr) {
           toastr.error(String(xhr.responseText))
-          console.log(xhr);
-                }
+      
+          }
       });
     }
   </script>

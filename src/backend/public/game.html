@@ -19,8 +19,9 @@
     <div class="nav-wrapper black">
       <a  class="brand-logo center"><img class="responsive-img" id="logo" src="assets/images/logo2.png" width = 55%></a>
       <ul id="nav-mobile" class="right hide-on-med-and-down">
-  
-        <li><a onClick = "logout()"><i class="material-icons center black">power_settings_new</i></a></li>
+       
+
+        <a  onClick = "logout()" class="waves-effect red waves-orange btn"><i class="material-icons right">power_settings_new</i>Log Off</a>
       </ul>
     </div>
   </nav>
@@ -71,11 +72,9 @@
         refreshToken: getCookie("refreshJwt"),
       },
       success: function (data) {
-        window.alert('logged out');
         window.location.replace('/');
       },
       error: function (xhr) {
-        window.alert(JSON.stringify(xhr));
         window.location.replace('/');
       }
     });
