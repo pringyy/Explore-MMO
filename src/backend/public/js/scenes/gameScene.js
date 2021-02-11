@@ -336,27 +336,37 @@ class gameScene extends Phaser.Scene {
         //Trigger for quest1
         this.map.setTileLocationCallback(42, 100, 2, 2, () => {
             this.events.emit('updateLocation', "in the Maze")
-            this.launchQuest(keyObj, 'quest1Info', 'quest1')
+            if (!this.activeQuest){
+                this.launchQuest(keyObj, 'quest1Info', 'quest1')
+            }
         });
 
         //Trigger for quest2
         this.map.setTileLocationCallback(68, 89, 3, 2,() => {
-             this.launchQuest(keyObj, 'quest2Info', 'quest2')
+            if (!this.activeQuest){
+                this.launchQuest(keyObj, 'quest2Info', 'quest2')
+            }
         });
  
         //Trigger for quest3
         this.map.setTileLocationCallback(69, 16, 3, 2,() => {
-            this.launchQuest(keyObj, 'quest3Info', 'quest3');
+            if (!this.activeQuest){
+                this.launchQuest(keyObj, 'quest3Info', 'quest3');
+            }
         });
 
         //Trigger for quest4
         this.map.setTileLocationCallback(31, 2, 2, 3,() => {
-            this.launchQuest(keyObj, 'quest4Info', 'quest4');
+            if (!this.activeQuest){
+                this.launchQuest(keyObj, 'quest4Info', 'quest4');
+            }
         });
 
         //Trigger for quest5
         this.map.setTileLocationCallback(169, 146, 3, 3,() => {
-            this.launchQuest(keyObj, 'quest5Info', 'quest5');
+            if (!this.activeQuest){
+                this.launchQuest(keyObj, 'quest5Info', 'quest5');
+            }
         });
 
         //Teleport into church
@@ -745,10 +755,10 @@ class gameScene extends Phaser.Scene {
     launchQuest(keyObj, scene, quest){  
        
         
-        if (!this.activeQuest && !this.scene.isActive("Interact")) {
+        if (!this.scene.isActive("Interact")) {
                 this.scene.launch("Interact", {text: "Press E to interact"})
         }
-        if (keyObj.isDown && !this.activeQuest){
+        if (keyObj.isDown){
             this.scene.stop("Interact");
             keyObj.isDown = false;
             this.scene.pause();

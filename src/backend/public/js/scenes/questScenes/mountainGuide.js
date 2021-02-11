@@ -22,7 +22,7 @@ class mountainGuide extends Phaser.Scene {
         this.modalText4 = this.add.text(this.scale.width/2, this.scale.height/2 * 0.85, 'Step 4: Down Cave', { fontSize: '14px', fill: '#fff' }).setOrigin(0.5);
         this.modalText5 = this.add.text(this.scale.width/2, this.scale.height/2 * 0.9, 'Step 5: Down Right Cave', { fontSize: '14px', fill: '#fff' }).setOrigin(0.5);
         this.modalText6 = this.add.text(this.scale.width/2, this.scale.height/2 * 0.95, 'Step 6: Through Left Ladder', { fontSize: '14px', fill: '#fff' }).setOrigin(0.5);
-        this.modalText7 = this.add.text(this.scale.width/2, this.scale.height/2 * 1, 'Step 7: Down Cave', { fontSize: '14px', fill: '#fff' });
+        this.modalText7 = this.add.text(this.scale.width/2, this.scale.height/2 * 1, 'Step 7: Down Cave', { fontSize: '14px', fill: '#fff' }).setOrigin(0.5);
         this.modalText8 = this.add.text(this.scale.width/2, this.scale.height/2 * 1.05, 'Step 8: Through Left Ladder', { fontSize: '14px', fill: '#fff' }).setOrigin(0.5);
         this.modalText9 = this.add.text(this.scale.width/2, this.scale.height/2 * 1.1, 'Step 9: Down Cave', { fontSize: '14px', fill: '#fff' }).setOrigin(0.5);
         this.modalText10 = this.add.text(this.scale.width/2, this.scale.height/2 * 1.15, 'Step 10: Down Cave', { fontSize: '14px', fill: '#fff' }).setOrigin(0.5);
