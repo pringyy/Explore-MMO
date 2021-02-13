@@ -276,4 +276,11 @@
 * *2 hours* finalised some code
 * *4 hours* Planned final evaluation
 
+### 12 Feb 2021
+* *4 hours* Started writing dissertation
+* *3 hours* Carried out final evaluation
 
+
+### 13 Feb 2021
+* *3 hours* Started writing dissertation
+* *2 hours* Finished final evaluation
