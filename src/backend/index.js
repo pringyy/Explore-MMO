@@ -149,3 +149,4 @@ server.listen(process.env.PORT || 3020, () => {
   console.log(`Server now listening on port ${process.env.PORT || 3020}`);
 });
 
+module.exports = server;

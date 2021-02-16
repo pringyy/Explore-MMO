@@ -149,4 +149,24 @@ router.post("/logout", (req, res) => {
   res.status(200).json({ message: "logged out" });
 });
 
+
+router.post("/deleteAccount",asyncMiddleware(async (req, res) => {
+  User.deleteOne({ username: req.body.username }, function(err, result) {
+    if (err) {
+      res.send(err);
+    } else {
+      res.send(result);
+    }
+  });
+
+  userProgress.deleteOne({ username: req.body.username }, function(err, result) {
+    if (err) {
+      res.send(err);
+    } else {
+      res.send(result);
+    }
+  });
+}));
+
+
 module.exports = router;
