@@ -24,4 +24,4 @@ jobs:
         cd src/backend
         pwd
         npm install
-        npm test
+    - run: npm test
