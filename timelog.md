@@ -284,3 +284,12 @@
 ### 13 Feb 2021
 * *3 hours* Started writing dissertation
 * *2 hours* Finished final evaluation
+
+
+### 16 Feb 2021
+* *3 hours* continued with dissertation work
+* *2.5 hours* Refractored code and fixed some test cases
+
+### 17 Feb 2021
+* *3.5 hours* continued with dissertation work
+* *1.5 hours* Refractored code
