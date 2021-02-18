@@ -100,9 +100,11 @@ app.post("/submitChat", verify, asyncMiddleware(async (req, res, next) => {
 
 app.post("/completedQuest", verify, asyncMiddleware(async (req, res, next) => {
   const user = req.user.info.username;
+  console.log(user);
   var quest = req.body.quest;
   var newvalues = { $set: {[quest]: true}};
   await userProgress.updateOne({username: user}, newvalues);
+  res.status(200).json({ status: "Quest progress updated" });
   })
 );
 
@@ -117,6 +119,7 @@ app.get("/questQuery", verify, asyncMiddleware(async (req, res, next) => {
     var numberCompleted =  Object.values(results[0]).filter(item => item === true).length
     res.send({result: results[0], number: numberCompleted, username:user})
   })
+  
 }));
 
 

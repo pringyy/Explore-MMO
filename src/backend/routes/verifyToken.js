@@ -1,11 +1,17 @@
 const webtoken = require("jsonwebtoken");
 
 module.exports = function (req, res, next) {
-  const token = req.cookies.access_token;
-  if (!token) return res.status(401).send("Access Denied");
+  var verified;
+  const refreshToken = req.body['refreshToken']
+  const accessToken = req.cookies.access_token;
+  if (!refreshToken && !accessToken) return res.status(401).send("Access Denied");
 
   try {
-    const verified = webtoken.verify(token, process.env.TOKEN_SECRET);
+    if (accessToken){
+      verified = webtoken.verify(accessToken, process.env.TOKEN_SECRET); 
+    } else {
+      verified = webtoken.verify(refreshToken, process.env.TOKEN_SECRET);
+    }
     req.user = verified;
     next();
   } catch (err) {

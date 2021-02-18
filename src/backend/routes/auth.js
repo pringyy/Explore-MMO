@@ -101,6 +101,7 @@ router.post(
     res.cookie("access_token", token);
     res.cookie("refreshJwt", refreshToken);
 
+
     // store tokens in memory
     tokenList[refreshToken] = {
       token,
@@ -140,13 +141,16 @@ router.post("/token", (req, res) => {
 
 router.post("/logout", (req, res) => {
   if (req.cookies) {
-    const refreshToken = req.cookies["refreshJwt"];
+    const refreshToken = req.body['refreshToken'];
     if (refreshToken in tokenList) delete tokenList[refreshToken];
     res.clearCookie("refreshJwt");
     res.clearCookie("access_token");
+    res.status(200).json({ message: "logged out" });
+  } else {
+    res.status(401).json();
   }
 
-  res.status(200).json({ message: "logged out" });
+  
 });
 
 
