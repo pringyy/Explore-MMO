@@ -205,6 +205,26 @@ describe('User Authentication Tests', function (){
         });
     });
 
+    it('Tests if reset password is working when the email is correct', function(done){
+        request.post('/forgot-password')
+        .send({ email: 'testuser123@gmail.com'})
+        .expect(200)
+        .end(function(err, res) {
+          done(err);
+        });
+    });   
+
+    it('Tests if reset password is working when the email is incorrect', function(done){
+        request.post('/forgot-password')
+        .send({ email: 'testuser123qwdwqdqwdqwdqwd21331231@gmail.com'})
+        .expect(401)
+        .end(function(err, res) {
+          done(err);
+        });
+    });   
+
+    
+
     it('Tests if delete account is working when username is correct', function(done){
         request.post('/deleteAccount')
         .send({ username: 'testuser123'})
@@ -213,6 +233,10 @@ describe('User Authentication Tests', function (){
           done(err);
         });
     });   
+
+    
+
+    
   
 
 });
