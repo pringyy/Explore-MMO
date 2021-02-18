@@ -77,8 +77,7 @@ router.post(
       req.body.password,
       user.password
     );
-    if (!validPassword)
-	  return res.status(400).send("Invalid username or password");
+    if (!validPassword) return res.status(400).send("Invalid username or password");
 	  
 	const body = {
 		_id: user._id,
@@ -142,33 +141,25 @@ router.post("/token", (req, res) => {
 router.post("/logout", (req, res) => {
   if (req.cookies) {
     const refreshToken = req.body['refreshToken'];
-    if (refreshToken in tokenList) delete tokenList[refreshToken];
-    res.clearCookie("refreshJwt");
-    res.clearCookie("access_token");
-    res.status(200).json({ message: "logged out" });
+    console.log(refreshToken);
+    if (refreshToken in tokenList) {
+      delete tokenList[refreshToken]; 
+      res.clearCookie("refreshJwt");
+      res.clearCookie("access_token");
+      res.status(200).json({ message: "logged out" });
+    } else {
+      res.status(401).json();
+    }
   } else {
     res.status(401).json();
   }
-
-  
+ 
 });
 
 
 router.post("/deleteAccount",asyncMiddleware(async (req, res) => {
   User.deleteOne({ username: req.body.username }, function(err, result) {
-    if (err) {
-      res.send(err);
-    } else {
       res.send(result);
-    }
-  });
-
-  userProgress.deleteOne({ username: req.body.username }, function(err, result) {
-    if (err) {
-      res.send(err);
-    } else {
-      res.send(result);
-    }
   });
 }));
 

@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "nodemon index.js",
-    "test": "mocha --recursive --exit"
+    "test": "nyc mocha --recursive --exit"
   },
   "keywords": [],
   "author": "",
@@ -26,6 +26,7 @@
     "nodemailer": "^6.4.17",
     "nodemon": "^2.0.6",
     "npm": "^7.5.2",
+    "nyc": "^15.1.0",
     "socket.io": "^3.0.3",
     "test-utils": "^1.1.1"
   },

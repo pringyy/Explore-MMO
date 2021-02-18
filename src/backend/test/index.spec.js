@@ -54,9 +54,28 @@ describe('User Authentication Tests', function (){
         });
     });
 
+
+    it('Tests to make sure the system does not register same details twice', function(done){
+        request.post('/register')
+        .send({ username: 'testuser123', email: "testuser123@gmail.com", password: 'testuser123'})
+        .expect(400)
+        .end(function(err, res) {
+          done(err);
+        });
+    });
+
+    it('Tests to make sure the system does not attempt to register inavlid details', function(done){
+        request.post('/register')
+        .send({ username: 'test', email: "testuser123", password: 'test'})
+        .expect(400)
+        .end(function(err, res) {
+          done(err);
+        });
+    });
+
     
 
-    it('Tests if login is working', function(done){
+    it('Tests if login is working with correct details', function(done){
         request.post('/login')
         .send({ username: 'testuser123', password: 'testuser123'})
         .expect(200)
@@ -65,6 +84,16 @@ describe('User Authentication Tests', function (){
             done();
         });
     });
+
+    it('Tests if login is working with incorrect details', function(done){
+        request.post('/login')
+        .send({ username: 'testuser1231312321412', password: 'tqwqweqweqweqw'})
+        .expect(400)
+        .end(function(err, res) {
+            done();
+        });
+    });
+
 
     it('Should return play page to user as they are now logged in', function(done){
         request.get('/play')
@@ -105,7 +134,7 @@ describe('User Authentication Tests', function (){
 
  
 
-    it('Tests to see if updating the token works', function(done){
+    it('Tests to see if updating the token works with correct token', function(done){
         request.post('/token')
         .send({refreshToken: Cookies})
         .expect(200)
@@ -114,7 +143,17 @@ describe('User Authentication Tests', function (){
         });
     });
 
-    it('Tests if logout is working', function(done){
+
+    it('Tests to see if updating the token works with incorrect token', function(done){
+        request.post('/token')
+        .send({refreshToken: "invalidCookieString123"})
+        .expect(401)
+        .end(function(err, res) {
+          done(err);
+        });
+    });
+
+    it('Tests if logout is working with correct cookie', function(done){
         request.post('/logout')
         .send({refreshToken: Cookies})
         .expect(200)
@@ -123,17 +162,23 @@ describe('User Authentication Tests', function (){
         });
     });
 
-    it('Tests if delete account is working', function(done){
+    it('Tests if logout returns error if cookie is invalid', function(done){
+        request.post('/logout')
+        .send({refreshToken: "invalidCookie123"})
+        .expect(401)
+        .end(function(err, res) {
+          done(err);
+        });
+    });
+
+    it('Tests if delete account is working when username is correct', function(done){
         request.post('/deleteAccount')
         .send({ username: 'testuser123'})
         .expect(200)
         .end(function(err, res) {
           done(err);
         });
-    });
-
-
-   
+    });   
   
 
 });
