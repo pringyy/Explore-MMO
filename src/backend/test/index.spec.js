@@ -210,6 +210,7 @@ describe('User Authentication Tests', function (){
         .send({ email: 'testuser123@gmail.com'})
         .expect(200)
         .end(function(err, res) {
+            console.log(res.body)
           done(err);
         });
     });   
@@ -217,12 +218,24 @@ describe('User Authentication Tests', function (){
     it('Tests if reset password is working when the email is incorrect', function(done){
         request.post('/forgot-password')
         .send({ email: 'testuser123qwdwqdqwdqwdqwd21331231@gmail.com'})
-        .expect(401)
+        .expect(400)
         .end(function(err, res) {
+            
           done(err);
         });
     });   
 
+
+    it('Tests if reset password is throwing an error when the token is incorrect', function(done){
+        request.post('/reset-password')
+        .send({ password: "newpassword123",
+            verifiedPassword: "newpassword123",
+            token: "Wrong token"})
+        .expect(400)
+        .end(function(err, res) {
+          done(err);
+        });
+    });   
     
 
     it('Tests if delete account is working when username is correct', function(done){

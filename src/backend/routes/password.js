@@ -46,7 +46,7 @@ router.post('/forgot-password', asyncMiddleware(async (req, res, next) => {
   
     await smtpTransport.sendMail(data);
  
-    res.status(200).json({ message: 'A password reset link has been sent to your email and will only be valid for 10 minutes!' });
+    res.status(200).json({message: 'A password reset link has been sent to your email and will only be valid for 10 minutes!' });
   }));
 
   router.post('/reset-password', asyncMiddleware(async (req, res, next) => {
