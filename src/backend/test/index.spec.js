@@ -132,7 +132,41 @@ describe('User Authentication Tests', function (){
         });
     });
 
- 
+    it('Tests if database is updated when quest 2 is completed', function(done){
+        request.post('/completedQuest')
+        .send({quest: 'quest2', refreshToken: Cookies})
+        .expect(200)
+        .end(function(err, res) {
+          done(err);
+        });
+    });
+
+    it('Tests if database is updated when quest 3 is completed', function(done){
+        request.post('/completedQuest')
+        .send({quest: 'quest3', refreshToken: Cookies})
+        .expect(200)
+        .end(function(err, res) {
+          done(err);
+        });
+    });
+
+    it('Tests if database is updated when quest 4 is completed', function(done){
+        request.post('/completedQuest')
+        .send({quest: 'quest4', refreshToken: Cookies})
+        .expect(200)
+        .end(function(err, res) {
+          done(err);
+        });
+    });
+
+    it('Tests if database is updated when quest 5 is completed', function(done){
+        request.post('/completedQuest')
+        .send({quest: 'quest5', refreshToken: Cookies})
+        .expect(200)
+        .end(function(err, res) {
+          done(err);
+        });
+    });
 
     it('Tests to see if updating the token works with correct token', function(done){
         request.post('/token')
