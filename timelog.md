@@ -293,3 +293,14 @@
 ### 17 Feb 2021
 * *3.5 hours* continued with dissertation work
 * *1.5 hours* Refractored code
+
+### 27 Feb 2021
+* *6 hours* continued with dissertation work
+
+
+### 28 Feb 2021
+* *5 hours* continued with dissertation work
+
+### 1 Mar 2021
+* *7 hours* continued with dissertation work
+
