@@ -67,7 +67,7 @@ io.on("connection", function (socket) {
 
   //Handles disconnect
   socket.on("disconnect", function () {
-    console.log(socket.handshake.query.name + "has disconnected from the server");
+    console.log(socket.handshake.query.name + " has disconnected from the server");
     delete connectedPlayers[socket.id];
     io.emit("remove", socket.id);
   });
@@ -137,7 +137,12 @@ app.get("/register", function (req, res) {
   res.sendFile(__dirname + "/public/register.html");
 });
 
-//Sends the game page to the user
+//Sends the forgot password page to the user
+app.get("/forgotpassword", function (req, res) {
+  res.sendFile(__dirname + "/public/forgotPassword.html");
+});
+
+//Sends the rgame page to the user
 app.get("/play", verify, function (req, res) {
   res.sendFile(__dirname + "/public/game.html");
 });

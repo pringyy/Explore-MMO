@@ -13,7 +13,6 @@ class quest2Ui extends Phaser.Scene {
     this.setupUiElements();
     this.setupEvents();
 
-
     //Used to calculate time passed when the user does not have the tab active
     this.game.events.on('hidden',function(){
       this.hiddenTimeStamp = performance.now();
@@ -22,9 +21,6 @@ class quest2Ui extends Phaser.Scene {
     this.game.events.on('visible',function(){
       timerDelay = (performance.now()- this.hiddenTimeStamp)/1000
     })
-
-    
-
   };
 
   setupUiElements () {  
@@ -42,40 +38,39 @@ class quest2Ui extends Phaser.Scene {
 
   setupEvents(){
     this.gameScene.events.on('coinCollected', (score) => {
-        this.scoreText.setText(`Coins left: ${score}`);
-    })
+    this.scoreText.setText(`Coins left: ${score}`);
+  });
 
-    this.gameScene.events.on('completedQuest', (score) => {
-      this.scene.stop("quest2Ui");
-      completedQuest('quest2');
-      checkQuest();
-    })
+  this.gameScene.events.on('completedQuest', (score) => {
+    this.scene.stop("quest2Ui");
+    completedQuest('quest2');
+    checkQuest();
+  });
   };
 
   endScene(){
     location.reload();
-  }
+  };
 
   formatTime(seconds){
-      var minutes = Math.floor(seconds/60);
-      var partInSeconds = seconds%60;
-      partInSeconds = partInSeconds.toString().padStart(2,'0');
-      return `${minutes} mins ${partInSeconds} secs`;
-  }
+    var minutes = Math.floor(seconds/60);
+    var partInSeconds = seconds%60;
+    partInSeconds = partInSeconds.toString().padStart(2,'0');
+    return `${minutes} mins ${partInSeconds} secs`;
+  };
 
   update(){
   
-    this.time1 = ((Math.floor(this.timer.delay - this.timer.elapsed))/1000 - timerDelay).toFixed(0);
-    this.timeLeft.setText('Time left: ' + this.formatTime(this.time1));
+    this.time = ((Math.floor(this.timer.delay - this.timer.elapsed))/1000 - timerDelay).toFixed(0);
+    this.timeLeft.setText('Time left: ' + this.formatTime(this.time));
     
     if (((Math.floor(this.timer.delay - this.timer.elapsed))/1000 - timerDelay).toFixed(0)<=0){
       timerDelay = 0;
       this.scene.pause("Game");
       this.scene.start("failedQuest");
       this.scene.stop("quest2Ui");
-    }   
-  }
-  
+    };   
+  };
 };
   
   

@@ -28,11 +28,9 @@ class quest3Ui extends Phaser.Scene {
       })
     };
   
-    
     endScene(){
       location.reload();
     }
-    
   };
   
   

@@ -41,7 +41,7 @@ router.post('/forgot-password', asyncMiddleware(async (req, res, next) => {
       to: user.email,
       from: email,
       subject: 'Explore MMO Password Reset',
-      text: "You username is: " + user.username +". Reset you password using " + `${process.env.URL}${process.env.PORT || 3020}/reset-password.html?token=${token}`,
+      text: "You username is: " + user.username +". Reset you password using " + `${process.env.URL}${process.env.PORT || 3020}/resetPassword.html?token=${token}`,
       }
   
     await smtpTransport.sendMail(data);
@@ -70,8 +70,6 @@ router.post('/forgot-password', asyncMiddleware(async (req, res, next) => {
     user.resetToken = undefined;
     user.resetTokenExp = undefined;
     await user.save();
-   
-
    
     res.status(200).json({ message: 'password updated' });
   }));
