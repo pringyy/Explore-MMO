@@ -7,7 +7,6 @@ class initialiseAssets extends Phaser.Scene {
         });
     }
     
-    
     preload() {
       this.loadSprites();
       this.loadTileMap();
@@ -48,8 +47,6 @@ class initialiseAssets extends Phaser.Scene {
       this.load.image("sword", "assets/world/sword.png");
       this.load.image("info", "assets/images/info.png");
       this.load.image("info2", "assets/images/info2.png");
-      
-      
     }
 
     create() {

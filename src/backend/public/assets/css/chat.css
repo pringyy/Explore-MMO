@@ -1,17 +1,4 @@
-::placeholder {
-  /* Chrome, Firefox, Opera, Safari 10.1+ */
-  color: gray;
-  opacity: 1; /* Firefox */
-}
-
-ul {
-  list-style: none;
-  word-wrap: break-word;
-}
-
-#chatContainer {
-  width: calc(100% - 800px);
-}
+/*THIS IS THE CSS CODE USED FOR THE GAME CHAT*/
 
 .flex-container {
   display: flex;
@@ -23,10 +10,6 @@ ul {
   background-color: #f1f1f1;
 }
 
-
-
-/* Font */
-
 .messages {
   font-size: 100%;
 }
@@ -35,14 +18,26 @@ ul {
   font-size: 100%;
 }
 
+::placeholder {
+  color: gray;
+  opacity: 1; 
+}
+
+ul {
+  list-style: none;
+  word-wrap: break-word;
+}
+
+#chatContainer {
+  width: calc(100% - 800px);
+}
+
 .log {
   color: gray;
   font-size: 70%;
   margin: 5px;
   text-align: center;
 }
-
-/* Messages */
 
 .chatArea {
   max-height: 550px;

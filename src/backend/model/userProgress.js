@@ -32,11 +32,6 @@ const userProgress= new mongoose.Schema({
         type: Boolean,
         default: false
     },
-
-    gameComplete: {
-        type: Boolean,
-        default: false
-    },
 });
 
 module.exports = mongoose.model('userProgress', userProgress);

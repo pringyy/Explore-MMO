@@ -37,7 +37,7 @@ class gameInformation extends Phaser.Scene {
             this.infoText9= this.add.text(this.scale.width/2, this.scale.height/2*1.45  ,"You can enter any building or cave by simply walking into the entrance!", {  fontSize: '14px'}).setOrigin(0.5);
             this.infoText10= this.add.text(this.scale.width/2, this.scale.height/2*1.55  ,"You can pick up items for quests by simply walking over them!", {  fontSize: '14px'}).setOrigin(0.5);
       
-      this.titleButton = new UiButton(this, this.scale.width/2, this.scale.height/2*1.8, 'button1', 'button2', 'Close', this.startScene.bind(this, 'Information'));
+      this.titleButton = new button(this, this.scale.width/2, this.scale.height/2*1.8, 'button1', 'button2', 'Close', this.startScene.bind(this, 'Information'));
     }
   
     startScene(targetScene){

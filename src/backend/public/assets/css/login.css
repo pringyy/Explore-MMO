@@ -68,8 +68,8 @@ body, html {
 
 /*CSS used to fade in images on Login page*/
 img {opacity:0;
--moz-transition: opacity 7s; /* Firefox 4 */
--webkit-transition: opacity 7s; /* Safari and Chrome */
+-moz-transition: opacity 7s; 
+-webkit-transition: opacity 7s; 
 -o-transition: opacity 7s;
 transition: opacity 7s;
 }

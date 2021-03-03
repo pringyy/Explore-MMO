@@ -1,4 +1,4 @@
-class UiButton extends Phaser.GameObjects.Container {
+class button extends Phaser.GameObjects.Container {
     
   constructor(scene, x, y, key, hoverKey, text, targetCallback){
     super(scene, x, y);

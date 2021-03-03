@@ -40,7 +40,7 @@ class quest4Ui extends Phaser.Scene {
 
      this.timeLeft= this.add.text(this.scale.width/2, this.scale.height/2 * 1.15, '',{ fontSize: '16px', fill: '#fff' })
       this.timeLeft.setOrigin(0.5);
-     this.quitButton = new UiButton(this, this.scale.width/2, this.scale.height/2*1.4, 'button1', 'button2', 'Give in to Death', this.endScene.bind(this, 'quest4Ui'));
+     this.quitButton = new button(this, this.scale.width/2, this.scale.height/2*1.4, 'button1', 'button2', 'Give in to Death', this.endScene.bind(this, 'quest4Ui'));
     };
 
     endScene(targetScene){

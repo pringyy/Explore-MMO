@@ -15,7 +15,7 @@ class mountainGuide extends Phaser.Scene {
     setupUiElements () {
         this.modalBox = this.add.rectangle(this.scale.width/2, this.scale.height/2, this.scale.width *0.8, this.scale.height*0.6, '#000000', 0.7).setOrigin(0.5);
         this.titleText = this.add.text(this.scale.width/2, this.scale.height/2 * 0.6, "Route to top of Mount Kong", { fontSize: '25px', fill: '#fff' }).setOrigin(0.5);
-        this.closeButton = new UiButton(this, this.scale.width/2, this.scale.height/2*1.45, 'button1', 'button2', 'Close', this.endScene.bind(this, 'mountainGuide'));
+        this.closeButton = new button(this, this.scale.width/2, this.scale.height/2*1.45, 'button1', 'button2', 'Close', this.endScene.bind(this, 'mountainGuide'));
         this.modalText = this.add.text(this.scale.width/2, this.scale.height/2 * 0.7, 'Step 1:Down Cave ', { fontSize: '14px', fill: '#fff' }).setOrigin(0.5);
         this.modalText2 = this.add.text(this.scale.width/2, this.scale.height/2 * 0.75, 'Step 2: Up Cave ', { fontSize: '14px', fill: '#fff' }).setOrigin(0.5);
         this.modalText3 = this.add.text(this.scale.width/2, this.scale.height/2 * 0.8, 'Step 3: Through Ladder', { fontSize: '14px', fill: '#fff' }).setOrigin(0.5);

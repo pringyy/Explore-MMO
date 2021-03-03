@@ -20,7 +20,7 @@ class completeGame extends Phaser.Scene {
         this.modalText3 = this.add.text(this.scale.width/2, this.scale.height/2*1.0, 'Robert: "The purpose of this game was to help develop communication skills', { fontSize: '14px', fill: '#fff' }).setOrigin(0.5);
         this.modalText4 = this.add.text(this.scale.width/2, this.scale.height/2*1.1, 'Robert: "I hope you learned a thing or two and had fun!"', {fontSize: '14px', fill: '#fff'}).setOrigin(0.5);
         this.modalText5 = this.add.text(this.scale.width/2, this.scale.height/2*1.2, 'Robert: "You can still replay all the quests, and chat to other players!"', {fontSize: '14px', fill: '#fff'}).setOrigin(0.5);
-        this.closeButton = new UiButton(this, this.scale.width/2, this.scale.height/2*1.4, 'button1', 'button2', 'Close', this.endScene.bind(this, 'completeGame'));
+        this.closeButton = new button(this, this.scale.width/2, this.scale.height/2*1.4, 'button1', 'button2', 'Close', this.endScene.bind(this, 'completeGame'));
     };
 
     endScene(targetScene){

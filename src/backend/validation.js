@@ -1,8 +1,6 @@
-//Validation
 const Joi = require('@hapi/joi');
 
-
-//Used for register validation
+//Used to validate the register form
 const registerValidation = data => {
     const schema  = Joi.object ({
         username: Joi.string().min(3).required(),
@@ -12,7 +10,7 @@ const registerValidation = data => {
     return schema.validate(data);
 };
 
-//Used for login validation
+//Used to validate the login form
 const loginValidation = data => {
     const schema  = Joi.object ({
         username: Joi.string().min(3).required(),

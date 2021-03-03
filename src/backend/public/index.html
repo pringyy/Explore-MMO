@@ -1,5 +1,6 @@
 <!doctype html>
 <html lang="en">
+
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=0.7" charset="UTF-8">  
   <title>Login</title>
@@ -34,9 +35,9 @@
                             <label for="inputPassword"></label>
                             <input type="password"  class="form-control"  placeholder="Password" id="inputPassword" required>
                           </div>
+
                           <a href="/forgot-password.html"><center>Forgot your username or password?</center></a>
                           <br>
-                
                           <a  onClick="login()" class="btn btn-lg btn-primary btn-block">Sign in</a>
                           <br>
                           <a href="/register"><center>Not got an account? Register here.</center></a>
@@ -50,35 +51,33 @@
       </div>
     </div>
   </div>
-
-  <script>
-    function login() {
-      var data = {
-        username: document.getElementById("inputUsername").value,
-        password: document.getElementById("inputPassword").value
-      };
-      $.ajax({
-        type: 'POST',
-        url: '/login',
-        data,
-        success: function (data) {
-         
-          toastr.success('Login Succesful')
-          window.location.replace('/play')
-        
-        },
-        error: function (xhr) {
-          
-          toastr.error(String(xhr.responseText))
-        }
-      });
-    }
-  </script>
-
-
-  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.1/jquery.min.js"></script>
-  <script src="assets/toastr.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 </body>
 
+<script>
+function login() {
+  var data = {
+    username: document.getElementById("inputUsername").value,
+    password: document.getElementById("inputPassword").value
+  };
+  $.ajax({
+    type: 'POST',
+    url: '/login',
+    data,
+    success: function (data) {
+      
+      toastr.success('Login Succesful')
+      window.location.replace('/play')
+    
+    },
+    error: function (xhr) {
+      
+      toastr.error(String(xhr.responseText))
+    }
+  });
+}
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.1/jquery.min.js"></script>
+<script src="assets/toastr.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 </html>

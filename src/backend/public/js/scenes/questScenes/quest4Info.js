@@ -19,11 +19,11 @@ class quest4Info extends Phaser.Scene {
 
          if(!this.complete){
             this.titleText = this.add.text(this.scale.width/2, this.scale.height/2 * 0.5, 'Uncompleted Quest', { fontSize: '32px', fill: '#fff' });
-            this.startButton = new UiButton(this, this.scale.width/2, this.scale.height/2*1.6, 'button1', 'button2', 'Okay', this.startScene.bind(this, 'quest4Ui'));
+            this.startButton = new button(this, this.scale.width/2, this.scale.height/2*1.6, 'button1', 'button2', 'Okay', this.startScene.bind(this, 'quest4Ui'));
          } else {
             this.titleText = this.add.text(this.scale.width/2, this.scale.height/2 * 0.5, 'Already Completed Quest', { fontSize: '32px', fill: '#fff' });
-            this.startButton = new UiButton(this, this.scale.width/2, this.scale.height/2*1.6, 'button1', 'button2', 'Redo Quest', this.startScene.bind(this, 'quest4Ui'));
-            this.quitButton = new UiButton(this, this.scale.width/2 * 1.7, this.scale.height/2  * 0.4, 'cross1', 'cross2', '', this.endScene.bind(this, 'quest4Info'));
+            this.startButton = new button(this, this.scale.width/2, this.scale.height/2*1.6, 'button1', 'button2', 'Redo Quest', this.startScene.bind(this, 'quest4Ui'));
+            this.quitButton = new button(this, this.scale.width/2 * 1.7, this.scale.height/2  * 0.4, 'cross1', 'cross2', '', this.endScene.bind(this, 'quest4Info'));
             this.quitButton.setScale(0.7);
          }
          this.helpText = this.add.text(this.scale.width/2, this.scale.height/2 * 0.8, 'Death: "Your time has come"', { fontSize: '18px', fill: '#fff' });

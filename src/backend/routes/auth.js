@@ -8,76 +8,72 @@ const { registerValidation, loginValidation } = require("../validation");
 const asyncMiddleware = require("../middleware/asyncMiddleware");
 const userProgress = require("../model/userProgress");
 
-
 const tokenList = {};
 
-//Register
-router.post(
-  "/register",
-  asyncMiddleware(async (req, res) => {
-    const { error } = registerValidation(req.body);
+//Backend functionality for registering
+router.post("/register",asyncMiddleware(async (req, res) => {
+    
+  const { error } = registerValidation(req.body);
 
-    //Sends error message if data is not valid
-    if (error)
-      return res
-        .status(400)
-        .send(
-          error.details.map((x) => x.message).join(", ")
-        );
+  //Sends error message if data is not valid
+  if (error)
+    return res
+      .status(400)
+      .send(error.details.map((x) => x.message).join(", "));
 
-    //Checks if user details are already in the database
-    const usernameExist = await User.findOne({ username: req.body.username });
-    const emailExist = await User.findOne({ email: req.body.email });
+  //Checks if user details are already in the database
+  const usernameExist = await User.findOne({ username: req.body.username });
+  const emailExist = await User.findOne({ email: req.body.email });
 
-    //Returns required information to the user
-    if (emailExist && usernameExist)
-      return res.status(400).send("Email and Username already exists");
-    if (emailExist) return res.status(400).send("Email already exists");
-    if (usernameExist) return res.status(400).send("Username already exists");
+  //Returns required information to the user
+  if (emailExist && usernameExist) return res.status(400).send("Email and Username already exists");
+  if (emailExist) return res.status(400).send("Email already exists");
+  if (usernameExist) return res.status(400).send("Username already exists");
 
-    //Hashes the password using Bcrypt
-    const salt = await bcrypt.genSaltSync(10);
-    const hashPassword = await bcrypt.hashSync(req.body.password, salt);
+  //Hashes the password using Bcrypt
+  const salt = await bcrypt.genSaltSync(10);
+  const hashPassword = await bcrypt.hashSync(req.body.password, salt);
 
-    //Creates a new user
-    const user = new User({
-      username: req.body.username,
-      email: req.body.email,
-      password: hashPassword,
-    });
+  //Creates a new user
+  const user = new User({
+    username: req.body.username,
+    email: req.body.email,
+    password: hashPassword,
+  });
 
-    const userprogress = new userProgress({
-      username: req.body.username,
-    });
+  //Creates a new user a user progress record
+  const userprogress = new userProgress({
+    username: req.body.username,
+  });
 
+  //Tries to save the user to MongoDB
+  try {
+    await user.save();  
+    await userprogress.save(); 
+    res.send("Success");
+  } catch (err) {
+    res.status(400).send(err);
+  }
+}));
 
-    try {
-      await user.save();  
-       await userprogress.save(); res.send("Test Successfully");
-    } catch (err) {
-      res.status(400).send(err);
-    }
-  })
-);
+//Backend functionality for logging in
+router.post("/login",asyncMiddleware(async (req, res) => {
+    
+  const { error } = loginValidation(req.body);
 
-//Login
-router.post(
-  "/login",
-  asyncMiddleware(async (req, res) => {
-    const { error } = loginValidation(req.body);
+  //Checks if username exists
+  const user = await User.findOne({ username: req.body.username });
 
-    //Checks if username exists
-    const user = await User.findOne({ username: req.body.username });
-    if (!user) {
-  
-      return res.status(400).send("Incorrect username or password");
-	}
-    //Checks if password entered matches the usernames actual password
-    const validPassword = await bcrypt.compare(
-      req.body.password,
-      user.password
-    );
-    if (!validPassword) return res.status(400).send("Invalid username or password");
+  if (!user) {
+    return res.status(400).send("Incorrect username or password");
+  }
+
+  //Checks if passwords match
+  const validPassword = await bcrypt.compare(
+    req.body.password,
+    user.password
+  );
+  if (!validPassword) return res.status(400).send("Invalid username or password");
 	  
 	const body = {
 		_id: user._id,
@@ -85,37 +81,38 @@ router.post(
 		username: user.username,
 	};
 
-
-    //Create and assign a JSON web token
-    const token = webtoken.sign({info: body}, process.env.TOKEN_SECRET, {
-      expiresIn: 300,
+  //Creates and signs a JSON webtoken
+  const token = webtoken.sign({info: body}, process.env.TOKEN_SECRET, {
+    expiresIn: 300,
 	});
-	
-    const refreshToken = webtoken.sign(
-      { info: body },
-      process.env.TOKEN_SECRET,
-      { expiresIn: 10000 }
-    );
+  
+  //Creates and signs a refresh JSON token
+  const refreshToken = webtoken.sign({info: body}, process.env.TOKEN_SECRET, { 
+    expiresIn: 10000 
+  });
 
-    res.cookie("access_token", token);
-    res.cookie("refreshJwt", refreshToken);
+  //Creates cookies for session validation
+  res.cookie("access_token", token);
+  res.cookie("refreshJwt", refreshToken);
 
+  //Stores a new token in memory
+  tokenList[refreshToken] = {
+    token,
+    refreshToken,
+    email: user.email,
+    _id: user._id,
+    username: user.username,
+  };
 
-    // store tokens in memory
-    tokenList[refreshToken] = {
-      token,
-      refreshToken,
-      email: user.email,
-      _id: user._id,
-      username: user.username,
-    };
+  //sends the cookies to the user
+  return res.status(200).json({token, refreshToken});
+}));
 
-    return res.status(200).json({ token, refreshToken });
-  })
-);
-
+//Backend functionality for updating tokens
 router.post("/token", (req, res) => {
+
   const { refreshToken } = req.body;
+
   if (refreshToken in tokenList) {
     const body = {
       email: tokenList[refreshToken].email,
@@ -123,25 +120,29 @@ router.post("/token", (req, res) => {
       username: tokenList[refreshToken].username,
     };
 
+    //Signs the new JSON webtoken
     const token = webtoken.sign({info: body}, process.env.TOKEN_SECRET, {
       expiresIn: 300,
     });
 
-    // update jwt
+    //Update the JSON webtoken
     res.cookie("access_token", token);
     tokenList[refreshToken].token = token;
-  
 
+    //Sends updated JSON webtoken to the user
     res.status(200).json({ token });
   } else {
     res.status(401).json();
   }
 });
 
+
+//Backend functionality for logging a user out
 router.post("/logout", (req, res) => {
+
   if (req.cookies) {
     const refreshToken = req.body['refreshToken'];
-    console.log(refreshToken);
+
     if (refreshToken in tokenList) {
       delete tokenList[refreshToken]; 
       res.clearCookie("refreshJwt");
@@ -153,15 +154,13 @@ router.post("/logout", (req, res) => {
   } else {
     res.status(401).json();
   }
- 
 });
 
-
+//Backend functionality for deleting an account for testing purposes
 router.post("/deleteAccount",asyncMiddleware(async (req, res) => {
   User.deleteOne({ username: req.body.username }, function(err, result) {
       res.send(result);
   });
 }));
-
 
 module.exports = router;

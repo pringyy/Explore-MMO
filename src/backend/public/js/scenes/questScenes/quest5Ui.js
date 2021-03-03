@@ -38,7 +38,7 @@ class quest5Ui extends Phaser.Scene {
       });
 
       this.timeLeft= this.add.text(35, 65, '',{ backgroundColor: '	rgb(0, 0, 0)',  fontSize: '16px', fill: '#fff' });this.timeLeft.alpha=0.7;
-      this.quitButton = new UiButton(this, this.scale.width*0.86, this.scale.height*0.05, 'button1', 'button2', 'Give up/Respawn', this.endScene.bind(this, 'quest2Ui'));
+      this.quitButton = new button(this, this.scale.width*0.86, this.scale.height*0.05, 'button1', 'button2', 'Give up/Respawn', this.endScene.bind(this, 'quest2Ui'));
        this.quitButton.setScale(0.7);
     
     };

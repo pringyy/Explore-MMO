@@ -1,3 +1,4 @@
+//Code to retrieve Cookie and send it to backend taken from https://www.w3schools.com/js/js_cookies.asp
 function getCookie(cname) {
   const name = `${cname}=`;
   const decodedCookie = decodeURIComponent(document.cookie);
@@ -14,6 +15,7 @@ function getCookie(cname) {
   return '';
 }
 
+//Every 10000ms check the token is valid in backend to make sure session is valid
 setInterval(function () {
   $.ajax({
     type: "POST",
@@ -22,9 +24,6 @@ setInterval(function () {
       refreshToken: getCookie("refreshJwt"),
     },
     success: function (data) {},
-    error: function (xhr) {
-      window.location.replace("/");
-    },
-
+    error: function (xhr) {window.location.replace("/");},
   });
 }, 10000);
