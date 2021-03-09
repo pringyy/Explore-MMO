@@ -304,3 +304,11 @@
 ### 1 Mar 2021
 * *7 hours* continued with dissertation work
 
+### 8 Mar 2021
+* *6.5 hours* continued with dissertation work and finished introduction chapter
+
+### 9 Mar 2021
+* *4 hours* continued with dissertation work
+
+
+
