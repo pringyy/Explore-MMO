@@ -309,6 +309,10 @@
 
 ### 9 Mar 2021
 * *4 hours* continued with dissertation work
+* *3 hours* Worked on evaluation
+*
+### 10 Mar 2021
+* *4 hours* continued with dissertation work
 
 
 
