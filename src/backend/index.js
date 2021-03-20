@@ -12,6 +12,7 @@ const asyncMiddleware = require("./middleware/asyncMiddleware");
 const webtoken = require("jsonwebtoken");
 const ChatSchema = require('./model/chat');
 const userProgress = require('./model/userProgress');
+const { connect } = require("http2");
 
 //Establish connection to MongoDB database
 const uri = process.env.DB_CONNECT;

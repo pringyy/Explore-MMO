@@ -15,6 +15,7 @@ class initialiseAssets extends Phaser.Scene {
     
     loadSprites() {
       checkQuest();
+      //Loads all the sprites for the game
       this.load.spritesheet("Zak", "assets/sprites/Zak.png", {frameWidth: 32,frameHeight: 48,});
       this.load.spritesheet("player", "assets/sprites/Player.png", {frameWidth: 32,frameHeight: 48,});
       this.load.spritesheet("otherplayer", "assets/sprites/OtherPlayer.png", {frameWidth: 32,frameHeight: 48,});
@@ -32,11 +33,11 @@ class initialiseAssets extends Phaser.Scene {
     }
 
     loadImages(){
+       //Load UI element
       this.load.image("logo", "assets/images/logo2.png");
       this.load.image("arrowkeys", "assets/images/arrowKeys.png");
       this.load.image("cross1", "assets/images/cross.png");
       this.load.image("cross2", "assets/images/cross2.png");
-      //Load UI element
       this.load.image("button1", "assets/images/button1.png");
       this.load.image("button2", "assets/images/button2.png");
       //Load tilesets and objects for map

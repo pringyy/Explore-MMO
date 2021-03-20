@@ -19,7 +19,7 @@ const smtpTransport = nodemailer.createTransport({
 
 const router = express.Router();
 
-router.post('/forgot-password', asyncMiddleware(async (req, res, next) => {
+router.post('/forgotPassword', asyncMiddleware(async (req, res, next) => {
     const { email } = req.body;
 
     const user = await UserModel.findOne({ email });
@@ -49,7 +49,7 @@ router.post('/forgot-password', asyncMiddleware(async (req, res, next) => {
     res.status(200).json({message: 'A password reset link has been sent to your email and will only be valid for 10 minutes!' });
   }));
 
-  router.post('/reset-password', asyncMiddleware(async (req, res, next) => {
+  router.post('/resetPassword', asyncMiddleware(async (req, res, next) => {
     const user = await UserModel.findOne({ resetToken: req.body.token, resetTokenExp: { $gt: Date.now() } });
     if (!user) {
       res.status(400).json({ 'message': 'invalid token' });
