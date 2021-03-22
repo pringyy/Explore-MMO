@@ -334,3 +334,8 @@
 
 ### 20 Mar 2021
 * *3.5 hours* continued with dissertation work
+
+### 21 Mar 2021
+* *0.5 hours* dissertation meeting
+* *1 hours* Started writing README
+* *3 hours* continued with Dissertation work
