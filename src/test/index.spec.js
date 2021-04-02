@@ -199,7 +199,7 @@ describe('Backend Tests', function (){
   });
 
   it('Tests if reset password is working when the email is correct', function(done){
-      request.post('/forgot-password')
+      request.post('/forgotPassword')
       .send({ email: 'testuser123@gmail.com'})
       .expect(200)
       .end(function(err, res) {
@@ -208,7 +208,7 @@ describe('Backend Tests', function (){
   });   
 
   it('Tests if reset password is working when the email is incorrect', function(done){
-      request.post('/forgot-password')
+      request.post('/forgotPassword')
       .send({ email: 'testuser123qwdwqdqwdqwdqwd21331231@gmail.com'})
       .expect(400)
       .end(function(err, res) {
@@ -218,7 +218,7 @@ describe('Backend Tests', function (){
   });   
 
   it('Tests if reset password is throwing an error when the token is incorrect', function(done){
-      request.post('/reset-password')
+      request.post('/resetPassword')
       .send({ password: "newpassword123",
           verifiedPassword: "newpassword123",
           token: "Wrong token"})
