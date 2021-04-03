@@ -1,0 +1,58 @@
+/*THIS IS THE CSS CODE USED FOR THE GAME CHAT*/
+
+.flex-container {
+  display: flex;
+  flex-wrap: wrap;
+  align-content: stretch;
+}
+
+.flex-container > div {
+  background-color: #f1f1f1;
+}
+
+.messages {
+  font-size: 100%;
+}
+
+.inputMessage {
+  font-size: 100%;
+}
+
+::placeholder {
+  color: gray;
+  opacity: 1; 
+}
+
+ul {
+  list-style: none;
+  word-wrap: break-word;
+}
+
+#chatContainer {
+  width: calc(100% - 800px);
+}
+
+.log {
+  color: gray;
+  font-size: 70%;
+  margin: 5px;
+  text-align: center;
+}
+
+.chatArea {
+  max-height: 550px;
+  height: 550px;
+  overflow-y: scroll;
+}
+
+.messages {
+  overflow-y: scroll;
+}
+
+.username {
+  font-weight: 700;
+  overflow: hidden;
+  padding-right: 15px;
+  text-align: right;
+}
+
