@@ -205,7 +205,7 @@ describe('Backend Tests', function (){
       .end(function(err, res) {
           
         done(err);
-      });n
+      });
   });   
 
   it('Tests if reset password is throwing an error when the token is incorrect', function(done){
