@@ -13,8 +13,8 @@ const pass = process.env.PASSWORD;
 const smtpTransport = nodemailer.createTransport({
   service: 'Gmail',
   auth: {
-    user: 'exploremmog@gmail.com',
-    pass: 'RiCkRoLlEd2020'
+    user: email,
+    pass: pass
   }
 });
 
