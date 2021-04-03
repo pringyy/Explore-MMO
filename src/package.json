@@ -1,0 +1,36 @@
+{
+  "name": "explore",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon index.js",
+    "test": "nyc mocha --recursive --exit"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@hapi/joi": "^17.1.1",
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.19.0",
+    "chai": "^4.3.0",
+    "chai-http": "^4.3.0",
+    "cookie-parser": "^1.4.5",
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "jsonwebtoken": "^8.5.1",
+    "mocha": "^8.2.1",
+    "mongoose": "^5.12.3",
+    "nodemailer": "^6.4.17",
+    "nodemon": "^2.0.6",
+    "npm": "^7.5.2",
+    "nyc": "^15.1.0",
+    "socket.io": "^3.0.3",
+    "test-utils": "^1.1.1"
+  },
+  "devDependencies": {
+    "supertest": "^6.1.3"
+  }
+}

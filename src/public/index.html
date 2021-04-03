@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=0.7" charset="UTF-8">  
+  <title>Login</title>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <link rel="stylesheet" type="text/css" href ="assets/css/login.css"></style>
+  <link href="assets/css/toastr.min.css" rel="stylesheet"/>
+</head>
+
+<body>
+  <div class="background">
+    <div class="background-cover">
+      <div class="outer">
+        <div class="middle">  
+          <img onload="this.style.opacity='0.8'" src="assets/images/logo.png" class= "center" width = "120%"  > <!-- Displays ORGE logo-->  
+          <div class="transparency_bg">
+            
+            <div class="container">
+              <div class="row">
+                <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
+                  <div class="card card-signin my-5">
+                    <div class="card-body">
+                       <form class="form-signin" method="post">
+
+                          <div class="form-label-group">
+                            <label for="inputUsername"></label>
+                            <input type="text"  class="form-control"  placeholder="Username" id="inputUsername" required autofocus>
+                          </div>
+
+                  
+                          <div class="form-label-group">
+                            <label for="inputPassword"></label>
+                            <input type="password"  class="form-control"  placeholder="Password" id="inputPassword" required>
+                          </div>
+
+                          <a href="/forgotpassword"><center>Forgot your username or password?</center></a>
+                          <br>
+                          <a  onClick="login()" class="btn btn-lg btn-primary btn-block">Sign in</a>
+                          <br>
+                          <a href="/register"><center>Not got an account? Register here.</center></a>
+                        </form>
+                      </div>
+                   </div>
+                </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+
+<script>
+function login() {
+  var data = {
+    username: document.getElementById("inputUsername").value,
+    password: document.getElementById("inputPassword").value
+  };
+  $.ajax({
+    type: 'POST',
+    url: '/login',
+    data,
+    success: function (data) {
+      
+      toastr.success('Login Succesful')
+      window.location.replace('/play')
+    
+    },
+    error: function (xhr) {
+      
+      toastr.error(String(xhr.responseText))
+    }
+  });
+}
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.1/jquery.min.js"></script>
+<script src="js/toastr.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</html>

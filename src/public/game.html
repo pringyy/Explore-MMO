@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+ 
+<head>
+  <meta charset="utf-8">
+  <title>Explore IO</title>
+  <script src="//cdn.jsdelivr.net/npm/phaser@3.16.2/dist/phaser.min.js"></script>
+  <script src="/socket.io/socket.io.js"></script>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+  <link rel="stylesheet" href="assets/css/chat.css">
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script> 
+</head>
+ 
+<body>
+  <nav>
+    <div class="nav-wrapper black">
+      <a  class="brand-logo center"><img class="responsive-img" id="logo" src="assets/images/logo2.png" width = 55%></a>
+      <ul id="nav-mobile" class="right hide-on-med-and-down">
+        <a  onClick = "logout()" class="waves-effect red waves-orange btn"><i class="material-icons right">power_settings_new</i>Log Off</a>
+      </ul>
+    </div>
+  </nav>
+  <div class="flex-container">
+    <div id="content"></div>
+    <div id="chatContainer">
+      <div class="chatArea">
+        <ul id="messages" class="messages"></ul>
+      </div>
+      <input id='input' class="inputMessage" placeholder="Type here..." type="text">
+    </div>
+  </div>
+</body>
+
+<!--Loads in scripts for the games-->
+<script src="js/classes/button.js" charset="utf-8"></script>
+<script src="js/scenes/initialiseAssets.js" charset="utf-8"></script>
+<script src="js/scenes/titleScene.js" charset="utf-8"></script>
+<script src="js/scenes/gameScene.js" charset="utf-8"></script>
+<script src="js/scenes/gameInformation.js" charset="utf-8"></script>
+<script src="js/scenes/UiScene.js" charset="utf-8"> </script>
+<script src="js/scenes/interactNotification.js" charset="utf-8"> </script>
+<script src="js/scenes/questScenes/quest1Info.js" charset="utf-8"> </script>
+<script src="js/scenes/questScenes/quest2Info.js" charset="utf-8"> </script>
+<script src="js/scenes/questScenes/quest3Info.js" charset="utf-8"> </script>
+<script src="js/scenes/questScenes/quest4Info.js" charset="utf-8"> </script>
+<script src="js/scenes/questScenes/quest5Info.js" charset="utf-8"> </script>
+<script src="js/scenes/questScenes/quest1Ui.js" charset="utf-8"> </script>
+<script src="js/scenes/questScenes/quest2Ui.js" charset="utf-8"> </script>
+<script src="js/scenes/questScenes/quest3Ui.js" charset="utf-8"> </script>
+<script src="js/scenes/questScenes/quest4Ui.js" charset="utf-8"> </script>
+<script src="js/scenes/questScenes/quest5Ui.js" charset="utf-8"> </script>
+<script src="js/scenes/questScenes/completedNotification.js" charset="utf-8"> </script>
+<script src="js/scenes/questScenes/priestScene.js" charset="utf-8"> </script>
+<script src="js/scenes/questScenes/mountainGuide.js" charset="utf-8"> </script>
+<script src="js/scenes/questScenes/completeGame.js" charset="utf-8"> </script>
+<script src="js/scenes/questScenes/failedQuest.js" charset="utf-8"> </script>
+<script src="js/main.js" charset="utf-8"></script>
+<script src="js/jwtToken.js"charset="utf-8"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+<script>
+//Logs out users in backend when called
+function logout() {
+  $.ajax({
+    type: 'POST',
+    url: '/logout',
+    data: {
+      refreshToken: getCookie("refreshJwt"),
+    },
+    success: function (data) {
+      window.location.replace('/');
+    },
+    error: function (xhr) {
+      window.location.replace('/');
+    }
+  });
+}
+</script>
+</html>
