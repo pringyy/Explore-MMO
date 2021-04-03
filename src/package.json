@@ -22,7 +22,7 @@
     "express": "^4.17.1",
     "jsonwebtoken": "^8.5.1",
     "mocha": "^8.2.1",
-    "mongoose": "^5.10.15",
+    "mongoose": "^5.12.3",
     "nodemailer": "^6.4.17",
     "nodemon": "^2.0.6",
     "npm": "^7.5.2",
