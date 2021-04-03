@@ -199,15 +199,6 @@ describe('Backend Tests', function (){
   });
   
 
-it('Tests if reset password is working when the email is correct', function(done){
-    request.post('/forgotPassword')
-    .send({ email: 'testuser123@gmail.com'})
-    .expect(200)
-    .end(function(err, res) {
-      done(err);
-    });
-});
-
   it('Tests if reset password is working when the email is incorrect', function(done){
       request.post('/forgotPassword')
       .send({ email: 'testuser123qwdwqdqwdqwdqwd21331231@gmail.com'})
