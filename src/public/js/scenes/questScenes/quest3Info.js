@@ -1,3 +1,4 @@
+//Displays the quest information for Quest 3 to user when they interact with the NPC
 class quest3Info extends Phaser.Scene {
     constructor(){
         super ('quest3Info');

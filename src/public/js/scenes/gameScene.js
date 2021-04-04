@@ -1,3 +1,4 @@
+//Scene handles all main game play mechanics and contains most of the functionality
 class gameScene extends Phaser.Scene {
 
     constructor() {
@@ -86,7 +87,7 @@ class gameScene extends Phaser.Scene {
         //Handles user input from keyboard
         this.cursors = this.input.keyboard.createCursorKeys();
 
-        // listen for web socket events
+        //Creates players and other players sprites in game world
         this.socket.on("currentPlayers", function (players) {
             
             Object.keys(players).forEach(
@@ -99,13 +100,15 @@ class gameScene extends Phaser.Scene {
                     this.container.setSize(16, 16);
                     this.physics.world.enable(this.container);
                     this.container.add(this.player);
-                    var text = this.add.text(0, 0, username, { backgroundColor: '	rgb(0, 0, 0)'});text.alpha = 0.5;
+                    var text = this.add.text(0, 0, username, { backgroundColor: 'rgb(0, 0, 0)'});text.alpha = 0.5;
                     text.setOrigin(0.5, 2.9);
                     text.setScale(0.7);
                     this.container.add(text);
                     this.updateCamera();
+                    //Sets up collisons between sprites and layers
                     this.container.body.setCollideWorldBounds(true);
                     this.physics.add.collider(this.container, [trees,water,building,buildingaddon]);
+                    //Allows items to be picked up
                     this.physics.add.overlap(this.container, coin, this.collectCoin, null, this);
                     this.physics.add.overlap(this.container, sword, this.collectSword, null, this);
                     this.physics.add.overlap(this.container, hat, this.collectHat, null, this);
@@ -116,12 +119,13 @@ class gameScene extends Phaser.Scene {
             }.bind(this));
         }.bind(this));
 
+        //Adds new player when the join
         this.socket.on("newPlayer",function (info) {
             this.addOtherPlayers(info);
             }.bind(this)
         );
 
-       
+       //Removes player when they leave
         this.socket.on("remove", function (id) {
             this.otherPlayers.getChildren().forEach(function (player) {
                 if (player.playerId === id) {
@@ -130,6 +134,7 @@ class gameScene extends Phaser.Scene {
             }.bind(this));
         }.bind(this));
 
+        //Updates player location when they move
         this.socket.on("playerMoved", function (playerInfo) {
             this.otherPlayers.getChildren().forEach(
             function (player) {
@@ -140,6 +145,7 @@ class gameScene extends Phaser.Scene {
             }.bind(this));
         }.bind(this));
 
+        //Updates chat box when message is sent
         this.socket.on("new user message", (data) => {
             const usernameSpan = document.createElement("span");
             const usernameText = document.createTextNode(data.username);
@@ -156,6 +162,7 @@ class gameScene extends Phaser.Scene {
             addMessageElement(messageList);
         });
 
+        //Rest of function used to communicate gameplay events between other scenes
         this.quest1Scene.events.on('questActivated', () => {
             this.activeQuest=true;
         })
@@ -193,9 +200,6 @@ class gameScene extends Phaser.Scene {
         this.UiScene.events.on('infoActivated', () => {
             this.sleep();
         })
-        
-       
-       
         
     }
 
@@ -239,6 +243,7 @@ class gameScene extends Phaser.Scene {
         });
     }
 
+    //Adds other players sprites and their username
     addOtherPlayers(playerInfo) {
         this.otherPlayer = this.add.sprite(0, 0,"otherplayer",0);     
         const container = this.add.container(playerInfo.x, playerInfo.y);
@@ -252,7 +257,7 @@ class gameScene extends Phaser.Scene {
         this.otherPlayers.add(container);
     }
 
-
+    //Updates camera as players move
     updateCamera() {
         this.cameras.main.setBounds(0, 0, this.map.widthInPixels, this.map.heightInPixels);
         this.cameras.main.startFollow(this.container);
@@ -277,7 +282,7 @@ class gameScene extends Phaser.Scene {
         return { x, y };
     }
 
-    //resets arrow keys to stop player moving uncontrollably when a new scene starts
+    //Resets arrow keys to stop player moving uncontrollably when a new scene starts
     sleep() {
         this.cursors.left.reset();
         this.cursors.right.reset();
@@ -285,12 +290,14 @@ class gameScene extends Phaser.Scene {
         this.cursors.down.reset();
     }
 
+    //Allows players to pick up hat object
     collectHat(player, hat) {
         hat.destroy(hat.x, hat.y); // remove the tile/coin
         this.itemsLeft --
         this.checkComplete(this.itemsLeft);
     }
 
+    //Allows players to pick up sword object
     collectSword(player,sword) {
         sword.destroy(sword.x, sword.y); // remove the tile/coin
         this.itemsLeft --;
@@ -298,6 +305,7 @@ class gameScene extends Phaser.Scene {
         this.checkComplete(this.itemsLeft);
     }
 
+    //Allows players to pick up coin object
     collectCoin(player,coin) {
         coin.destroy(coin.x, coin.y); // remove the tile/coin
         this.itemsLeft --;
@@ -305,6 +313,7 @@ class gameScene extends Phaser.Scene {
         this.checkComplete(this.itemsLeft);
     }  
     
+    //Chekcs to see if each item collecting quest is complete when called
     checkComplete(itemsLeft){
         if (this.itemsLeft <= 0){
             this.events.emit('completedQuest');
@@ -316,6 +325,7 @@ class gameScene extends Phaser.Scene {
         }
     }
 
+    //Starts the quest information modals when interacted with
     launchQuest(keyObj, scene, quest){  
         if (!this.scene.isActive("Interact")) {
                 this.scene.launch("Interact", {text: "Press E to interact"})
@@ -707,6 +717,8 @@ class gameScene extends Phaser.Scene {
             this.container.setPosition(10800, 2144)
          });
     }
+
+    //Function is called 60 times per second
     update() {
 
         //Updates the progress in the UI scene
@@ -750,6 +762,7 @@ class gameScene extends Phaser.Scene {
             var x = this.container.x;
             var flip = this.player.flipX;
 
+            //Updates other players with your movement when you move
             if (this.container.oldPosition && (x !== this.container.oldPosition.x || y !== this.container.oldPosition.y ||flip !== this.container.oldPosition.flipX)) {
                 this.socket.emit("playerMovement", { x, y, flip });
             }

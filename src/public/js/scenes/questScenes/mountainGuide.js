@@ -1,4 +1,4 @@
-
+//This displays the book which players need to use to navigate their companion to the top of the mountain
 class mountainGuide extends Phaser.Scene {
     constructor(){
         super ('mountainGuide');

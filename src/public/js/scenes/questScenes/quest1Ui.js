@@ -1,3 +1,4 @@
+//Overlaps gameplay scene when quest is activated in order to blind player but they can still move
 class quest1Ui extends Phaser.Scene {
     constructor(){
         super ('quest1Ui');
@@ -22,7 +23,6 @@ class quest1Ui extends Phaser.Scene {
         this.events.emit('questDeactivated');
         this.scene.stop(targetScene);
     }
-
-  };
+};
   
   

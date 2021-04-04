@@ -47,6 +47,7 @@ const io = require("socket.io")(server,{
 //variable used to store the active players on the server
 const connectedPlayers = {};
 
+//Called when players join the game
 io.on("connection", function (socket) {
 
   console.log(socket.handshake.query.name + " has connected to the server.");
@@ -91,7 +92,7 @@ app.use(cors());
 app.use(express.static(__dirname + "/public"));
 
 
-//Backend for when users send a message
+//Backend for when users send a message if token is valid
 app.post("/submitChat", verify, asyncMiddleware(async (req, res, next) => {
 
   const username = req.user.info.username + ":";
@@ -109,7 +110,7 @@ app.post("/submitChat", verify, asyncMiddleware(async (req, res, next) => {
   })
 );
 
-//Backend used to update User Progress when a quest is completed
+//Backend used to update User Progress when a quest is completed if token is valid
 app.post("/completedQuest", verify, asyncMiddleware(async (req, res, next) => {
   const user = req.user.info.username;
   var quest = req.body.quest;
@@ -118,7 +119,7 @@ app.post("/completedQuest", verify, asyncMiddleware(async (req, res, next) => {
   res.status(200).json({ status: "Quest progress updated" });
 }));
 
-//Backend used to send user progress to the front end when requested
+//Backend used to send user progress to the front end when requested if token is valid
 app.get("/questQuery", verify, asyncMiddleware(async (req, res, next) => {
   var user = req.user.info.username;
   var query = {"username": user};  
@@ -143,7 +144,7 @@ app.get("/forgotpassword", function (req, res) {
   res.sendFile(__dirname + "/public/forgotPassword.html");
 });
 
-//Sends the rgame page to the user
+//Sends the game page to the user if token is valid
 app.get("/play", verify, function (req, res) {
   res.sendFile(__dirname + "/public/game.html");
 });

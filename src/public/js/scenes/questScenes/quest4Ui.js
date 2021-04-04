@@ -1,4 +1,5 @@
-
+//Scene overlaps players view so they cannot see when quest is activated
+//Also displays and handles the time left on the quest
 class quest4Ui extends Phaser.Scene {
     constructor(){
       super ('quest4Ui');
@@ -11,23 +12,22 @@ class quest4Ui extends Phaser.Scene {
     create() {
       this.setupUiElements(); 
 
+      //Handle time when users leave the browser
       this.game.events.on('hidden',function(){
         this.hiddenTimeStamp = performance.now();
       })
    
-    this.game.events.on('visible',function(){
-        timerDelay = (performance.now()- this.hiddenTimeStamp)/1000
-    })
+      this.game.events.on('visible',function(){
+          timerDelay = (performance.now()- this.hiddenTimeStamp)/1000
+      })
     };
-
-    
-
 
   setupUiElements () {
     this.modal = this.add.rectangle(this.scale.width/2, this.scale.height/2, this.scale.width, this.scale.height,'#000000').setOrigin(0.5);
     this.titleText = this.add.text(this.scale.width/2, this.scale.height/2 * 0.7, "You have been blinded by Death's poison.", {fontSize: '32px', fill: '#fff'}).setOrigin(0.5);;
     this.objText = this.add.text(this.scale.width/2, this.scale.height/2 * 1, 'Objective: get to the church to survive', { fontSize: '16px', fill: '#fff' }).setOrigin(0.5);;
-   
+    
+    //5 minute timer
     this.timer = this.time.addEvent({
       delay: 300000,
       paused: false

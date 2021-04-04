@@ -16,6 +16,7 @@ function getCookie(cname) {
 }
 
 //Every 10000ms check the token is valid in backend to make sure session is valid
+//Then a new token is sent back constantly reassigning players token
 setInterval(function () {
   $.ajax({
     type: "POST",

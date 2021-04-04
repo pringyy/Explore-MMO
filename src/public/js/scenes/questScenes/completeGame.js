@@ -1,4 +1,4 @@
-
+//This is the modal box when you speak to the NPC in the room you can only access when 5/5 quests are complete
 class completeGame extends Phaser.Scene {
     constructor(){
         super ('completeGame');

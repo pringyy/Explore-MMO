@@ -1,3 +1,4 @@
+//This defines the user schema used to store users' login information in the MongoDB database
 const mongoose = require('mongoose');
 
 const userSchema = new mongoose.Schema({

@@ -1,3 +1,4 @@
+//Displays HUD over the main gameplay or gameScene.js
 class UiScene extends Phaser.Scene {
     
     constructor(){

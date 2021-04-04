@@ -1,3 +1,4 @@
+//Intialise all the game assets which players need in order to play the game
 class initialiseAssets extends Phaser.Scene {
     
     constructor() {
@@ -20,7 +21,7 @@ class initialiseAssets extends Phaser.Scene {
       this.load.spritesheet("player", "assets/sprites/Player.png", {frameWidth: 32,frameHeight: 48,});
       this.load.spritesheet("otherplayer", "assets/sprites/OtherPlayer.png", {frameWidth: 32,frameHeight: 48,});
       this.load.spritesheet("Rod", "assets/sprites/Rod.png", {frameWidth: 32,frameHeight: 48,});
-      this.load.spritesheet("Janet", "assets/sprites/blonde.png", {frameWidth: 32,frameHeight: 48,});
+      this.load.spritesheet("Janet", "assets/sprites/janet.png", {frameWidth: 32,frameHeight: 48,});
       this.load.spritesheet("Cowan", "assets/sprites/cowan.png", {frameWidth: 32,frameHeight: 48,});
       this.load.spritesheet("Pringle", "assets/sprites/pringle.png",{frameWidth: 32,frameHeight: 48,});
       this.load.spritesheet("death", "assets/sprites/death.png", {frameWidth: 32,frameHeight: 48,});

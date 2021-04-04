@@ -1,4 +1,4 @@
-
+//Displays quest objective to user when they start the quest
 class quest3Ui extends Phaser.Scene {
     constructor(){
       super ('quest3Ui');

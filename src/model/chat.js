@@ -1,3 +1,4 @@
+//This defines the chat schema used to store messages in the MongoDB database
 const mongoose = require('mongoose');
 
 const chatSchema = new mongoose.Schema({

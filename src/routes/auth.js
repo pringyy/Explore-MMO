@@ -4,10 +4,8 @@ const User = require("../model/user");
 const bcrypt = require("bcryptjs");
 const webtoken = require("jsonwebtoken");
 const { registerValidation, loginValidation } = require("../validation");
-
 const asyncMiddleware = require("../middleware/asyncMiddleware");
 const userProgress = require("../model/userProgress");
-
 const tokenList = {};
 
 //Backend functionality for registering
@@ -88,7 +86,7 @@ router.post("/login",asyncMiddleware(async (req, res) => {
   
   //Creates and signs a refresh JSON token
   const refreshToken = webtoken.sign({info: body}, process.env.TOKEN_SECRET, { 
-    expiresIn: 10000 
+    expiresIn: 10000, 
   });
 
   //Creates cookies for session validation
@@ -110,7 +108,6 @@ router.post("/login",asyncMiddleware(async (req, res) => {
 
 //Backend functionality for updating tokens
 router.post("/token", (req, res) => {
-
   const { refreshToken } = req.body;
 
   if (refreshToken in tokenList) {

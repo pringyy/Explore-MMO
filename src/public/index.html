@@ -1,3 +1,5 @@
+
+<!--This displays the login page to users-->
 <!doctype html>
 <html lang="en">
 
@@ -17,7 +19,6 @@
         <div class="middle">  
           <img onload="this.style.opacity='0.8'" src="assets/images/logo.png" class= "center" width = "120%"  > <!-- Displays ORGE logo-->  
           <div class="transparency_bg">
-            
             <div class="container">
               <div class="row">
                 <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
@@ -25,12 +26,13 @@
                     <div class="card-body">
                        <form class="form-signin" method="post">
 
+                          <!--Where users enter their username-->
                           <div class="form-label-group">
                             <label for="inputUsername"></label>
                             <input type="text"  class="form-control"  placeholder="Username" id="inputUsername" required autofocus>
                           </div>
 
-                  
+                          <!--Where users enter their password-->
                           <div class="form-label-group">
                             <label for="inputPassword"></label>
                             <input type="password"  class="form-control"  placeholder="Password" id="inputPassword" required>
@@ -38,6 +40,7 @@
 
                           <a href="/forgotpassword"><center>Forgot your username or password?</center></a>
                           <br>
+                          <!--Button used to send details entered in the input boxes above-->
                           <a  onClick="login()" class="btn btn-lg btn-primary btn-block">Sign in</a>
                           <br>
                           <a href="/register"><center>Not got an account? Register here.</center></a>
@@ -54,6 +57,7 @@
 </body>
 
 <script>
+//Sends the login details to the backend to be validated
 function login() {
   var data = {
     username: document.getElementById("inputUsername").value,
@@ -64,13 +68,12 @@ function login() {
     url: '/login',
     data,
     success: function (data) {
-      
+      //If details are valid display game.html
       toastr.success('Login Succesful')
       window.location.replace('/play')
-    
     },
     error: function (xhr) {
-      
+      //If details are incorrect display why in toastr notification
       toastr.error(String(xhr.responseText))
     }
   });

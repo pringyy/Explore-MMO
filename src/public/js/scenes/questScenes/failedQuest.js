@@ -1,3 +1,4 @@
+//This displays a completed notification when player fail to complete a quest
 class failedQuest extends Phaser.Scene {
     constructor(){
         super ('failedQuest');

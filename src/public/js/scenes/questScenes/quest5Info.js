@@ -1,3 +1,4 @@
+//Displays the quest information for Quest 5 to user when they interact with the NPC
 class quest5Info extends Phaser.Scene {
     constructor(){
         super ('quest5Info');
@@ -35,14 +36,14 @@ class quest5Info extends Phaser.Scene {
     endScene(targetScene){
         this.scene.stop(targetScene);
         this.scene.resume("Game");
-      }
+    }
 
 
-      startScene(targetScene){
+    startScene(targetScene){
         this.events.emit('questActivated');
         this.scene.start(targetScene);
         this.scene.resume("Game");
-      }
+    }
 
 };
 

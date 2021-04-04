@@ -352,3 +352,12 @@
 
 ### 30 Mar 2021
 * *3 hours* continued with Dissertation work
+
+### 1 Apr 2021
+* *4 hours* continued with Dissertation work
+
+### 2 Apr 2021
+* *10 hours* continued with Dissertation work
+
+### 3 Apr 2021
+* *9 hours* continued with Dissertation work

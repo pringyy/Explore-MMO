@@ -1,3 +1,4 @@
+//This defines the user progress schema used to store users' quests progress in the MongoDB database
 const mongoose = require('mongoose');
 
 const userProgress= new mongoose.Schema({

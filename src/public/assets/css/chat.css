@@ -14,20 +14,6 @@
   font-size: 100%;
 }
 
-.inputMessage {
-  font-size: 100%;
-}
-
-::placeholder {
-  color: gray;
-  opacity: 1; 
-}
-
-ul {
-  list-style: none;
-  word-wrap: break-word;
-}
-
 #chatContainer {
   width: calc(100% - 800px);
 }
@@ -50,9 +36,23 @@ ul {
 }
 
 .username {
-  font-weight: 700;
+  font-weight: 650;
   overflow: hidden;
   padding-right: 15px;
   text-align: right;
+}
+
+.inputMessage {
+  font-size: 100%;
+}
+
+::placeholder {
+  color: gray;
+  opacity: 1; 
+}
+
+ul {
+  list-style: none;
+  word-wrap: break-word;
 }
 

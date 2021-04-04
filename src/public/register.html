@@ -1,3 +1,4 @@
+<!--This page is where users register for the application-->
 <!doctype html>
 <html lang="en">
  
@@ -27,19 +28,23 @@
 
                           <div class="form-label-group">
                             <label for="inputUsername"></label>
+                            <!--Users enter their username here-->
                             <input type="text"  class="form-control"  placeholder="Username" id="inputUsername" required autofocus>
                           </div>
                           <div class="form-label-group">
                             <label for="inputEmail"></label>
+                            <!--Users enter their email here-->
                             <input type="text"  class="form-control"  placeholder="Email" id="inputEmail" required autofocus>
                           </div>
 
                           <div class="form-label-group">
                             <label for="inputPassword"></label>
+                            <!--Users enter their password here-->
                             <input type="password"  class="form-control"  placeholder="Password" id="inputPassword" required>
                           </div>
 
                           <br>
+                          <!--Button calls function which submits details when clicked-->
                           <a  onClick="register()" class="btn btn-lg btn-primary btn-block">Register</a>
                           <br>
                           <a href="/"><center>Aleady have an account? Login here.</center></a>
@@ -56,50 +61,53 @@
 </body>
 
 <script>
-function register() {
-
-  var data = {
-    username: document.getElementById("inputUsername").value,
-    email: document.getElementById("inputEmail").value,
-    password: document.getElementById("inputPassword").value
-  };
-  $.ajax({
-    type: 'POST',
-    url: '/register',
-    data,
-    success: function (data) {
-      login();
-    },
-    error: function (xhr) {
-      toastr.error(String(xhr.responseText))
-  
-      }
-  });
-}
+  //This function submits and sees if the details submitted are valid and unique
+  function register() {
+    var data = {
+      username: document.getElementById("inputUsername").value,
+      email: document.getElementById("inputEmail").value,
+      password: document.getElementById("inputPassword").value
+    };
+    $.ajax({
+      type: 'POST',
+      url: '/register',
+      data,
+      success: function (data) {
+        //If details are valid log the user in straight away
+        login();
+      },
+      error: function (xhr) {
+        toastr.error(String(xhr.responseText))
+    
+        }
+    });
+  }
 </script>
 
 <script>
-function login() {
-  var data = {
-    username: document.getElementById("inputUsername").value,
-    password: document.getElementById("inputPassword").value
-  };
-  $.ajax({
-    type: 'POST',
-    url: '/login',
-    data,
-    success: function (data) {
-      toastr.success('Login Succesful')
-      window.location.replace('/play')
-    },
-    error: function (xhr) {
-      toastr.error(String(xhr.responseText))
-    }
-  });
-}
+  //Function logs users in to the application if the details they registered with were valid
+  function login() {
+    var data = {
+      username: document.getElementById("inputUsername").value,
+      password: document.getElementById("inputPassword").value
+    };
+    $.ajax({
+      type: 'POST',
+      url: '/login',
+      data,
+      success: function (data) {
+        toastr.success('Login Succesful')
+        window.location.replace('/play')
+      },
+      error: function (xhr) {
+        toastr.error(String(xhr.responseText))
+      }
+    });
+  }
 </script>
 
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.1/jquery.min.js"></script>
 <script src="js/toastr.min.js"></script>
+<!--Uses bootstrap for the css of the page-->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 </html>

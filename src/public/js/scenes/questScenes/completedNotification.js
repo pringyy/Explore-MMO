@@ -1,3 +1,4 @@
+//This displays a completed notification when player successfully complete a quest
 class completedNotification extends Phaser.Scene {
     constructor(){
         super ('completedNotification');

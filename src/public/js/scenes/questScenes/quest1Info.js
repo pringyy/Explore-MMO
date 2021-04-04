@@ -1,4 +1,4 @@
-
+//Displays the quest information for Quest 1 to user when they interact with the NPC
 class quest1Info extends Phaser.Scene {
     constructor(){
         super ('quest1Info');
@@ -24,16 +24,14 @@ class quest1Info extends Phaser.Scene {
             this.titleText = this.add.text(this.scale.width/2, this.scale.height/2*0.6, 'Already Completed Quest!', {fontSize: '32px', fill: '#fff'}).setOrigin(0.5);;
             this.startButton = new button(this, this.scale.width/2, this.scale.height/2*1.4, 'button1', 'button2', 'Redo Quest', this.startScene.bind(this, 'quest1Ui'));
         }
-        
         this.modalText = this.add.text(this.scale.width/2, this.scale.height/2*1, 'Janet: "I bet you can not complete this maze blind folded!"', {fontSize: '16px', fill: '#fff'}).setOrigin(0.5);
     };
 
     endScene(targetScene){
         this.scene.stop(targetScene);
         this.scene.resume("Game");
-      }
-
-
+    }
+    
     startScene(targetScene){
         this.events.emit('questActivated');
         this.scene.start(targetScene);

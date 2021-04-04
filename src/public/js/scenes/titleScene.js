@@ -1,3 +1,4 @@
+//Title scene where users press start and load into the game
 class titleScene extends Phaser.Scene {
     
   constructor(){

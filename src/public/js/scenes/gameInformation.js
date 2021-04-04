@@ -1,3 +1,4 @@
+//Displays Game Information to players including controls and instructions on how to complete the game
 class gameInformation extends Phaser.Scene {
     
   constructor(){

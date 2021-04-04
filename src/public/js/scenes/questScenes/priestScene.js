@@ -1,4 +1,4 @@
-
+//This displays a modal box reminding player where the book is located in the church
 class priestScene extends Phaser.Scene {
     constructor(){
         super ('priestScene');

@@ -1,10 +1,13 @@
+<!--This page displays the game to players and the chat they communicate in-->
 <!doctype html>
 <html lang="en">
- 
+
 <head>
   <meta charset="utf-8">
   <title>Explore IO</title>
+  <!--Loads in Phaser files -->
   <script src="//cdn.jsdelivr.net/npm/phaser@3.16.2/dist/phaser.min.js"></script>
+  <!--Loads in socket.io to open a web socket between client and backend-->
   <script src="/socket.io/socket.io.js"></script>
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
@@ -21,8 +24,11 @@
       </ul>
     </div>
   </nav>
+
   <div class="flex-container">
-    <div id="content"></div>
+    <!--Game displays here-->
+    <div id="content"></div> 
+    <!--Display the chat-->
     <div id="chatContainer">
       <div class="chatArea">
         <ul id="messages" class="messages"></ul>
@@ -56,25 +62,27 @@
 <script src="js/scenes/questScenes/completeGame.js" charset="utf-8"> </script>
 <script src="js/scenes/questScenes/failedQuest.js" charset="utf-8"> </script>
 <script src="js/main.js" charset="utf-8"></script>
+<!--Loads in script for JWT tokens to be retrieved from cookies to be sent to the server-->
 <script src="js/jwtToken.js"charset="utf-8"></script>
+<!--Loads in Matrialize for webpage formatting-->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 
 <script>
-//Logs out users in backend when called
-function logout() {
-  $.ajax({
-    type: 'POST',
-    url: '/logout',
-    data: {
-      refreshToken: getCookie("refreshJwt"),
-    },
-    success: function (data) {
-      window.location.replace('/');
-    },
-    error: function (xhr) {
-      window.location.replace('/');
-    }
-  });
-}
+  //Logs out users in backend when called
+  function logout() {
+    $.ajax({
+      type: 'POST',
+      url: '/logout',
+      data: {
+        refreshToken: getCookie("refreshJwt"),
+      },
+      success: function (data) {
+        window.location.replace('/');
+      },
+      error: function (xhr) {
+        window.location.replace('/');
+      }
+    });
+  }
 </script>
 </html>

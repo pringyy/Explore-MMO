@@ -1,4 +1,4 @@
-
+//Displays new HUD elements allowing player to know how long is left and how many coins are left when quest is activated
 class quest2Ui extends Phaser.Scene {
   constructor(){
     super ('quest2Ui');

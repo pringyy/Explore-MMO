@@ -1,3 +1,4 @@
+//Displays new HUD elements allowing player to know how long is left and how many coins are left when quest is activated
 class quest5Ui extends Phaser.Scene {
   constructor(){
     super ('quest5Ui');
@@ -11,6 +12,7 @@ class quest5Ui extends Phaser.Scene {
     this.setupUiElements();
     this.setupEvents(); 
 
+    //Handles timer when players tab out of browser
     this.game.events.on('hidden',function(){
       this.hiddenTimeStamp = performance.now(); 
     });
@@ -23,7 +25,8 @@ class quest5Ui extends Phaser.Scene {
   setupUiElements () {
     this.scoreText = this.add.text(35, 35, 'Swords left: 7', { backgroundColor: '	rgb(0, 0, 0)',  fontSize: '16px', fill: '#fff' });this.scoreText.alpha=0.7;
     this.objText = this.add.text(35, 8, 'Objective: find all the swords scattered around the map ', { backgroundColor: '	rgb(0, 0, 0)', fontSize: '16px', fill: '#fff' });this.objText.alpha = 0.7;
-      
+    
+    //Sets up 7 minute timer
     this.timer = this.time.addEvent({
       delay: 420000,
       paused: false
