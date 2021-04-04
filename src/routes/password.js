@@ -21,10 +21,10 @@ const smtpTransport = nodemailer.createTransport({
 const router = express.Router();
 
 router.post('/forgotPassword', asyncMiddleware(async (req, res, next) => {
-  const {email} = req.body;
+  const { email } = req.body;
 
   //Cehcks if email is in datavase
-  const user = await User.findOne({email});
+  const user = await User.findOne({ email });
   
   //Checks to see of email entered is on the system
   if (!user) {
@@ -34,7 +34,7 @@ router.post('/forgotPassword', asyncMiddleware(async (req, res, next) => {
   
   //Generates user token to send to user
   const buff = crypto.randomBytes(20);
-  const resetToken = buff.toString('hex');
+  const token = buff.toString('hex');
   
   // update user reset password token and exp
   await User.findByIdAndUpdate({ _id: user._id }, { resetToken: token, resetTokenExp: Date.now() + 300000 });
@@ -44,7 +44,7 @@ router.post('/forgotPassword', asyncMiddleware(async (req, res, next) => {
     to: user.email,
     from: email,
     subject: 'Explore MMO Password Reset',
-    text: "You username is: " + user.username +". Reset you password using " + `${process.env.URL}${process.env.PORT || 3020}/resetPassword.html?token=${token}`,
+    text: "You username is: " + user.username +". Reset you password using " + `${process.env.URL}${process.env.PORT || 3020}/resetPassword.html?resetToken=${token}`,
   }
 
   //Sends email
@@ -54,14 +54,18 @@ router.post('/forgotPassword', asyncMiddleware(async (req, res, next) => {
 
 router.post('/resetPassword', asyncMiddleware(async (req, res, next) => {
   const user = await User.findOne({ resetToken: req.body.token, resetTokenExp:{$gt: Date.now()}});
+    //Checks to see the password match and if not informs user
+    console.log(req.body.verifiedPass)
+    console.log(req.body.password)
+    console.log(req.body.token)
   
   //If token is invalid inform users
-  if (user == false) {
+  if (!user) {
     res.status(400).json({'message': 'Error please try again' });
     return;
   }
 
-  //Checks to see the password match and if not informs user
+
   if (req.body.verifiedPass !== req.body.password) {
     res.status(400).json({'message': 'Passwords do not match' });
     return;
