@@ -4,7 +4,7 @@ This file will describe how to run the web application on your system and provid
 
 ## Installation Guide
 
-*The installation guide has only been tested on MacOS as the developer does not have a Windows PC*
+***The installation guide has only been tested on MacOS as the developer does not have a Windows PC***
 
 **Important:** to run this application you need to have internet connection in order to connect to the MongoDB database.
 
