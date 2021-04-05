@@ -36,7 +36,7 @@ This project developed a series of functional and non-functional requirements th
 
 ## Application Screenshots
 
-* An online library of different screenshots from the game can be found here:
+* An online library of different screenshots from the game can be found here: https://imgur.com/a/BCNljDq
 * This highlights different features implemented as discussed below.
 
 ## Features
@@ -45,10 +45,10 @@ This web application was created using Node JS and Express to hanlde the backend
 
 #### Real time Player Movement
 
-* Players can see other player movements in real-time.
+* Players can see other players' sprite movements in real-time.
 * Was achieved using JavaScript package socket.io, allowing for continous data streaming between all clients.
 * Was essential so players could collaborate and complete quests.
-* Sprites game assets used were copyright free and created by Sithjester. This link to the art is here: https://untamed.wild-refuge.net/rpgxp.php
+* All sprite game assets used were copyright free and created by Sithjester. This link to the art is here: https://untamed.wild-refuge.net/rpgxp.php
 
 #### Game World
 
