@@ -8,7 +8,7 @@ This file will describe how to run the web application on your system and provid
 
 **Important:** to run this application you need to have internet connection in order to connect to the MongoDB database.
 
-The .env file contains the link that connects the web application to the MongoDB server, if you want to use your own server just replace that link.
+The [.env](src/.env) file contains the link that connects the web application to the MongoDB server, if you want to use your own server just replace that link.
 
 **Step 1:** Download Node.js onto your system using the following link: https://nodejs.org/en/download/
 
