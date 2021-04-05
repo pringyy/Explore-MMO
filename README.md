@@ -1,8 +1,8 @@
 # Explore MMO: A Massively Multiplayer Online Game Facilitating Communication Skill Development
 
 This is my final year project at the University of Glasgow for the School of Computing Science.
-This README provides a breif outline of the game.
-**A user manual is also provided which describes how to run the system.**
+This README provides a breif outline of the file structure and the game.
+**A [user manual](manual.md) is also provided which describes how to run the system.**
 At the end the technologies and external sources used are broken down, describing how each one contributed towards the system.
 
 ## Live Demonstration
@@ -14,7 +14,7 @@ Live demo: http://robert-pringle.com
 
 ## User Manual
 
-For a breakdown of the file structure and instructions on how to run the program please see the UserManual.md present in the repository.
+To see how to run the program please see [manual.md](manual.md) in the repository.
 
 ## Introduction
 
@@ -84,7 +84,7 @@ All RESTful API requests are verified using JSON web tokens, and JSON web tokens
 Users can register, login and reset their password
 
 ## License
-* See LICENSE to see the MIT license for THIS REPOSITORY
+* See [LICENSE](LICENSE) to see the MIT license for THIS REPOSITORY
 
 ## Technologies/External Sources
 
