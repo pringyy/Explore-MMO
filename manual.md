@@ -14,7 +14,7 @@ The [.env](src/.env) file contains the link that connects the web application to
 
 **Step 2:** Using your console navigate to the [src](src) folder present in the repository
 
-**Step 3:** In order to install all the depenencies required, run the command:
+**Step 3:** In order to install all the dependencies required, run the command:
 ``` npm install ```
 
 **Step 4:** Now to start the application, run the command:
