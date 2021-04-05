@@ -1,8 +1,8 @@
 # Explore MMO: A Massively Multiplayer Online Game Facilitating Communication Skill Development
 
 This is my final year project at the University of Glasgow for the School of Computing Science.
-This README file outlines the requirements, approach, features and licenses for this project.
-A user manual is also provided which describes how to run the system.
+This README provides a breif outline of the game.
+**A user manual is also provided which describes how to run the system.**
 At the end the technologies and external sources used are broken down, describing how each one contributed towards the system.
 
 ## Live Demonstration
@@ -34,6 +34,11 @@ If you have any queries about Explore MMO please contact me using any of these e
 
 This project developed a series of functional and non-functional requirements that conformed to the MoSCow method of assigning priority. They can be found in the repository in this directory: planning/requirements.md
 
+## Application Screenshots
+
+* An online library of different screenshots from the game can be found here:
+* This highlights different features implemented as discussed below.
+
 ## Features
 
 This web application was created using Node JS and Express to hanlde the backend and serve files to the connected clients. JavaScript files are passed to the client to handle all the game mechanics. This game mechanics were created using a 2D web game framework called Phaser.
@@ -49,21 +54,27 @@ This web application was created using Node JS and Express to hanlde the backend
 
 * A detailed and immersive 2D map created using software called Tiled.
 * Built using copyright free game art assets created by Pipoya and can be found here: https://pipoya.itch.io/pipoya-rpg-tileset-32x32?download
+* Collisions layers were created so Phaser can handle not letting players overlap certain objects (like walls and trees)
+* All houses in the map can be entered.
 
+#### Text-based chat
+
+* Players communicate using a text-based chat
+* This is an improtant feature as the game aims to develop communication skills
+* Without this no communication would be possible on the wbe application
 
 #### Quests to be completed
-Using Phaser 5 quests were designed to develop communication skills, which are described in the dissertation, and they can be broken down as follows:
+Using Phaser 5 quests were designed to develop communication skills, dicussed further in dissertation, and they can be broken down as follows
 
-- Quest 1: Blindfolded Maze Navigation
-- Quest 2: Coin Scanvenger Hunt
-- Quest 3: Mountain Navigation Quest
-- Quest 4: Blinded by Death Quest
-- Quest 5: Sword Scanvenger Hunt
+- Quest 1: Players need to navigate a player who cannot see their character movement to the end of the quest using the chat
+- Quest 2: Players need to find 10 sets of coins scattered around the map in 10 minutes
+- Quest 3: Players need to navigate to the top of a mountain while an other player communicates the route from the opposite side of the map
+- Quest 4: Players need to navigate a player who cannot see from the graveyard to the church in 5 minutes
+- Quest 5: Players need to find 7 swords scattered around the map in 5 minutes
 
 #### Database
 
-MongoDB databe is used to store all chat logs, user details and user quest progression. Storing user quest progression allows player to start from where they left off when they login at a later date. 
-
+A MongoDB database is used to store all chat logs, user details and user quest progression. Storing user quest progression allows player to start from where they left off when they login at a later date. 
 
 #### JWT token security
 
