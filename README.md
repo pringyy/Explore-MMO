@@ -3,7 +3,7 @@
 This is my final year project at the University of Glasgow for the School of Computing Science.
 This README provides a breif outline of the file structure and the game.
 **A [user manual](manual.md) is also provided which describes how to run the system.**
-At the end the technologies and external sources used are broken down, describing how each one contributed towards the system.
+At the end of this README the **technologies and external sources** used are broken down, describing how each one contributed towards the system.
 
 ## Live Demonstration
 
@@ -73,7 +73,7 @@ This web application was created using Node JS and Express to hanlde the backend
 * Without this no communication would be possible on the wbe application
 
 #### Quests to be completed
-Using Phaser 5 quests were designed to develop communication skills, dicussed further in dissertation, and they can be broken down as follows
+Using Phaser, 5 quests were designed to develop communication skills, dicussed further in dissertation, and they can be broken down as follows
 
 - Quest 1: Players need to navigate a player who cannot see their character movement to the end of the quest using the chat
 - Quest 2: Players need to find 10 sets of coins scattered around the map in 10 minutes
