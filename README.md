@@ -16,6 +16,19 @@ Live demo: http://robert-pringle.com
 
 To see how to run the program please see [manual.md](manual.md) in the repository.
 
+## File Structure
+* [.github/workflows/](.github/workflows) - contains files used for the Continous Integration on Github
+*  [dissertation/](dissertation) - contains the dissertation Latex files
+*  [meeting/](meeting) - contains all meeting minutes with my advisor
+*  [presentation/](presentation) - contains presentation files demonstraiting the project
+*  **[src/](src) - contains all the code for the project**
+*  [status_report/](status_report) - contains the progress report submitted to the University in December
+*  [.gitignore](.gitignore) - contains files which are automatically ignored by Git
+*  [LICENSE](LICENSE) - contains the MIT license information for the project
+*  [manual.md](manual.md) - contains the user manual which provides instructions on how to run the code
+*  [plan.md](plan.md) - contains the orignal plan for the project development
+*  [timelog.md](timelog.md) - contains a log of time spent on the project
+
 ## Introduction
 
 #### What is Explore MMO?
@@ -29,10 +42,6 @@ Robert Pringle:
   - student email: 2304777p@student.gla.ac.uk
 
 If you have any queries about Explore MMO please contact me using any of these emails.
-
-#### Project's Requirements
-
-This project developed a series of functional and non-functional requirements that conformed to the MoSCow method of assigning priority. They can be found in the repository in this directory: planning/requirements.md
 
 ## Application Screenshots
 
