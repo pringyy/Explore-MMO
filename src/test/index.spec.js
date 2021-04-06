@@ -199,7 +199,7 @@ describe('Backend Tests', function (){
         done(err);
       });
   });
-  
+
   it('Tests if reset password is working when the email is incorrect', function(done){
       request.post('/forgotPassword')
       .send({ email: 'testuser123qwdwqdqwdqwdqwd21331231@gmail.com'})
