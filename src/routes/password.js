@@ -54,10 +54,7 @@ router.post('/forgotPassword', asyncMiddleware(async (req, res, next) => {
 
 router.post('/resetPassword', asyncMiddleware(async (req, res, next) => {
   const user = await User.findOne({ resetToken: req.body.token, resetTokenExp:{$gt: Date.now()}});
-    //Checks to see the password match and if not informs user
-    console.log(req.body.verifiedPass)
-    console.log(req.body.password)
-    console.log(req.body.token)
+   
   
   //If token is invalid inform users
   if (!user) {
