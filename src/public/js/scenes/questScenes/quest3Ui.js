@@ -6,7 +6,6 @@ class quest3Ui extends Phaser.Scene {
   
     init(){
       this.gameScene = this.scene.get('Game');
-      
     }
   
     create() {

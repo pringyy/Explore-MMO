@@ -2,7 +2,7 @@
 
 This is my final year project at the University of Glasgow for the School of Computing Science.
 This README provides a breif outline of the file structure and the game.
-**A [user manual](manual.md) is also provided which describes how to run the system.**
+**A [user manual](manual.md) is also provided which describes how to run the system and unit tests.**
 At the end of this README the **technologies and external sources** used are broken down, describing how each one contributed towards the system.
 
 ## Live Demonstration
@@ -14,7 +14,7 @@ Live demo: http://robert-pringle.com
 
 ## User Manual
 
-To see how to run the program please see [manual.md](manual.md) in the repository.
+To see how to run the program and unit test please see [manual.md](manual.md) in the repository.
 
 ## File Structure
 * [.github/workflows/](.github/workflows) - contains files used for the Continous Integration on Github
