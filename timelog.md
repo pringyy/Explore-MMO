@@ -245,6 +245,7 @@
 * *1 hour* Added counter code for timed limited quests
 * *1 hour* Added event trigger to notify what button to press to talk to NPCs when in an event trigger zone
 
+## Week 14
 
 ### 28 Jan 2021
 * *5 hours* finished all quest functionality
@@ -264,6 +265,7 @@
 * *2 hours* Fixed a big where users could not type the chracter 'e'
 * *1 hour* fixed map texture bugs
 
+## Week 15
 
 ### 4 Feb 2021
 * *4 hours* remailing reset password links now works
@@ -271,6 +273,8 @@
 
 ### 5 Feb 2021
 * *4 hours* Planned out dissertation approach and started to write small parts
+
+## Week 16
 
 ### 10 Feb 2021
 * *2 hours* finalised some code
@@ -285,6 +289,7 @@
 * *3 hours* Started writing dissertation
 * *2 hours* Finished final evaluation
 
+## Week 17
 
 ### 16 Feb 2021
 * *3 hours* continued with dissertation work
@@ -294,15 +299,20 @@
 * *3.5 hours* continued with dissertation work
 * *1.5 hours* Refractored code
 
+## Week 18
+
 ### 27 Feb 2021
 * *6 hours* continued with dissertation work
-
 
 ### 28 Feb 2021
 * *5 hours* continued with dissertation work
 
+## Week 19
+
 ### 1 Mar 2021
 * *7 hours* continued with dissertation work
+
+## Week 20
 
 ### 8 Mar 2021
 * *6.5 hours* continued with dissertation work and finished introduction chapter
@@ -317,6 +327,8 @@
 ### 11 Mar 2021
 * *5 hours* continued with dissertation work
 
+## Week 21
+
 ### 15 Mar 2021
 * *4 hours* continued with dissertation work
 
@@ -328,8 +340,6 @@
 
 ### 19 Mar 2021
 * *1 hours* continued with dissertation work
-
-### 19 Mar 2021
 * *4 hours* continued with dissertation work
 
 ### 20 Mar 2021
@@ -340,11 +350,15 @@
 * *1 hours* Started writing README
 * *3 hours* continued with Dissertation work
 
+## Week 22
+
 ### 26 Mar 2021
-* *3 hours* continued with Dissertation wor
+* *3 hours* continued with Dissertation work
 
 ### 28 Mar 2021
-* *10 hours* continued with Dissertation worl
+* *10 hours* continued with Dissertation work
+
+## Week 23
 
 ### 29 Mar 2021
 * *0.5 hours* dissertation meeting
@@ -361,3 +375,12 @@
 
 ### 3 Apr 2021
 * *9 hours* continued with Dissertation work
+
+### 4 Apr 2021
+* *7 hours* continued with Dissertation work
+
+## Week 24
+
+### 5 Apr 2021
+* *7 hours* continued with Dissertation work
+*  *2 hours* finishing README and user manual
