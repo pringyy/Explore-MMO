@@ -206,7 +206,7 @@
 * *5 hours* Carrying out intial evaluation
 * *2 hours* Analysing intial evaluation results
 
-## Week 12
+## Week 14
 
 ### 11 Jan 2021
 * *3 hours* Implementing more quests
@@ -229,7 +229,7 @@
 * *3 hours* Implementing new login and registration user interface
 * *2 hours* fixing bugs idnetified in the intial evaluation
 
-## Week 13
+## Week 15
 
 ### 18 Jan 2021
 * *3 hours* Implementing more quests
@@ -245,7 +245,7 @@
 * *1 hour* Added counter code for timed limited quests
 * *1 hour* Added event trigger to notify what button to press to talk to NPCs when in an event trigger zone
 
-## Week 14
+## Week 16
 
 ### 28 Jan 2021
 * *5 hours* finished all quest functionality
@@ -265,7 +265,7 @@
 * *2 hours* Fixed a big where users could not type the chracter 'e'
 * *1 hour* fixed map texture bugs
 
-## Week 15
+## Week 17
 
 ### 4 Feb 2021
 * *4 hours* remailing reset password links now works
@@ -274,7 +274,7 @@
 ### 5 Feb 2021
 * *4 hours* Planned out dissertation approach and started to write small parts
 
-## Week 16
+## Week 18
 
 ### 10 Feb 2021
 * *2 hours* finalised some code
@@ -289,7 +289,7 @@
 * *3 hours* Started writing dissertation
 * *2 hours* Finished final evaluation
 
-## Week 17
+## Week 19
 
 ### 16 Feb 2021
 * *3 hours* continued with dissertation work
@@ -299,7 +299,7 @@
 * *3.5 hours* continued with dissertation work
 * *1.5 hours* Refractored code
 
-## Week 18
+## Week 20
 
 ### 27 Feb 2021
 * *6 hours* continued with dissertation work
@@ -307,12 +307,12 @@
 ### 28 Feb 2021
 * *5 hours* continued with dissertation work
 
-## Week 19
+## Week 21
 
 ### 1 Mar 2021
 * *7 hours* continued with dissertation work
 
-## Week 20
+## Week 22
 
 ### 8 Mar 2021
 * *6.5 hours* continued with dissertation work and finished introduction chapter
@@ -327,7 +327,7 @@
 ### 11 Mar 2021
 * *5 hours* continued with dissertation work
 
-## Week 21
+## Week 23
 
 ### 15 Mar 2021
 * *4 hours* continued with dissertation work
@@ -350,7 +350,7 @@
 * *1 hours* Started writing README
 * *3 hours* continued with Dissertation work
 
-## Week 22
+## Week 24
 
 ### 26 Mar 2021
 * *3 hours* continued with Dissertation work
@@ -358,7 +358,7 @@
 ### 28 Mar 2021
 * *10 hours* continued with Dissertation work
 
-## Week 23
+## Week 25
 
 ### 29 Mar 2021
 * *0.5 hours* dissertation meeting
@@ -379,7 +379,7 @@
 ### 4 Apr 2021
 * *7 hours* continued with Dissertation work
 
-## Week 24
+## Week 26
 
 ### 5 Apr 2021
 * *7 hours* continued with Dissertation work
