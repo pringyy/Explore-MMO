@@ -384,3 +384,11 @@
 ### 5 Apr 2021
 * *7 hours* continued with Dissertation work
 *  *2 hours* finishing README and user manual
+
+### 6 Apr 2021
+* *9 hours* continued with Dissertation work
+
+
+### 7 Apr 2021
+* *6 hours* continued with Dissertation work
+* * *2 hours* recorded and edited demo for the presentation
