@@ -28,7 +28,7 @@ class quest5Ui extends Phaser.Scene {
     
     //Sets up 7 minute timer
     this.timer = this.time.addEvent({
-      delay: 420000,
+      delay: 300000,
       paused: false
     });
 

@@ -198,7 +198,7 @@ describe('Backend Tests', function (){
       .end(function(err, res) {
         done(err);
       });
-  });
+  });  
   
   it('Tests if reset password is working when the email is incorrect', function(done){
       request.post('/forgotPassword')
