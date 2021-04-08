@@ -21,7 +21,7 @@ class quest4Info extends Phaser.Scene {
             this.titleText = this.add.text(this.scale.width/2, this.scale.height/2 * 0.5, 'Uncompleted Quest', { fontSize: '32px', fill: '#fff' }).setOrigin(0.5);
             this.startButton = new button(this, this.scale.width/2, this.scale.height/2*1.6, 'button1', 'button2', 'Okay', this.startScene.bind(this, 'quest4Ui'));
          } else {
-            this.titleText = this.add.text(this.scale.width/2, this.scale.height/2 * 0.5, 'Already Completed Quest', { fontSize: '32px', fill: '#fff' });
+            this.titleText = this.add.text(this.scale.width/2, this.scale.height/2 * 0.5, 'Already Completed Quest', { fontSize: '32px', fill: '#fff' }).setOrigin(0.5);
             this.startButton = new button(this, this.scale.width/2, this.scale.height/2*1.6, 'button1', 'button2', 'Redo Quest', this.startScene.bind(this, 'quest4Ui'));
             this.quitButton = new button(this, this.scale.width/2 * 1.7, this.scale.height/2  * 0.4, 'cross1', 'cross2', '', this.endScene.bind(this, 'quest4Info'));
             this.quitButton.setScale(0.7);
