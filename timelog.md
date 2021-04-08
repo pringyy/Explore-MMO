@@ -392,3 +392,7 @@
 ### 7 Apr 2021
 * *6 hours* continued with Dissertation work
 * * *2 hours* recorded and edited demo for the presentation
+
+### 8 Apr 2021
+* *7 hours* Finished Dissertation work
+* * *3 hours* finished presentation
