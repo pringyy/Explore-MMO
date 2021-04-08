@@ -1,9 +1,9 @@
 # Timelog
 
-* "A multiplayer game to develop communication skill"
-* Robert Pringle
+* Explore MMO: A Massively Multiplayer Online Game Facilitating Communication Skill Development
+* author: Robert Pringle
 * 2304777P
-* Matthew Barr
+* supervisor: Matthew Barr
 
 ## Week 2
 
@@ -394,5 +394,5 @@
 * * *2 hours* recorded and edited demo for the presentation
 
 ### 8 Apr 2021
-* *7 hours* Finished Dissertation work
+* *7 hours* Finished Dissertation 
 * * *3 hours* finished presentation
