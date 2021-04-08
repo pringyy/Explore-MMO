@@ -1,6 +1,6 @@
 # Timelog
 
-* Explore MMO: A Massively Multiplayer Online Game Facilitating Communication Skill Development
+* "Explore MMO: A Massively Multiplayer Online Game Facilitating Communication Skill Development"
 * author: Robert Pringle
 * 2304777P
 * supervisor: Matthew Barr
